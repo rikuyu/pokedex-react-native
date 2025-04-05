@@ -8,7 +8,7 @@ export default function MyPage() {
       alignItems: "center",
       justifyContent: "center",
     }}>
-      <Text >MyPage</Text>
+      <Text>MyPage</Text>
     </View>
   );
 };
