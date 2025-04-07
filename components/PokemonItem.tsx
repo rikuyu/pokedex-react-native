@@ -1,15 +1,16 @@
 import React from "react";
 import { Image, StyleSheet, Text, useWindowDimensions, View } from "react-native";
-import { Pokemon } from "@/app/(tabs)";
+import { getPokemonImage } from "@/api/endpoints";
+import { PokemonListItem } from "@/types/pokemon";
 
-export default function PokemonItem({index, name, imageUrl}: Pokemon) {
+export default function PokemonItem({index, name}: PokemonListItem) {
   const {width} = useWindowDimensions();
   const padding = 8;
   const itemSize = (width - padding * 4) / 3;
-  const imageSize = itemSize / 2.5;
+  const imageSize = itemSize / 2;
 
   return (
-    <View style={[styles.container, {width: itemSize, height: itemSize, margin: padding / 2}]}>
+    <View style={[styles.container, {width: itemSize, height: itemSize}]}>
       <View style={styles.background}>
         <View style={styles.topHalf}/>
         <View style={styles.bottomHalf}/>
@@ -17,7 +18,7 @@ export default function PokemonItem({index, name, imageUrl}: Pokemon) {
 
       <View style={styles.content}>
         <Text style={styles.index}>#{index}</Text>
-        <Image source={imageUrl} style={{height: imageSize, width: imageSize}} />
+        <Image source={{uri: getPokemonImage(index)}} style={{height: imageSize, width: imageSize}}/>
         <Text style={styles.name}>{name}</Text>
       </View>
     </View>
@@ -52,10 +53,11 @@ const styles = StyleSheet.create({
   index: {
     color: "white",
     fontWeight: "800",
+    fontSize: 12,
   },
   name: {
     color: "black",
     fontWeight: "600",
+    fontSize: 14,
   },
 });
-
