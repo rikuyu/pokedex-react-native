@@ -1,49 +1,57 @@
 import { useState, useEffect } from "react";
 
-const usePaginatedFetch = <T>(
-  fetchFunction: (page: number) => Promise<T[]>,
-  autoFetch: boolean = false
+export const usePaginatedFetch = <T>(
+  fetchFunction: (offset: number, limit: number) => Promise<T[]>,
 ) => {
+  const limit = 20;
   const [data, setData] = useState<T[]>([]);
-  const [page, setPage] = useState<number>(1);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<Error | null>(null);
+  const [offset, setOffset] = useState<number>(0);
+  const [isRefreshing, setIsRefreshing] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [hasError, setHasError] = useState<Error | null>(null);
   const [hasMore, setHasMore] = useState<boolean>(true);
 
-  const fetchData = async (pageToLoad = page) => {
-    if (loading || !hasMore) return;
+  const fetchData = async () => {
+    const isFirst = offset === 0;
+
+    if ((isFirst && isRefreshing) || (!isFirst && isLoading) || !hasMore) return;
 
     try {
-      setLoading(true);
-      setError(null);
+      isFirst ? setIsRefreshing(true) : setIsLoading(true);
+      setHasError(null);
 
-      const response = await fetchFunction(pageToLoad);
+      const response = await fetchFunction(offset, limit);
 
-      if (response.length === 0) {
+      if (response.length < limit) {
         setHasMore(false);
       } else {
         setData((prev) => [...prev, ...response]);
-        setPage(pageToLoad + 1);
+        setOffset((prev) => prev + limit);
       }
     } catch (e) {
-      setError(e instanceof Error ? e : new Error("unknown error"));
+      setHasError(e instanceof Error ? e : new Error("unknown error"));
     } finally {
-      setLoading(false);
+      isFirst ? setIsRefreshing(false) : setIsLoading(false);
     }
   };
 
   const reset = () => {
     setData([]);
-    setPage(1);
+    setOffset(1);
     setHasMore(true);
-    setError(null);
+    setHasError(null);
   };
 
   useEffect(() => {
-    if (autoFetch) {
-      fetchData(1);
-    }
-  }, []);
+    fetchData();
+  }, [offset]);
 
-  return { data, loading, error, fetchNext: () => fetchData(page), reset, hasMore };
+  return {
+    data,
+    isRefreshing,
+    isLoading,
+    hasError,
+    fetchNext: () => fetchData(),
+    reset, hasMore,
+  };
 };
