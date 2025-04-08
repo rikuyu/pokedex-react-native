@@ -1,38 +1,36 @@
 import { useEffect, useState } from "react";
 
-const useFetch = <T>(
-  fetchFunction: () => Promise<T>,
-  autoFetch: boolean = false,
+export const useFetch = <T, K>(
+  arg: K,
+  fetchFunction: (arg: K) => Promise<T>
 ) => {
   const [data, setData] = useState<T | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<Error | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [hasError, setHasError] = useState<Error | null>(null);
 
   const fetchData = async () => {
     try {
-      setLoading(true);
-      setError(null);
+      setIsLoading(true);
+      setHasError(null);
 
-      const response = await fetchFunction();
+      const response = await fetchFunction(arg);
       setData(response);
     } catch (e) {
-      setError(e instanceof Error ? e : Error("unknown error"));
+      setHasError(e instanceof Error ? e : Error("unknown error"));
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   };
 
   const reset = () => {
-    setLoading(false);
+    setIsLoading(false);
     setData(null);
-    setError(null);
+    setHasError(null);
   };
 
   useEffect(() => {
-    if (autoFetch) {
-      fetchData();
-    }
+     void fetchData();
   }, []);
 
-  return {data, loading, error, fetchData, reset};
+  return {data, isLoading, hasError, fetchData, reset};
 };
