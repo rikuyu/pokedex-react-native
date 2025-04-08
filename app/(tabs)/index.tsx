@@ -3,8 +3,10 @@ import PokemonItem from "@/components/PokemonItem";
 import { usePaginatedFetch } from "@/hooks/usePaginatedFetch";
 import { fetchPokemonList } from "@/services/fetchPokemonList";
 import { PokemonListItem } from "@/types/pokemon";
+import { useRouter } from "expo-router";
 
 export default function Index() {
+  const router = useRouter();
   const {
     data: pokemonList,
     isRefreshing,
@@ -44,6 +46,7 @@ export default function Index() {
           <PokemonItem
             index={item.index}
             name={item.name}
+            onPress={() => router.push(`/pokemon/${item.index}`)}
           />
         )}
         onEndReached={() => {

@@ -1,27 +1,33 @@
 import React from "react";
-import { Image, StyleSheet, Text, useWindowDimensions, View } from "react-native";
+import { Image, Pressable, StyleSheet, Text, useWindowDimensions, View } from "react-native";
 import { getPokemonImage } from "@/api/endpoints";
 import { PokemonListItem } from "@/types/pokemon";
 
-export default function PokemonItem({index, name}: PokemonListItem) {
+type Props = PokemonListItem & {
+  onPress: () => void;
+};
+
+export default function PokemonItem({index, name, onPress}: Props) {
   const {width} = useWindowDimensions();
   const padding = 8;
   const itemSize = (width - padding * 4) / 3;
-  const imageSize = itemSize / 2;
+  const imageSize = itemSize / 1.5;
 
   return (
-    <View style={[styles.container, {width: itemSize, height: itemSize}]}>
-      <View style={styles.background}>
-        <View style={styles.topHalf}/>
-        <View style={styles.bottomHalf}/>
-      </View>
+    <Pressable onPress={onPress}>
+      <View style={[styles.container, {width: itemSize, height: itemSize}]}>
+        <View style={styles.background}>
+          <View style={styles.topHalf}/>
+          <View style={styles.bottomHalf}/>
+        </View>
 
-      <View style={styles.content}>
-        <Text style={styles.index}>#{index}</Text>
-        <Image source={{uri: getPokemonImage(index)}} style={{height: imageSize, width: imageSize}}/>
-        <Text style={styles.name}>{name}</Text>
+        <View style={styles.content}>
+          <Text style={styles.index}>#{index}</Text>
+          <Image source={{uri: getPokemonImage(index)}} style={{height: imageSize, width: imageSize}}/>
+          <Text style={styles.name}>{name}</Text>
+        </View>
       </View>
-    </View>
+    </Pressable>
   );
 }
 
@@ -47,7 +53,7 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
-    justifyContent: "space-evenly",
+    justifyContent: "center",
     alignItems: "center",
   },
   index: {
@@ -58,6 +64,6 @@ const styles = StyleSheet.create({
   name: {
     color: "black",
     fontWeight: "600",
-    fontSize: 14,
+    fontSize: 12,
   },
 });
