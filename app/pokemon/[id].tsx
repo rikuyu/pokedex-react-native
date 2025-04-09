@@ -4,6 +4,7 @@ import { useLocalSearchParams } from "expo-router";
 import { useFetch } from "@/hooks/useFetch";
 import { PokemonDetail } from "@/types/pokemon";
 import { fetchPokemonDetail } from "@/services/fetchPokemonDetail";
+import { usePokemonHeaderOptions } from "@/hooks/usePokemonHeaderEffect";
 
 export default function PokemonProfile() {
   const {id} = useLocalSearchParams();
@@ -14,7 +15,7 @@ export default function PokemonProfile() {
     hasError,
   } = useFetch<PokemonDetail, number>(Number(id), fetchPokemonDetail);
 
-  console.log(data);
+  usePokemonHeaderOptions(data, isLoading, isLoading);
 
   if (isLoading) {
     return (
