@@ -37,5 +37,7 @@ export const fetchPokemonDetail = async (index: number): Promise<PokemonDetail> 
       };
       return pokemonDetail;
     })
-    .catch();
+    .catch((error) => {
+      throw error;
+    });
 };
