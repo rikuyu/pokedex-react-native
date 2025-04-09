@@ -122,7 +122,7 @@ export const pokemonData = new Map<string, string>([
   ["seaking", "アズマオウ"], //  119
   ["staryu", "ヒトデマン"], //  120
   ["starmie", "スターミー"], //  121
-  ["mrMime", "バリヤード"], //  122
+  ["mr-mime", "バリヤード"], //  122
   ["scyther", "ストライク"], //  123
   ["jynx", "ルージュラ"], //  124
   ["electabuzz", "エレブー"], //  125

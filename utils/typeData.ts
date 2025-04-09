@@ -8,7 +8,7 @@ export const typeData = new Map<string, { label: string; color: number }>([
   ["bug", { label: "むし", color: 0xa8b820 }],
   ["ghost", { label: "ゴースト", color: 0x705898 }],
   ["steel", { label: "はがね", color: 0x4d989e }],
-  ["fire", { label: "ほのお", color: 0xf08030 }],
+  ["fire", { label: "ほのお", color: 0xff8833 }],
   ["water", { label: "みず", color: 0x47bafc }],
   ["grass", { label: "くさ", color: 0x78c850 }],
   ["electric", { label: "でんき", color: 0xf8d030 }],
