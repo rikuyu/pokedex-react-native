@@ -9,7 +9,6 @@ type Props = {
 
 export default function TypeChip({name, color}: Props) {
   const labelColor = getColorIsLight(color) ? "black" : "white";
-  console.log(name, color);
   return (
     <View style={[styles.chip, {backgroundColor: `#${color}`}]}>
       <Text style={[styles.name, {color: labelColor}]}>{name}</Text>

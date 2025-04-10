@@ -1,5 +1,5 @@
 export const typeData = new Map<string, { label: string; color: number }>([
-  ["normal", { label: "ノーマル", color: 0x949897 }],
+  ["normal", { label: "ノーマル", color: 0xd7d9d8 }],
   ["fighting", { label: "かくとう", color: 0xfa4439 }],
   ["flying", { label: "ひこう", color: 0x97b0e7 }],
   ["poison", { label: "どく", color: 0xa040a0 }],

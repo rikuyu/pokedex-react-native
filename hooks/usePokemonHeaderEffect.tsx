@@ -21,7 +21,7 @@ export const usePokemonHeaderOptions = (
       const contentColor = getColorIsLight(firstColor) ? "black" : "white";
       navigation.setOptions({
         headerShown: true,
-        title: data.name ?? "unknown",
+        title: `ポケモン図鑑 #${data?.index ?? -1}`,
         headerStyle: {
           backgroundColor: `#${firstColor}`,
         },

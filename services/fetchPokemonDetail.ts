@@ -29,7 +29,7 @@ export const fetchPokemonDetail = async (index: number): Promise<PokemonDetail> 
         }),
         stats: data.stats.map((v: RawPokemonStat) => {
           const stat: PokemonStat = {
-            name: statData.get(v.stat.name) ?? "unknown",
+            name: v.stat.name,
             status: v.base_stat,
           };
           return stat;
