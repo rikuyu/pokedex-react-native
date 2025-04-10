@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import { useNavigation, useRouter } from "expo-router";
 import { TouchableOpacity } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
@@ -13,12 +13,34 @@ export const usePokemonHeaderOptions = (
   const navigation = useNavigation();
   const router = useRouter();
 
+  const firstColor = data?.types[0].color ?? "fff";
+  const contentColor = useMemo(() => getColorIsLight(firstColor) ? "black" : "white", [firstColor]);
+
+  const headerLeft = useCallback(() => (
+    <TouchableOpacity
+      onPress={() => router.dismiss()}
+      style={{
+        height: "100%",
+        justifyContent: "center",
+        alignItems: "center",
+        marginLeft: 10,
+      }}
+    >
+      <AntDesign name="left" size={20} color={contentColor} />
+    </TouchableOpacity>
+  ), [router, contentColor]);
+
   useEffect(() => {
     if (isLoading || hasError || !data) {
-      navigation.setOptions({headerShown: false});
+      navigation.setOptions({
+        headerShown: true,
+        title: "",
+        headerStyle: {
+          backgroundColor: "transparent",
+        },
+        headerTintColor: "transparent",
+      });
     } else {
-      const firstColor = data.types[0].color ?? "fff";
-      const contentColor = getColorIsLight(firstColor) ? "black" : "white";
       navigation.setOptions({
         headerShown: true,
         title: `ポケモン図鑑 #${data?.index ?? -1}`,
@@ -26,20 +48,8 @@ export const usePokemonHeaderOptions = (
           backgroundColor: `#${firstColor}`,
         },
         headerTintColor: contentColor,
-        headerLeft: () => (
-          <TouchableOpacity
-            onPress={() => router.dismiss()}
-            style={{
-              height: "100%",
-              justifyContent: "center",
-              alignItems: "center",
-              marginLeft: 10,
-            }}
-          >
-            <AntDesign name="left" size={20} color={contentColor}/>
-          </TouchableOpacity>
-        ),
+        headerLeft: headerLeft,
       });
     }
-  }, [data, isLoading, hasError, navigation]);
+  }, [data, isLoading, hasError, firstColor, contentColor, headerLeft, navigation]);
 };
