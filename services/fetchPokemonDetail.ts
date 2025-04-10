@@ -1,7 +1,6 @@
 import { getPokemonDetailUrl } from "@/api/endpoints";
 import { PokemonDetail, PokemonStat, PokemonType, RawPokemonStat, RawPokemonType } from "@/types/pokemon";
-import { typeData } from "@/utils/typeData";
-import { statData } from "@/utils/statData";
+import { getTypeColor, getTypeLabel } from "@/utils/typeData";
 import { pokemonData } from "@/utils/pokemonData";
 
 export const fetchPokemonDetail = async (index: number): Promise<PokemonDetail> => {
@@ -22,8 +21,8 @@ export const fetchPokemonDetail = async (index: number): Promise<PokemonDetail> 
         weight: data.weight,
         types: data.types.map((v: RawPokemonType) => {
           const type: PokemonType = {
-            name: typeData.get(v.type.name)?.label ?? "unknown",
-            color: typeData.get(v.type.name)?.color.toString(16) ?? "fff",
+            name: getTypeLabel(v.type.name),
+            color: getTypeColor(v.type.name),
           };
           return type;
         }),

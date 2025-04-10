@@ -1,5 +1,5 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
-import { Animated, LayoutChangeEvent, StyleSheet, Text, useWindowDimensions, View } from "react-native";
+import React, { useEffect, useMemo, useRef } from "react";
+import { Animated, StyleSheet, Text, useWindowDimensions, View } from "react-native";
 
 type Props = {
   label: string;
@@ -43,7 +43,7 @@ export default function StatItem({label, value, color}: Props) {
           style={[
             styles.statValue,
             {
-              backgroundColor: `#${color}`,
+              backgroundColor: color,
               width: widthAnim,
             },
           ]}

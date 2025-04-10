@@ -45,7 +45,7 @@ export const usePokemonHeaderOptions = (
         headerShown: true,
         title: `ポケモン図鑑 #${data?.index ?? -1}`,
         headerStyle: {
-          backgroundColor: `#${firstColor}`,
+          backgroundColor: firstColor,
         },
         headerTintColor: contentColor,
         headerLeft: headerLeft,
