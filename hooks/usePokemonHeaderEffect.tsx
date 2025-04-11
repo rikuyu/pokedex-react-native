@@ -39,6 +39,7 @@ export const usePokemonHeaderOptions = (
           backgroundColor: "transparent",
         },
         headerTintColor: "transparent",
+        headerShadowVisible: false,
       });
     } else {
       navigation.setOptions({
@@ -48,6 +49,7 @@ export const usePokemonHeaderOptions = (
           backgroundColor: firstColor,
         },
         headerTintColor: contentColor,
+        headerShadowVisible: false,
         headerLeft: headerLeft,
       });
     }

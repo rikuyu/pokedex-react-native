@@ -334,7 +334,7 @@ export const pokemonData = new Map<string, string>([
   ["pupitar", "サナギラス"], //  247
   ["tyranitar", "バンギラス"], //  248
   ["lugia", "ルギア"], //  249
-  ["hoOh", "ホウオウ"], //  250
+  ["ho-oh", "ホウオウ"], //  250
   ["celebi", "セレビィ"], //  251
   ["treecko", "キモリ"], //  252
   ["grovyle", "ジュプトル"], //  253
@@ -470,7 +470,7 @@ export const pokemonData = new Map<string, string>([
   ["groudon", "グラードン"], //  383
   ["rayquaza", "レックウザ"], //  384
   ["jirachi", "ジラーチ"], //  385
-  ["deoxys", "デオキシス"], //  386
+  ["deoxys-normal", "デオキシス"], //  386
   ["turtwig", "ナエトル"], //  387
   ["grotle", "ハヤシガメ"], //  388
   ["torterra", "ドダイトス"], //  389
@@ -571,12 +571,12 @@ export const pokemonData = new Map<string, string>([
   ["palkia", "パルキア"], //  484
   ["heatran", "ヒードラン"], //  485
   ["regigigas", "レジギガス"], //  486
-  ["giratina", "ギラティナ"], //  487
+  ["giratina-altered", "ギラティナ"], //  487
   ["cresselia", "クレセリア"], //  488
   ["phione", "フィオネ"], //  489
   ["manaphy", "マナフィ"], //  490
   ["darkrai", "ダークライ"], //  491
-  ["shaymin", "シェイミ"], //  492
+  ["shaymin-land", "シェイミ"], //  492
   ["arceus", "アルセウス"], //  493
   ["victini", "ビクティニ"], //  494
   ["snivy", "ツタージャ"], //  495
@@ -634,12 +634,12 @@ export const pokemonData = new Map<string, string>([
   ["whimsicott", "エルフーン"], //  547
   ["petilil", "チュリネ"], //  548
   ["lilligant", "ドレディア"], //  549
-  ["basculin", "バスラオ"], //  550
+  ["basculin-red-striped", "バスラオ"], //  550
   ["sandile", "メグロコ"], //  551
   ["krokorok", "ワルビル"], //  552
   ["krookodile", "ワルビアル"], //  553
   ["darumaka", "ダルマッカ"], //  554
-  ["darmanitan", "ヒヒダルマ"], //  555
+  ["darmanitan-standard", "ヒヒダルマ"], //  555
   ["maractus", "マラカッチ"], //  556
   ["dwebble", "イシズマイ"], //  557
   ["crustle", "イワパレス"], //  558
@@ -725,13 +725,13 @@ export const pokemonData = new Map<string, string>([
   ["cobalion", "コバルオン"], //  638
   ["terrakion", "テラキオン"], //  639
   ["virizion", "ビリジオン"], //  640
-  ["tornadus", "トルネロス"], //  641
-  ["thundurus", "ボルトロス"], //  642
+  ["tornadus-incarnate", "トルネロス"], //  641
+  ["thundurus-incarnate", "ボルトロス"], //  642
   ["reshiram", "レシラム"], //  643
   ["zekrom", "ゼクロム"], //  644
-  ["landorus", "ランドロス"], //  645
+  ["landorus-incarnate", "ランドロス"], //  645
   ["kyurem", "キュレム"], //  646
-  ["keldeo", "ケルディオ"], //  647
-  ["meloetta", "メロエッタ"], //  648
+  ["keldeo-ordinary", "ケルディオ"], //  647
+  ["meloetta-aria", "メロエッタ"], //  648
   ["genesect", "ゲノセクト"], //  649
 ]);

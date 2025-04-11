@@ -38,7 +38,7 @@ export default function GradientOrSolidBackground({colors, children}: Props) {
 
 const styles = StyleSheet.create({
   linearGradient: {
-    flex: 1,
+    flex: 1.25,
     justifyContent: "center",
     alignItems: "center",
     borderBottomLeftRadius: 40,
