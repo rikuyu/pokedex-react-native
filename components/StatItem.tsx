@@ -1,5 +1,5 @@
-import React, { useEffect, useMemo, useRef } from "react";
-import { Animated, StyleSheet, Text, useWindowDimensions, View } from "react-native";
+import React, { useEffect, useMemo } from "react";
+import { Animated, Easing, StyleSheet, Text, useAnimatedValue, useWindowDimensions, View } from "react-native";
 
 type Props = {
   label: string;
@@ -8,7 +8,7 @@ type Props = {
 }
 
 export default function StatItem({label, value, color}: Props) {
-  const widthAnim = useRef(new Animated.Value(0)).current;
+  const scaleAnim = useAnimatedValue(0);
   const {width} = useWindowDimensions();
   const space = 8;
   const padding = 20;
@@ -19,15 +19,17 @@ export default function StatItem({label, value, color}: Props) {
   }, [width]);
 
   useEffect(() => {
-    Animated.timing(widthAnim, {
+    Animated.timing(scaleAnim, {
       toValue: barUnit * value,
       duration: 800,
-      useNativeDriver: false,
+      easing: Easing.out(Easing.ease),
+      useNativeDriver: true,
+      delay: 100,
     }).start();
   }, [value, barUnit]);
 
   return (
-    <View style={[styles.container, {paddingHorizontal: padding}]}>
+    <View style={styles.container}>
       <View style={styles.labelContainer}>
         <Text
           style={styles.label}
@@ -37,14 +39,15 @@ export default function StatItem({label, value, color}: Props) {
           {label}
         </Text>
       </View>
-      <View style={{width: space}}/>
+      <View style={{width: 8}}/>
       <View style={styles.statContainer}>
         <Animated.View
           style={[
             styles.statAnimBar,
             {
               backgroundColor: color,
-              width: widthAnim,
+              transform: [{scaleX: scaleAnim}],
+              transformOrigin: "left",
             },
           ]}
         />
@@ -77,6 +80,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#e0e8f0",
     borderRadius: 50,
     position: "relative",
+    overflow: "hidden",
   },
   statAnimBar: {
     flex: 4,
@@ -84,7 +88,7 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     bottom: 0,
-    borderRadius: 50,
+    width: 1,
   },
   statValueContainer: {
     position: "absolute",
