@@ -2,7 +2,7 @@ import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 
 type Props = {
-  title: string;
+  title: string | undefined;
 }
 
 export default function PokemonProfileTitle({title}: Props) {
@@ -10,7 +10,7 @@ export default function PokemonProfileTitle({title}: Props) {
     <View style={styles.container}>
       <MonsterBall/>
       <View style={{width: 12}}/>
-      <Text style={styles.name}>{title}</Text>
+      <Text style={styles.name}>{title || "unknown"}</Text>
       <View style={{width: 12}}/>
       <MonsterBall/>
     </View>

@@ -1,26 +1,27 @@
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React, { useMemo } from "react";
+import { StyleSheet, Text, useWindowDimensions, View } from "react-native";
 import StatItem from "@/components/StatItem";
 import { getStatColor, getStatLabel } from "@/utils/statData";
 import { PokemonStat } from "@/types/pokemon";
 
 type Props = {
-  stats: PokemonStat[];
+  stats: PokemonStat[] | undefined;
 }
 
-export default function StatSection({ stats }: Props) {
+export default function StatSection({stats}: Props) {
+  const safeStats = stats ?? [];
   return (
     <View style={styles.container}>
       <Text style={styles.statTitle}>種族値</Text>
       <View style={{height: 12}}/>
       {
-        stats.flatMap((stat, index) => [
+        safeStats.flatMap((stat, index) => [
           <StatItem
             key={`stat-${index}`}
             label={getStatLabel(stat.name)}
             value={stat.status}
             color={getStatColor(stat.name)}/>,
-          index !== stats.length - 1 && (
+          index !== safeStats.length - 1 && (
             <View key={`spacer-${index}`} style={{height: 20}}/>
           ),
         ])
@@ -35,6 +36,7 @@ const styles = StyleSheet.create({
     borderRadius: 36,
     backgroundColor: "#edf3fc",
     paddingVertical: 12,
+    paddingHorizontal: 20,
     marginHorizontal: 12,
     alignItems: "center",
   },
@@ -42,4 +44,4 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "500",
   },
-})
+});
