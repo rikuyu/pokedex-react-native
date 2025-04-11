@@ -35,6 +35,7 @@ export default function Index() {
   return (
     <View style={styles.container}>
       <FlatList
+        style={{paddingVertical: 12}}
         keyExtractor={(item) => item.index.toString()}
         numColumns={3}
         data={pokemonList}
