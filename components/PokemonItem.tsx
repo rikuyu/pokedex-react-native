@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, Pressable, StyleSheet, Text, useWindowDimensions, View } from "react-native";
+import { Image, Platform, Pressable, StyleSheet, Text, useWindowDimensions, View } from "react-native";
 import { getPokemonImage } from "@/api/endpoints";
 import { PokemonListItem } from "@/types/pokemon";
 
@@ -65,5 +65,6 @@ const styles = StyleSheet.create({
     color: "black",
     fontWeight: "600",
     fontSize: 12,
+    fontFamily: Platform.OS === "ios" ? "PKMN-REGULAR" : "pkmn_regular",
   },
 });
