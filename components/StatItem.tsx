@@ -10,12 +10,12 @@ type Props = {
 export default function StatItem({label, value, color}: Props) {
   const widthAnim = useRef(new Animated.Value(0)).current;
   const {width} = useWindowDimensions();
-  const { padding, barUnit } = useMemo(() => {
-    const padding = 20;
-    const flexUnit = (width - padding * 2) / 5;
+  const space = 8;
+  const padding = 20;
+  const barUnit = useMemo(() => {
+    const flexUnit = (width - padding * 2 - space) / 5;
     const barWidth = flexUnit * 4;
-    const barUnit = barWidth / 150;
-    return { padding, barUnit };
+    return barWidth / 200;
   }, [width]);
 
   useEffect(() => {
@@ -37,17 +37,20 @@ export default function StatItem({label, value, color}: Props) {
           {label}
         </Text>
       </View>
-      <View style={{width: 8}}/>
+      <View style={{width: space}}/>
       <View style={styles.statContainer}>
         <Animated.View
           style={[
-            styles.statValue,
+            styles.statAnimBar,
             {
               backgroundColor: color,
               width: widthAnim,
             },
           ]}
         />
+        <View style={styles.statValueContainer}>
+          <Text style={styles.statValue}>{value}</Text>
+        </View>
       </View>
     </View>
   );
@@ -57,6 +60,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     justifyContent: "center",
+    width: "100%",
   },
   labelContainer: {
     flex: 1,
@@ -74,12 +78,26 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     position: "relative",
   },
-  statValue: {
+  statAnimBar: {
     flex: 4,
     position: "absolute",
     top: 0,
     left: 0,
     bottom: 0,
     borderRadius: 50,
+  },
+  statValueContainer: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    justifyContent: "center",
+    alignItems: "flex-start",
+  },
+  statValue: {
+    color: "#fff",
+    fontWeight: "bold",
+    marginStart: 8,
   },
 });
