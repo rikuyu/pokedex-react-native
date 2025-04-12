@@ -4,7 +4,7 @@ import { useLocalSearchParams } from "expo-router";
 import { useFetch } from "@/hooks/useFetch";
 import { PokemonDetail } from "@/types/pokemon";
 import { fetchPokemonDetail } from "@/services/fetchPokemonDetail";
-import { usePokemonHeaderOptions } from "@/hooks/usePokemonHeaderEffect";
+import { usePokemonProfileHeader } from "@/hooks/usePokemonHeaderEffect";
 import { getPokemonImage } from "@/api/endpoints";
 import GradientOrSolidBackground from "@/components/GradientOrSolidBackground";
 import PokemonProfileTitle from "@/components/PokemonProfileTitle";
@@ -21,7 +21,7 @@ export default function PokemonProfile() {
     hasError,
   } = useFetch<PokemonDetail, number>(Number(id), fetchPokemonDetail);
 
-  usePokemonHeaderOptions(data, isLoading, isLoading);
+  usePokemonProfileHeader(data, isLoading, isLoading);
 
   const {height} = useWindowDimensions();
   const imgSize = height / 6;

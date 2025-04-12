@@ -41,3 +41,10 @@ export type RawPokemonStat = {
     url: string;
   };
 };
+
+export type PokemonBookmark = {
+  id: number;
+  name: string;
+  typeFirst: string;
+  typeSecond: string | undefined;
+}
