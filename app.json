@@ -36,9 +36,12 @@
       [
         "expo-font",
         {
-          "fonts": ["./assets/fonts/pkmn_regular.ttf"]
+          "fonts": [
+            "./assets/fonts/pkmn_regular.ttf"
+          ]
         }
-      ]
+      ],
+      "expo-sqlite"
     ],
     "experiments": {
       "typedRoutes": true
