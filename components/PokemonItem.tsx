@@ -22,7 +22,7 @@ export default function PokemonItem({index, name, onPress}: Props) {
         </View>
 
         <View style={styles.content}>
-          <Text style={styles.index}>#{index}</Text>
+          <Text style={styles.index}>No.{index}</Text>
           <Image source={{uri: getPokemonImage(index)}} style={{height: imageSize, width: imageSize}}/>
           <Text style={styles.name}>{name}</Text>
         </View>

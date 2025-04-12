@@ -38,7 +38,7 @@ export const usePokemonHeaderOptions = (
     } else {
       navigation.setOptions({
         headerShown: true,
-        title: `ポケモン図鑑 #${data?.index ?? -1}`,
+        title: `ポケモン図鑑 No.${data?.index ?? -1}`,
         headerStyle: {
           backgroundColor: firstColor,
         },

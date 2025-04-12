@@ -22,7 +22,7 @@ export default function Index() {
 
   return (
     <View style={styles.container}>
-      <Text>{"setting"}</Text>
+      <Text>setting</Text>
     </View>
   );
 }
