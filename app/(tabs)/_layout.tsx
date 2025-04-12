@@ -1,9 +1,8 @@
 import React from "react";
 import { Tabs } from "expo-router";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
-import { Image } from "react-native";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 
 export default function _Layout() {
   return (
@@ -15,11 +14,11 @@ export default function _Layout() {
         headerStyle: {
           backgroundColor: "#ff4545",
         },
-        headerTitle: (props) => <PokemonTitle {...props} />,
       }}>
       <Tabs.Screen
         name="index"
         options={{
+          title: "",
           tabBarLabel: "",
           tabBarIcon: ({focused}) => (
             <Ionicons
@@ -31,12 +30,13 @@ export default function _Layout() {
         }}
       />
       <Tabs.Screen
-        name="favorite"
+        name="bookmark"
         options={{
+          title: "",
           tabBarLabel: "",
           tabBarIcon: ({focused}) => (
             <MaterialIcons
-              name={focused ? "favorite" : "favorite-outline"}
+              name={focused ? "bookmark" : "bookmark-outline"}
               color="white"
               size={24}
             />
@@ -46,6 +46,7 @@ export default function _Layout() {
       <Tabs.Screen
         name="mypage"
         options={{
+          title: "",
           tabBarLabel: "",
           tabBarIcon: ({focused}) => (
             <MaterialCommunityIcons
@@ -57,14 +58,5 @@ export default function _Layout() {
         }}
       />
     </Tabs>
-  );
-}
-
-function PokemonTitle() {
-  return (
-    <Image
-      style={{ width: 36, height: 36, marginBottom: 12 }}
-      source={require("../../assets/images/monster_ball.png")}
-    />
   );
 }

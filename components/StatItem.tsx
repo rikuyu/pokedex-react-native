@@ -21,7 +21,7 @@ export default function StatItem({label, value, color}: Props) {
   useEffect(() => {
     Animated.timing(scaleAnim, {
       toValue: barUnit * value,
-      duration: 800,
+      duration: 500,
       easing: Easing.out(Easing.ease),
       useNativeDriver: true,
       delay: 100,

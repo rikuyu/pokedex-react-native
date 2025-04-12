@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useMemo } from "react";
-import { useNavigation, useRouter } from "expo-router";
-import { TouchableOpacity } from "react-native";
-import { AntDesign } from "@expo/vector-icons";
+import { useNavigation } from "expo-router";
 import { PokemonDetail } from "@/types/pokemon";
 import { getColorIsLight } from "@/utils/getColorIsLight";
+import Bookmark from "@/components/Bookmark";
+import BackButton from "@/components/BackButton";
 
 export const usePokemonHeaderOptions = (
   data: PokemonDetail | null,
@@ -11,24 +11,18 @@ export const usePokemonHeaderOptions = (
   hasError: boolean,
 ) => {
   const navigation = useNavigation();
-  const router = useRouter();
 
   const firstColor = data?.types[0].color ?? "fff";
   const contentColor = useMemo(() => getColorIsLight(firstColor) ? "black" : "white", [firstColor]);
 
-  const headerLeft = useCallback(() => (
-    <TouchableOpacity
-      onPress={() => router.dismiss()}
-      style={{
-        height: "100%",
-        justifyContent: "center",
-        alignItems: "center",
-        marginLeft: 10,
-      }}
-    >
-      <AntDesign name="left" size={20} color={contentColor} />
-    </TouchableOpacity>
-  ), [router, contentColor]);
+  const headerRight = useCallback(() => {
+    return (
+      <Bookmark
+        color={contentColor}
+        onPress={() => console.log("bookmark")}
+      />
+    );
+  }, [contentColor]);
 
   useEffect(() => {
     if (isLoading || hasError || !data) {
@@ -50,8 +44,9 @@ export const usePokemonHeaderOptions = (
         },
         headerTintColor: contentColor,
         headerShadowVisible: false,
-        headerLeft: headerLeft,
+        headerLeft: () => <BackButton iconColor={contentColor}/>,
+        headerRight: headerRight,
       });
     }
-  }, [data, isLoading, hasError, firstColor, contentColor, headerLeft, navigation]);
+  }, [data, isLoading, hasError, firstColor, contentColor, navigation]);
 };
