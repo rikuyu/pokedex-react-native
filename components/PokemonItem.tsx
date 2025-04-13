@@ -1,6 +1,6 @@
 import React from "react";
 import { Image, Platform, Pressable, StyleSheet, Text, useWindowDimensions, View } from "react-native";
-import { getPokemonImage } from "@/api/endpoints";
+import { getPokemonDotImage } from "@/api/endpoints";
 import { PokemonListItem } from "@/types/pokemon";
 
 type Props = PokemonListItem & {
@@ -23,7 +23,7 @@ export default function PokemonItem({index, name, onPress}: Props) {
 
         <View style={styles.content}>
           <Text style={styles.index}>No.{index}</Text>
-          <Image source={{uri: getPokemonImage(index)}} style={{height: imageSize, width: imageSize}}/>
+          <Image source={{uri: getPokemonDotImage(index)}} style={{height: imageSize, width: imageSize}}/>
           <Text style={styles.name}>{name}</Text>
         </View>
       </View>
