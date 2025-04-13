@@ -1,6 +1,7 @@
 import React from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, View } from "react-native";
 import { getPokemonDotImage } from "@/api/endpoints";
+import ItemBadge from "@/components/ItemBadge";
 
 type Props = {
   pokemonId: number;
@@ -19,6 +20,7 @@ export default function BookmarkPokemonImage({pokemonId, itemSize}: Props) {
         source={{uri: getPokemonDotImage(pokemonId)}}
         style={{height: imageSize, aspectRatio: 1}}
       />
+      {Math.random() > 0.4 && <ItemBadge style={styles.bottomRightOverlay}/>}
     </View>
   );
 }
@@ -42,5 +44,10 @@ const styles = StyleSheet.create({
   bottomHalf: {
     flex: 1,
     backgroundColor: "white",
+  },
+  bottomRightOverlay: {
+    position: "absolute",
+    bottom: 12,
+    right: 16,
   },
 });
