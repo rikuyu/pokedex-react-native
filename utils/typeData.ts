@@ -17,7 +17,6 @@ export const typeData = new Map<string, { label: string; color: string }>([
   ["dragon", { label: "ドラゴン", color: "#066fb5" }],
   ["dark", { label: "あく", color: "#705848" }],
   ["fairy", { label: "フェアリー", color: "#ee99ac" }],
-  ["stellar", { label: "ステラ", color: "#7cc7b2" }],
 ]);
 
 export function getTypeLabel(key: string): string {
@@ -27,3 +26,13 @@ export function getTypeLabel(key: string): string {
 export function getTypeColor(key: string): string {
   return typeData.get(key)?.color ?? "#ffffff";
 }
+
+export function getKeyByLabel(label: string): string | undefined {
+  for (const [key, value] of typeData.entries()) {
+    if (value.label === label) {
+      return key;
+    }
+  }
+  return undefined;
+}
+

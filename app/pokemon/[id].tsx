@@ -48,6 +48,7 @@ export default function PokemonProfile() {
         <Image
           style={{height: imgSize, width: imgSize}}
           source={{uri: getPokemonImage(data?.index)}}
+          resizeMode="cover"
         />
       </GradientOrSolidBackground>
       <View style={{height: 12}}/>
