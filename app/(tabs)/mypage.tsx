@@ -1,22 +1,13 @@
-import React, { useCallback, useEffect } from "react";
-import { StyleSheet, View, Text } from "react-native";
-import { useNavigation, useRouter } from "expo-router";
+import React, { useCallback } from "react";
+import { StyleSheet, Text, View } from "react-native";
+import { useRouter } from "expo-router";
 import Setting from "@/components/Setting";
-import Animated, {
-  Extrapolation,
-  interpolate,
-  useAnimatedScrollHandler,
-  useAnimatedStyle,
-  useSharedValue,
-} from "react-native-reanimated";
+import Animated, { useAnimatedScrollHandler, useSharedValue } from "react-native-reanimated";
+import MyPageHeader from "@/components/MyPageHeader";
+import ScrollView = Animated.ScrollView;
 
 export default function MyPage() {
-  const navigation = useNavigation();
   const router = useRouter();
-
-  useEffect(() => {
-    navigation.setOptions({headerRight: headerRight});
-  }, [navigation]);
 
   const headerRight = useCallback(() => {
     return <Setting onPress={() => router.push("/setting")}/>;
@@ -27,23 +18,13 @@ export default function MyPage() {
     scrollY.value = event.contentOffset.y;
   });
 
-  const animatedHeaderStyle = useAnimatedStyle(() => ({
-    height: interpolate(
-      scrollY.value,
-      [0, 200],
-      [200, 40],
-      Extrapolation.CLAMP,
-    ),
-  }));
-
   return (
     <View style={styles.container}>
-      <Animated.View
-        style={[
-          styles.header,
-          animatedHeaderStyle,
-        ]}/>
-      <Animated.ScrollView
+      <MyPageHeader
+        scrollOffset={scrollY}
+        positionStyle={styles.headerPosition}
+      />
+      <ScrollView
         style={styles.list}
         onScroll={scrollHandler}
       >
@@ -54,7 +35,7 @@ export default function MyPage() {
             </View>
           );
         })}
-      </Animated.ScrollView>
+      </ScrollView>
     </View>
   );
 };
@@ -72,11 +53,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  header: {
-    width: "100%",
-    backgroundColor: "#b78bff",
+  headerPosition: {
+    zIndex: 2,
   },
   list: {
+    zIndex: 1,
     width: "100%",
     backgroundColor: "#656565",
   },
