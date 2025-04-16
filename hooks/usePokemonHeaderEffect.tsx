@@ -3,10 +3,10 @@ import { useNavigation } from "expo-router";
 import { PokemonDetail } from "@/types/pokemon";
 import { getColorIsLight } from "@/utils/getColorIsLight";
 import Bookmark from "@/components/Bookmark";
-import BackButton from "@/components/BackButton";
-import { awaitExpression } from "@babel/types";
+import IosBackButton from "@/components/IosBackButton";
 import { useSQLiteContext } from "expo-sqlite";
 import { addPokemon, deletePokemon, getIsPokemonBookmarked } from "@/services/database";
+import { Platform } from "react-native";
 
 export const usePokemonProfileHeader = (
   data: PokemonDetail | null,
@@ -85,7 +85,7 @@ export const usePokemonProfileHeader = (
           backgroundColor: firstColor,
         },
         headerTintColor: contentColor,
-        headerLeft: () => <BackButton iconColor={contentColor}/>,
+        headerLeft: () => Platform.OS === "ios" ? <IosBackButton iconColor={contentColor} /> : null,
         headerRight: headerRight,
       });
     }

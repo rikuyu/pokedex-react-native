@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { useNavigation } from "expo-router";
-import BackButton from "@/components/BackButton";
+import IosBackButton from "@/components/IosBackButton";
 
 export default function Index() {
   const navigation = useNavigation();
@@ -16,7 +16,7 @@ export default function Index() {
         backgroundColor: "#ff4545",
       },
       headerTintColor: "#ffffff",
-      headerLeft: () => <BackButton iconColor={"white"}/>,
+      headerLeft: () => <IosBackButton iconColor={"white"}/>,
     });
   }, [navigation]);
 
