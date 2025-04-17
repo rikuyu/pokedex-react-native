@@ -1,17 +1,16 @@
 import React from "react";
 import Animated, { Extrapolation, interpolate, SharedValue, useAnimatedStyle } from "react-native-reanimated";
-import { ImageStyle, StyleSheet, useWindowDimensions, View } from "react-native";
+import { StyleSheet } from "react-native";
 import { ViewStyle } from "react-native/Libraries/StyleSheet/StyleSheetTypes";
+import { LinearGradient } from "expo-linear-gradient";
 
 type Props = {
+  imageSize: number;
   positionStyle: ViewStyle;
   scrollOffset: SharedValue<number>;
 }
 
-export default function MyPageHeader({positionStyle, scrollOffset}: Props) {
-  const {width} = useWindowDimensions();
-  const imageSize = width / 5;
-
+export default function MyPageHeader({imageSize, positionStyle, scrollOffset}: Props) {
   const animatedHeaderStyle = useAnimatedStyle(() => ({
     height: interpolate(
       scrollOffset.value,
@@ -39,6 +38,15 @@ export default function MyPageHeader({positionStyle, scrollOffset}: Props) {
     };
   });
 
+  const animatedBlurStyle = useAnimatedStyle(() => ({
+    opacity: interpolate(
+      scrollOffset.value,
+      [0, 160],
+      [0, 0.8],
+      Extrapolation.CLAMP,
+    ),
+  }));
+
   return (
     <Animated.View style={[styles.headerContainer, positionStyle, animatedHeaderStyle]}>
       <Animated.Image
@@ -46,6 +54,7 @@ export default function MyPageHeader({positionStyle, scrollOffset}: Props) {
         style={[styles.headerImage, animatedHeaderStyle]}
         resizeMode="cover"
       />
+      <GradientBlur animStyle={animatedBlurStyle}/>
       <Animated.Image
         source={require("../assets/images/profile_image.png")}
         resizeMode="cover"
@@ -58,10 +67,26 @@ export default function MyPageHeader({positionStyle, scrollOffset}: Props) {
   );
 }
 
+const GradientBlur = ({animStyle}: { animStyle: ViewStyle }) => {
+  return (
+    <Animated.View style={[styles.headerImageBlur, animStyle]}>
+      <LinearGradient
+        colors={["rgba(0, 0, 0, 1)", "rgba(0, 0, 0, 0)"]}
+        style={[styles.headerImageBlur]}
+      />
+    </Animated.View>
+  );
+};
+
+
 const styles = StyleSheet.create({
   headerContainer: {
     width: "100%",
     position: "relative",
+  },
+  headerImageBlur: {
+    ...StyleSheet.absoluteFillObject,
+    width: "100%",
   },
   headerImage: {
     ...StyleSheet.absoluteFillObject,
@@ -69,6 +94,8 @@ const styles = StyleSheet.create({
   },
   imagePosition: {
     position: "absolute",
-    left: 20,
+    left: 16,
+    borderWidth: 2,
+    borderColor: "#000"
   },
 });
