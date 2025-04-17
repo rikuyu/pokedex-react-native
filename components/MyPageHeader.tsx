@@ -14,7 +14,7 @@ export default function MyPageHeader({imageSize, positionStyle, scrollOffset}: P
   const animatedHeaderStyle = useAnimatedStyle(() => ({
     height: interpolate(
       scrollOffset.value,
-      [0, 160],
+      [0, 180],
       [160, 50],
       Extrapolation.CLAMP,
     ),
