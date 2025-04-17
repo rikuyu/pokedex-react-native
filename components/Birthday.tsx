@@ -1,59 +1,81 @@
 import React, { useState } from "react";
 import { Platform, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
-import DateTimePicker, { DateTimePickerAndroid, DateTimePickerEvent } from "@react-native-community/datetimepicker";
+import DateTimePicker, { DateTimePickerEvent } from "@react-native-community/datetimepicker";
 
 export default function Birthday() {
-  const [birthday, setBirthday] = useState<string>("unknown");
-  const [showIos, setShowIos] = useState(false);
+  const [birthdayIos, setBirthdayIos] = useState<Date>(new Date());
+  const [birthdayAndroid, setBirthdayAndroid] = useState<string>("unknown");
+  const [showAndroid, setShowAndroid] = useState(false);
 
   const onChange = (_: DateTimePickerEvent, selectedDate?: Date) => {
-    if (selectedDate) setBirthday(selectedDate.toLocaleDateString());
-    if (Platform.OS !== "android") {
-      setShowIos(false);
-    }
-  };
-
-  const showDatepicker = () => {
     if (Platform.OS === "android") {
-      DateTimePickerAndroid.open({
-        value: new Date(birthday),
-        onChange,
-        mode: "date",
-        is24Hour: true,
-      });
-    } else {
-      setShowIos(true);
+      selectedDate && setBirthdayAndroid(selectedDate.toLocaleDateString());
+      setShowAndroid(false);
+    }
+    if (Platform.OS === "ios") {
+      selectedDate && setBirthdayIos(selectedDate);
     }
   };
 
-  return (
-    <TouchableOpacity
-      style={styles.container}
-      onPress={showDatepicker}
-      activeOpacity={0.8}
-    >
-      <FontAwesome5 name="birthday-cake" size={16} color={"#b1b1b1"}/>
-      <View style={{width: 8}}/>
-      <Text style={styles.text}>誕生日: {birthday}</Text>
-      {Platform.OS !== "android" && showIos && (
+  if (Platform.OS === "ios") {
+    return (
+      <View style={iosStyles.container}>
+        <FontAwesome5 name="birthday-cake" size={16} color={"#b1b1b1"}/>
+        <View style={{width: 8}}/>
+        <Text style={commonStyles.text}>誕生日:</Text>
         <DateTimePicker
-          value={new Date(birthday)}
+          value={birthdayIos}
+          maximumDate={new Date()}
           mode="date"
           onChange={onChange}
+          themeVariant="dark"
         />
-      )}
-    </TouchableOpacity>
-  );
+      </View>
+    );
+  } else {
+    return (
+      <TouchableOpacity
+        style={androidStyles.container}
+        onPress={() => setShowAndroid(true)}
+        activeOpacity={0.8}
+      >
+        <FontAwesome5 name="birthday-cake" size={16} color={"#b1b1b1"}/>
+        <View style={{width: 8}}/>
+        <Text style={commonStyles.text}>誕生日: {birthdayAndroid}</Text>
+        {showAndroid && (
+          <DateTimePicker
+            value={new Date(birthdayAndroid)}
+            maximumDate={new Date()}
+            mode="date"
+            onChange={onChange}
+            style={{width: 150}}
+          />
+        )}
+      </TouchableOpacity>
+    );
+  }
 }
 
-const styles = StyleSheet.create({
+const iosStyles = StyleSheet.create({
   container: {
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "#000",
     paddingHorizontal: 20,
   },
+});
+
+const androidStyles = StyleSheet.create({
+  container: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#000",
+    paddingHorizontal: 20,
+  },
+});
+
+const commonStyles = StyleSheet.create({
   text: {
     fontSize: 14,
     color: "#b1b1b1",
