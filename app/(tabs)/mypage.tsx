@@ -1,10 +1,14 @@
 import React, { useCallback } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, useWindowDimensions, View } from "react-native";
 import { useRouter } from "expo-router";
 import Setting from "@/components/Setting";
 import Animated, { useAnimatedScrollHandler, useSharedValue } from "react-native-reanimated";
 import MyPageHeader from "@/components/MyPageHeader";
 import ScrollView = Animated.ScrollView;
+import EditButtonSection from "@/components/EditButtonSection";
+import BiographySection from "@/components/BiographySection";
+import Residence from "@/components/Residence";
+import Birthday from "@/components/Birthday";
 
 export default function MyPage() {
   const router = useRouter();
@@ -18,20 +22,41 @@ export default function MyPage() {
     scrollY.value = event.contentOffset.y;
   });
 
+  const {width} = useWindowDimensions();
+  const imageSize = width / 5;
+
   return (
     <View style={styles.container}>
       <MyPageHeader
+        imageSize={imageSize}
         scrollOffset={scrollY}
         positionStyle={styles.headerPosition}
       />
       <ScrollView
-        style={styles.list}
+        style={styles.listContainer}
         onScroll={scrollHandler}
       >
+        <EditButtonSection
+          onPress={() => router.push("/edit")}
+          height={imageSize / 2}
+        />
+        <BiographySection/>
+        <Residence/>
+        <View style={{height: 12, backgroundColor: "#000"}}/>
+        <Birthday/>
+        <View style={{height: 24, backgroundColor: "#000"}}/>
         {Array.from({length: 10}).map((_, index) => {
           return (
-            <View key={index} style={[styles.item, {backgroundColor: COLORS[index % 4]}]}>
-              <Text style={styles.text}>{index}</Text>
+            <View
+              key={index}
+              style={{
+                backgroundColor: COLORS[index % 4],
+                width: "100%",
+                height: 100,
+                justifyContent: "center",
+                alignItems: "center",
+              }}>
+              <Text style={{fontSize: 24}}>{index}</Text>
             </View>
           );
         })}
@@ -56,18 +81,9 @@ const styles = StyleSheet.create({
   headerPosition: {
     zIndex: 2,
   },
-  list: {
+  listContainer: {
     zIndex: 1,
     width: "100%",
     backgroundColor: "#656565",
-  },
-  item: {
-    width: "100%",
-    height: 100,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  text: {
-    fontSize: 24,
   },
 });
