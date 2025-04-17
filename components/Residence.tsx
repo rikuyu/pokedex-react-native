@@ -8,11 +8,12 @@ export default function Residence() {
   const [location, setLocation] = useState<string>("unknown");
 
   const getCurrentLocation = async () => {
-    let {status} = await Location.requestForegroundPermissionsAsync();
+    const {status} = await Location.requestForegroundPermissionsAsync();
     if (status !== "granted") {
+      setLocation("error");
       return;
     }
-    let location = await Location.getCurrentPositionAsync({});
+    const location = await Location.getCurrentPositionAsync({});
     const {latitude, longitude} = location.coords;
     const geocode = await Location.reverseGeocodeAsync({latitude, longitude});
     const {city, country} = geocode[0];
@@ -23,7 +24,6 @@ export default function Residence() {
     <TouchableOpacity
       style={styles.container}
       onPress={() => getCurrentLocation()}
-      hitSlop={36}
       activeOpacity={0.8}
     >
       <Ionicons name="location-outline" size={20} color={"#b1b1b1"}/>

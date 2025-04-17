@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Platform, StyleSheet, Text, View } from "react-native";
 import { useNavigation } from "expo-router";
 import IosBackButton from "@/components/IosBackButton";
 
@@ -16,7 +16,7 @@ export default function Index() {
         backgroundColor: "#ff4545",
       },
       headerTintColor: "#ffffff",
-      headerLeft: () => <IosBackButton iconColor={"white"}/>,
+      headerLeft: () => Platform.OS === "ios" ? <IosBackButton iconColor={"white"} /> : null,
     });
   }, [navigation]);
 
