@@ -1,14 +1,19 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
+import { Profile } from "@/services/profileStore";
 
-export default function BiographySection() {
+type Props = {
+  profile: Profile;
+}
+
+export default function BiographySection({profile}: Props) {
   return (
     <View style={styles.container}>
-      <Text style={styles.name}>Name</Text>
+      <Text style={styles.name}>{profile.name}</Text>
       <View style={{height: 8}}/>
-      <Text style={styles.id}>@_name</Text>
+      <Text style={styles.id}>@xyz_abc_id</Text>
       <View style={{height: 12}}/>
-      <Text style={styles.description}>Hello, I am a Software Engineer. My hobby is playing tennis.</Text>
+      <Text style={styles.description}>{profile.description}</Text>
     </View>
   );
 }

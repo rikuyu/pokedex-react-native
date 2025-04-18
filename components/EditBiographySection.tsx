@@ -1,19 +1,23 @@
 import React from "react";
 import { StyleSheet, Text, TextInput, View } from "react-native";
 
-export default function EditNameSection() {
-  const [name, setName] = React.useState("");
-  const [description, setDescription] = React.useState("");
+type Props = {
+  name: string,
+  setName: (name: string) => void,
+  description: string,
+  setDescription: (description: string) => void,
+}
 
+export default function EditBiographySection(props: Props) {
   return (
     <View style={styles.container}>
       <Text style={styles.name}>Name</Text>
       <View style={{height: 12}}/>
       <TextInput
         style={styles.textInput}
-        onChangeText={setName}
+        onChangeText={props.setName}
         inputMode={"text"}
-        value={name}
+        value={props.name}
         placeholder={"Enter Your Name"}
         placeholderTextColor={"#b1b1b1"}
         selectionColor={"#fff"}
@@ -29,16 +33,15 @@ export default function EditNameSection() {
             height: 80,
           },
         ]}
-        onChangeText={setDescription}
+        onChangeText={props.setDescription}
         inputMode={"text"}
-        value={description}
+        value={props.description}
         placeholder={"Enter Your Description"}
         placeholderTextColor={"#b1b1b1"}
         selectionColor={"#fff"}
         multiline={true}
         maxLength={200}
       />
-      <View style={{height: 12}}/>
     </View>
   );
 }
