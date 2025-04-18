@@ -49,7 +49,6 @@ export default function Birthday() {
             maximumDate={new Date()}
             mode="date"
             onChange={onChange}
-            style={{width: 150}}
           />
         )}
       </TouchableOpacity>

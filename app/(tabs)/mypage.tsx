@@ -42,9 +42,9 @@ export default function MyPage() {
         />
         <BiographySection/>
         <Residence/>
-        <View style={{height: 12, backgroundColor: "#000"}}/>
+        <View style={{height: 8}}/>
         <Birthday/>
-        <View style={{height: 24, backgroundColor: "#000"}}/>
+        <View style={{height: 24}}/>
         {Array.from({length: 10}).map((_, index) => {
           return (
             <View
@@ -77,6 +77,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: "#000",
   },
   headerPosition: {
     zIndex: 2,
@@ -84,6 +85,6 @@ const styles = StyleSheet.create({
   listContainer: {
     zIndex: 1,
     width: "100%",
-    backgroundColor: "#656565",
+    backgroundColor: "#000000",
   },
 });

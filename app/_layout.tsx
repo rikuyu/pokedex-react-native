@@ -16,6 +16,7 @@ export default function RootLayout() {
           <Stack.Screen name="+not-found"/>
           <Stack.Screen name="pokemon/[id]"/>
           <Stack.Screen name="setting"/>
+          <Stack.Screen name="edit" options={{headerShown: false}}/>
         </Stack>
       </SQLiteProvider>
     </>

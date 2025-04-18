@@ -15,7 +15,7 @@ export default function MyPageHeader({imageSize, positionStyle, scrollOffset}: P
     height: interpolate(
       scrollOffset.value,
       [0, 180],
-      [160, 50],
+      [160, 70],
       Extrapolation.CLAMP,
     ),
   }));
