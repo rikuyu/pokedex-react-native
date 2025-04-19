@@ -10,10 +10,10 @@ export const bookmarkBackground = "#96c3ff";
 export const maleBlue = "#68abfc";
 export const femalePink = "#fcacac";
 
-const lightBackground = "#edf3fc";
-const lightTextColor = "#1a1a1a";
-const darkBackground = "#2c2c2c";
-const darkTextColor = "#fafafa";
+export const lightBackground = "#edf3fc";
+export const lightTextColor = "#1a1a1a";
+export const darkBackground = "#2c2c2c";
+export const darkTextColor = "#fafafa";
 
 export const headerStyle = {
   backgroundColor: pokedexRed,

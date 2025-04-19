@@ -2,6 +2,10 @@ import React from "react";
 import { Image, Platform, Pressable, StyleSheet, Text, useWindowDimensions, View } from "react-native";
 import { getPokemonDotImage } from "@/constants/endpoints";
 import { PokemonListItem } from "@/types/pokemon";
+import { ThemedView } from "@/components/ThemedView";
+import { ThemedText } from "@/components/ThemedText";
+import { useThemeColor } from "@/hooks/useThemeColor";
+import { darkBackground, lightBackground } from "@/constants/colors";
 
 type Props = PokemonListItem & {
   onPress: () => void;
@@ -13,18 +17,20 @@ export default function PokemonItem({index, name, onPress}: Props) {
   const itemSize = (width - padding * 4) / 3;
   const imageSize = itemSize / 1.5;
 
+  const borderColor = useThemeColor({light: darkBackground, dark: lightBackground})
+
   return (
     <Pressable onPress={onPress}>
-      <View style={[styles.container, {width: itemSize, height: itemSize}]}>
+      <View style={[styles.container, {width: itemSize, height: itemSize, borderColor}]}>
         <View style={styles.background}>
           <View style={styles.topHalf}/>
-          <View style={styles.bottomHalf}/>
+          <ThemedView darkColor={"#333333"} style={styles.bottomHalf}/>
         </View>
 
         <View style={styles.content}>
           <Text style={styles.index}>No.{index}</Text>
           <Image source={{uri: getPokemonDotImage(index)}} style={{height: imageSize, width: imageSize}}/>
-          <Text style={styles.name}>{name}</Text>
+          <ThemedText type={"size12Bold"} style={styles.name}>{name}</ThemedText>
         </View>
       </View>
     </Pressable>
@@ -37,7 +43,6 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     overflow: "hidden",
     borderWidth: 0.5,
-    borderColor: "black",
   },
   background: {
     ...StyleSheet.absoluteFillObject,
@@ -49,7 +54,6 @@ const styles = StyleSheet.create({
   },
   bottomHalf: {
     flex: 1,
-    backgroundColor: "white",
   },
   content: {
     flex: 1,
@@ -62,9 +66,6 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   name: {
-    color: "black",
-    fontWeight: "600",
-    fontSize: 12,
     fontFamily: Platform.OS === "ios" ? "PKMN-REGULAR" : "pkmn_regular",
   },
 });
