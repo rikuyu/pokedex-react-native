@@ -24,17 +24,25 @@ export default function MyPageHeader({imageSize, positionStyle, scrollOffset}: P
     const size = interpolate(
       scrollOffset.value,
       [0, 160],
-      [imageSize, imageSize * 2 / 3],
+      [imageSize, 0],
       Extrapolation.CLAMP,
     );
     const radius = size / 2;
     const bottom = -1 * size / 2;
+
+    const borderWidth = interpolate(
+      scrollOffset.value,
+      [0, 160],
+      [2, 0],
+      Extrapolation.CLAMP
+    );
 
     return {
       width: size,
       height: size,
       borderRadius: radius,
       bottom,
+      borderWidth,
     };
   });
 
@@ -95,7 +103,6 @@ const styles = StyleSheet.create({
   imagePosition: {
     position: "absolute",
     left: 16,
-    borderWidth: 2,
     borderColor: "#000"
   },
 });

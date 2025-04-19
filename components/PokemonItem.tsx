@@ -1,6 +1,6 @@
 import React from "react";
 import { Image, Platform, Pressable, StyleSheet, Text, useWindowDimensions, View } from "react-native";
-import { getPokemonDotImage } from "@/api/endpoints";
+import { getPokemonDotImage } from "@/constants/endpoints";
 import { PokemonListItem } from "@/types/pokemon";
 
 type Props = PokemonListItem & {

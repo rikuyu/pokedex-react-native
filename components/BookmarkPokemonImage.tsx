@@ -1,6 +1,6 @@
 import React from "react";
 import { Image, StyleSheet, View } from "react-native";
-import { getPokemonDotImage } from "@/api/endpoints";
+import { getPokemonDotImage } from "@/constants/endpoints";
 import ItemBadge from "@/components/ItemBadge";
 
 type Props = {

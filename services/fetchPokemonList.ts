@@ -1,5 +1,5 @@
 import { PokemonListItem, PokemonListResponseItem } from "@/types/pokemon";
-import { getPokemonListUrl } from "@/api/endpoints";
+import { getPokemonListUrl } from "@/constants/endpoints";
 import { pokemonData } from "@/utils/pokemonData";
 
 export const fetchPokemonList = async (offset: number, limit: number): Promise<PokemonListItem[]> => {

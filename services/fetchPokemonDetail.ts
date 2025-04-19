@@ -1,4 +1,4 @@
-import { getPokemonDetailUrl } from "@/api/endpoints";
+import { getPokemonDetailUrl } from "@/constants/endpoints";
 import { PokemonDetail, PokemonStat, PokemonType, RawPokemonStat, RawPokemonType } from "@/types/pokemon";
 import { getTypeColor, getTypeLabel } from "@/utils/typeData";
 import { pokemonData } from "@/utils/pokemonData";

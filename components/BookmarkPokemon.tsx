@@ -5,6 +5,7 @@ import Svg, { Path } from "react-native-svg";
 import BookmarkPokemonImage from "@/components/BookmarkPokemonImage";
 import GenderAndTypes from "@/components/GenderAndTypes";
 import HpBar from "@/components/HpBar";
+import { bookmarkBlue } from "@/constants/colors";
 
 type Props = {
   pokemon: PokemonBookmark;
@@ -36,7 +37,7 @@ export default function BookmarkPokemon({pokemon, onPress}: Props) {
         viewBox={canvas}
         style={StyleSheet.absoluteFill}
       >
-        <Path d={direction} fill="#0058b5CC"/>
+        <Path d={direction} fill={bookmarkBlue}/>
       </Svg>
       <View style={[styles.rowContent, {padding: 8}]}>
         <BookmarkPokemonImage pokemonId={pokemon.id} itemSize={itemHeight - 16}/>

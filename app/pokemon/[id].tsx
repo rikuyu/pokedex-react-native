@@ -5,7 +5,7 @@ import { useFetch } from "@/hooks/useFetch";
 import { PokemonDetail } from "@/types/pokemon";
 import { fetchPokemonDetail } from "@/services/fetchPokemonDetail";
 import { usePokemonProfileHeader } from "@/hooks/usePokemonHeaderEffect";
-import { getPokemonImage } from "@/api/endpoints";
+import { getPokemonImage } from "@/constants/endpoints";
 import GradientOrSolidBackground from "@/components/GradientOrSolidBackground";
 import PokemonProfileTitle from "@/components/PokemonProfileTitle";
 import StatSection from "@/components/StatSection";
