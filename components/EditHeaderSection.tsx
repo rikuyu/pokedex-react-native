@@ -2,6 +2,7 @@ import React from "react";
 import { Image, StyleSheet, useWindowDimensions, View } from "react-native";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import ThemeToggleButton from "@/components/ThemeToggleButton";
+import { ThemedView } from "@/components/ThemedView";
 
 export default function EditHeaderSection() {
   const {width} = useWindowDimensions();
@@ -15,33 +16,33 @@ export default function EditHeaderSection() {
   };
 
   return (
-    <View style={styles.headerContainer}>
+    <ThemedView style={styles.headerContainer}>
       <Image
         source={require("../assets/images/pokedex_header.png")}
         style={[styles.headerImage]}
         resizeMode="cover"
       />
-      <View style={styles.blurHeaderContainer}>
+      <ThemedView style={styles.blurHeaderContainer}>
         <MaterialCommunityIcons
           name="camera-plus-outline"
           color="#fff"
           size={32}
         />
-      </View>
+      </ThemedView>
       <ThemeToggleButton positionStyle={styles.themeBtn}/>
       <Image
         source={require("../assets/images/profile_image.png")}
         resizeMode="cover"
         style={[styles.imagePosition, profileIconImageStyle]}
       />
-      <View style={[styles.blurProfileIconContainer, profileIconImageStyle]}>
+      <ThemedView style={[styles.blurProfileIconContainer, profileIconImageStyle]}>
         <MaterialCommunityIcons
           name="camera-plus-outline"
           color="#fff"
           size={28}
         />
-      </View>
-    </View>
+      </ThemedView>
+    </ThemedView>
   );
 }
 

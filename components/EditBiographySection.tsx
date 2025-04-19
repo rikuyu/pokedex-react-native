@@ -1,5 +1,8 @@
 import React from "react";
-import { StyleSheet, Text, TextInput, View } from "react-native";
+import { StyleSheet, TextInput } from "react-native";
+import { ThemedView } from "@/components/ThemedView";
+import { useThemeColor } from "@/hooks/useThemeColor";
+import { ThemedText } from "@/components/ThemedText";
 
 type Props = {
   name: string,
@@ -9,27 +12,39 @@ type Props = {
 }
 
 export default function EditBiographySection(props: Props) {
+  const textInputBackground = useThemeColor({light: "#e8f2ff", dark: "#363636"});
+  const textColor = useThemeColor(undefined, "text");
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.name}>Name</Text>
-      <View style={{height: 12}}/>
-      <TextInput
-        style={styles.textInput}
-        onChangeText={props.setName}
-        inputMode={"text"}
-        value={props.name}
-        placeholder={"Enter Your Name"}
-        placeholderTextColor={"#b1b1b1"}
-        selectionColor={"#fff"}
-      />
-      <View style={{height: 20}}/>
-      <Text style={styles.name}>Description</Text>
-      <View style={{height: 12}}/>
+    <ThemedView style={styles.container}>
+      <ThemedText type="size16Normal">Name</ThemedText>
+      <ThemedView style={{height: 12}}/>
       <TextInput
         style={[
           styles.textInput,
           {
+            backgroundColor: textInputBackground,
+            borderColor: textColor,
+            color: textColor,
+          },
+        ]}
+        onChangeText={props.setName}
+        inputMode={"text"}
+        value={props.name}
+        placeholder={"Enter Your Name"}
+        selectionColor={textColor}
+      />
+      <ThemedView style={{height: 20}}/>
+      <ThemedText type="size16Normal">Description</ThemedText>
+      <ThemedView style={{height: 12}}/>
+      <TextInput
+        style={[
+          styles.textInput,
+          {
+            backgroundColor: textInputBackground,
             textAlignVertical: "top",
+            borderColor: textColor,
+            color: textColor,
             height: 80,
           },
         ]}
@@ -37,29 +52,20 @@ export default function EditBiographySection(props: Props) {
         inputMode={"text"}
         value={props.description}
         placeholder={"Enter Your Description"}
-        placeholderTextColor={"#b1b1b1"}
-        selectionColor={"#fff"}
+        selectionColor={textColor}
         multiline={true}
         maxLength={200}
       />
-    </View>
+    </ThemedView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#000",
     paddingHorizontal: 20,
   },
-  name: {
-    fontSize: 16,
-    color: "#fff",
-  },
   textInput: {
-    backgroundColor: "#363636",
-    borderColor: "#b1b1b1",
-    color: "#ffffff",
     borderWidth: 1,
     borderRadius: 4,
     padding: 8,

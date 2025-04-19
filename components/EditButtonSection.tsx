@@ -1,5 +1,8 @@
 import { StyleSheet, TouchableOpacity, View, Text } from "react-native";
 import React from "react";
+import { ThemedView } from "@/components/ThemedView";
+import { ThemedText } from "@/components/ThemedText";
+import { useThemeColor } from "@/hooks/useThemeColor";
 
 type Props = {
   height: number;
@@ -7,25 +10,29 @@ type Props = {
 }
 
 export default function EditButtonSection({height, onPress}: Props) {
-  const contentColor = "#fff";
+  const color = useThemeColor(undefined, "text");
+
   return (
-    <View style={{height: height + 16, backgroundColor: "#000"}}>
+    <ThemedView style={{height: height + 16}}>
       <TouchableOpacity
         style={[
           styles.button,
           {
-            borderColor: contentColor,
+            borderColor: color,
             borderRadius: height / 2,
           },
         ]}
         onPress={onPress}
         activeOpacity={0.5}
       >
-        <Text style={[styles.text, {color: contentColor}]}>
+        <ThemedText
+          type="size16Medium"
+          style={{textAlign: "center"}}
+        >
           Edit Profile
-        </Text>
+        </ThemedText>
       </TouchableOpacity>
-    </View>
+    </ThemedView>
   );
 };
 
@@ -44,10 +51,5 @@ const styles = StyleSheet.create({
     position: "absolute",
     right: 12,
     top: 12,
-  },
-  text: {
-    fontSize: 16,
-    fontWeight: "500",
-    textAlign: "center",
   },
 });

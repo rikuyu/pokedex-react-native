@@ -1,5 +1,6 @@
 import React from "react";
 import { Text, StyleSheet, TouchableOpacity, View } from "react-native";
+import { pokedexRed } from "@/constants/colors";
 
 type Props = {
   onPress: () => void,
@@ -23,10 +24,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   btn: {
-    backgroundColor: "#ff4545",
+    backgroundColor: pokedexRed,
     borderRadius: 8,
     width: "90%",
-    height: 40,
     paddingVertical: 12,
     justifyContent: "center",
     alignItems: "center",
