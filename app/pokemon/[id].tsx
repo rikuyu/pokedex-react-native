@@ -11,6 +11,8 @@ import PokemonProfileTitle from "@/components/PokemonProfileTitle";
 import StatSection from "@/components/StatSection";
 import TypeSection from "@/components/TypeSection";
 import PhysicalSection from "@/components/PhysicalSection";
+import { ThemedView } from "@/components/ThemedView";
+import { pokedexRed } from "@/constants/colors";
 
 export default function PokemonProfile() {
   const {id} = useLocalSearchParams();
@@ -28,17 +30,17 @@ export default function PokemonProfile() {
 
   if (isLoading) {
     return (
-      <View style={styles.container}>
+      <ThemedView style={styles.container}>
         <ActivityIndicator size="large"/>
-      </View>
+      </ThemedView>
     );
   }
 
   if (hasError) {
     return (
-      <View style={styles.container}>
+      <ThemedView style={styles.container}>
         <Text>Error</Text>
-      </View>
+      </ThemedView>
     );
   }
 
@@ -51,16 +53,16 @@ export default function PokemonProfile() {
           resizeMode="cover"
         />
       </GradientOrSolidBackground>
-      <View style={{height: 12}}/>
+      <ThemedView lightColor={pokedexRed} darkColor={pokedexRed} style={{height: 12}}/>
       <PokemonProfileTitle title={data?.name}/>
-      <View style={{height: 12}}/>
-      <View style={{flex: 4, alignItems: "center"}}>
+      <ThemedView lightColor={pokedexRed} darkColor={pokedexRed} style={{height: 12}}/>
+      <ThemedView lightColor={pokedexRed} darkColor={pokedexRed} style={{flex: 4, alignItems: "center"}}>
         <TypeSection types={data?.types}/>
-        <View style={{height: 12}}/>
+        <ThemedView style={{height: 12}}/>
         <PhysicalSection height={data?.height} weight={data?.weight}/>
-        <View style={{height: 16}}/>
+        <ThemedView style={{height: 16}}/>
         <StatSection stats={data?.stats}/>
-      </View>
+      </ThemedView>
     </View>
   );
 }
@@ -69,7 +71,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    backgroundColor: "#fc5353",
+    backgroundColor: pokedexRed,
   },
   linearGradient: {
     flex: 1,

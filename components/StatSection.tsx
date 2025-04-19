@@ -3,6 +3,8 @@ import { StyleSheet, Text, useWindowDimensions, View } from "react-native";
 import StatItem from "@/components/StatItem";
 import { getStatColor, getStatLabel } from "@/utils/statData";
 import { PokemonStat } from "@/types/pokemon";
+import { ThemedText } from "@/components/ThemedText";
+import { ThemedView } from "@/components/ThemedView";
 
 type Props = {
   stats: PokemonStat[] | undefined;
@@ -11,9 +13,9 @@ type Props = {
 export default function StatSection({stats}: Props) {
   const safeStats = stats ?? [];
   return (
-    <View style={styles.container}>
-      <Text style={styles.statTitle}>種族値</Text>
-      <View style={{height: 12}}/>
+    <ThemedView style={styles.container}>
+      <ThemedText type={"size16Medium"}>種族値</ThemedText>
+      <ThemedView style={{height: 12}}/>
       {
         safeStats.flatMap((stat, index) => [
           <StatItem
@@ -22,26 +24,21 @@ export default function StatSection({stats}: Props) {
             value={stat.status}
             color={getStatColor(stat.name)}/>,
           index !== safeStats.length - 1 && (
-            <View key={`spacer-${index}`} style={{height: 20}}/>
+            <ThemedText key={`spacer-${index}`} style={{height: 20}}/>
           ),
         ])
       }
-      <View style={{height: 20}}/>
-    </View>
+      <ThemedText style={{height: 20}}/>
+    </ThemedView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     borderRadius: 36,
-    backgroundColor: "#edf3fc",
     paddingVertical: 12,
     paddingHorizontal: 20,
     marginHorizontal: 12,
     alignItems: "center",
-  },
-  statTitle: {
-    fontSize: 16,
-    fontWeight: "500",
   },
 });

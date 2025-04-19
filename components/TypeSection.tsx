@@ -2,6 +2,7 @@ import React from "react";
 import { PokemonType } from "@/types/pokemon";
 import { StyleSheet, View } from "react-native";
 import TypeChip from "@/components/TypeChip";
+import { ThemedView } from "@/components/ThemedView";
 
 type Props = {
   types: PokemonType[] | undefined;
@@ -10,16 +11,16 @@ type Props = {
 export default function TypeSection({types}: Props) {
   const safeTypes = types ?? [];
   return (
-    <View style={styles.container}>
+    <ThemedView style={styles.container}>
       {
         safeTypes?.flatMap((type, index) => [
           <TypeChip key={`chip-${index}`} name={type.name} color={type.color}/>,
           index !== safeTypes.length - 1 && (
-            <View key={`spacer-${index}`} style={{width: 10}}/>
+            <ThemedView key={`spacer-${index}`} style={{width: 10}}/>
           ),
         ])
       }
-    </View>
+    </ThemedView>
   );
 }
 
@@ -29,7 +30,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 24,
-    backgroundColor: "#edf3fc",
     paddingVertical: 8,
     paddingHorizontal: 12,
   },

@@ -1,5 +1,7 @@
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
+import { ThemedView } from "@/components/ThemedView";
+import { ThemedText } from "@/components/ThemedText";
 
 type Props = {
   title: string | undefined;
@@ -7,13 +9,13 @@ type Props = {
 
 export default function PokemonProfileTitle({title}: Props) {
   return (
-    <View style={styles.container}>
+    <ThemedView style={styles.container}>
       <MonsterBall/>
-      <View style={{width: 12}}/>
-      <Text style={styles.name}>{title || "unknown"}</Text>
-      <View style={{width: 12}}/>
+      <ThemedView style={{width: 12}}/>
+      <ThemedText type={"size20Bold"}>{title || "unknown"}</ThemedText>
+      <ThemedView style={{width: 12}}/>
       <MonsterBall/>
-    </View>
+    </ThemedView>
   );
 }
 
@@ -32,12 +34,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 50,
-    backgroundColor: "#edf3fc",
     paddingHorizontal: 8,
     paddingVertical: 8,
-  },
-  name: {
-    fontSize: 20,
-    fontWeight: "bold",
   },
 });

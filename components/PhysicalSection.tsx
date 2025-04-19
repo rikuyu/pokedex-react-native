@@ -1,6 +1,8 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import PhysicalDataCard from "@/components/PhysicalDataCard";
+import { ThemedView } from "@/components/ThemedView";
+import { pokedexRed } from "@/constants/colors";
 
 type Props = {
   height: number | undefined
@@ -9,11 +11,11 @@ type Props = {
 
 export default function PhysicalSection({height, weight}: Props) {
   return (
-    <View style={styles.container}>
+    <ThemedView lightColor={pokedexRed} darkColor={pokedexRed} style={styles.container}>
       <PhysicalDataCard label={"たかさ"} value={height || 0}/>
-      <View style={{width: 12}}/>
+      <ThemedView style={{width: 12}}/>
       <PhysicalDataCard label={"おもさ"} value={weight || 0}/>
-    </View>
+    </ThemedView>
   );
 }
 

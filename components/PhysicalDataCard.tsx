@@ -1,5 +1,8 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { ThemedText } from "@/components/ThemedText";
+import { useThemeColor } from "@/hooks/useThemeColor";
+import { ThemedView } from "@/components/ThemedView";
 
 type Props = {
   label: "たかさ" | "おもさ";
@@ -8,11 +11,11 @@ type Props = {
 
 export default function PhysicalDataCard({label, value}: Props) {
   return (
-    <View style={styles.card}>
-      <Text style={styles.label}>{label}</Text>
-      <View style={{height: 8}}/>
-      <Text style={styles.value}>{`${value}${label === "たかさ" ? "m" : "kg"}`}</Text>
-    </View>
+    <ThemedView style={styles.card}>
+      <ThemedText type={"size16Bold"}>{label}</ThemedText>
+      <ThemedView style={{height: 8}}/>
+      <ThemedText type={"size16Medium"}>{`${value}${label === "たかさ" ? "m" : "kg"}`}</ThemedText>
+    </ThemedView>
   );
 }
 
@@ -21,16 +24,7 @@ const styles = StyleSheet.create({
     height: 76,
     width: 76,
     borderRadius: 12,
-    backgroundColor: "#edf3fc",
     justifyContent: "center",
     alignItems: "center",
-  },
-  label: {
-    fontSize: 16,
-    fontWeight: "bold",
-  },
-  value: {
-    fontSize: 16,
-    fontWeight: "500",
   },
 });
