@@ -5,6 +5,9 @@ export type ThemedTextProps = TextProps & {
   lightColor?: string;
   darkColor?: string;
   type?:
+    "size12Normal" |
+    "size12Medium" |
+    "size12Bold" |
     "size14Normal" |
     "size14Medium" |
     "size14Bold" |
@@ -36,6 +39,18 @@ export function ThemedText(
 }
 
 const styles = StyleSheet.create({
+  size12Normal: {
+    fontSize: 12,
+    fontWeight: "normal",
+  },
+  size12Medium: {
+    fontSize: 12,
+    fontWeight: "medium",
+  },
+  size12Bold: {
+    fontSize: 12,
+    fontWeight: "bold",
+  },
   size14Normal: {
     fontSize: 14,
     fontWeight: "normal",
