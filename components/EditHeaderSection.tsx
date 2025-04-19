@@ -1,13 +1,9 @@
 import React from "react";
-import { ViewStyle } from "react-native/Libraries/StyleSheet/StyleSheetTypes";
-import { StyleSheet, View, Image, useWindowDimensions } from "react-native";
+import { Image, StyleSheet, useWindowDimensions, View } from "react-native";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import ThemeToggleButton from "@/components/ThemeToggleButton";
 
-type Props = {
-  positionStyle: ViewStyle;
-}
-
-export default function EditHeaderSection({positionStyle}: Props) {
+export default function EditHeaderSection() {
   const {width} = useWindowDimensions();
   const imageSize = width / 5;
 
@@ -19,7 +15,7 @@ export default function EditHeaderSection({positionStyle}: Props) {
   };
 
   return (
-    <View style={[styles.headerContainer, positionStyle]}>
+    <View style={styles.headerContainer}>
       <Image
         source={require("../assets/images/pokedex_header.png")}
         style={[styles.headerImage]}
@@ -29,9 +25,10 @@ export default function EditHeaderSection({positionStyle}: Props) {
         <MaterialCommunityIcons
           name="camera-plus-outline"
           color="#fff"
-          size={36}
+          size={32}
         />
       </View>
+      <ThemeToggleButton positionStyle={styles.themeBtn}/>
       <Image
         source={require("../assets/images/profile_image.png")}
         resizeMode="cover"
@@ -70,6 +67,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#0000004D",
     justifyContent: "center",
     alignItems: "center",
+  },
+  themeBtn: {
+    position: "absolute",
+    top: 8,
+    right: 8,
   },
   imagePosition: {
     position: "absolute",
