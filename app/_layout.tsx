@@ -2,6 +2,7 @@ import { Stack } from "expo-router";
 import { SQLiteProvider } from "expo-sqlite";
 import { initDB } from "@/services/database";
 import { Alert } from "react-native";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 export default function RootLayout() {
   return (
@@ -11,12 +12,14 @@ export default function RootLayout() {
         onInit={initDB}
         onError={alertDBError}
       >
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{headerShown: false}}/>
-          <Stack.Screen name="+not-found"/>
-          <Stack.Screen name="pokemon/[id]"/>
-          <Stack.Screen name="edit" options={{headerShown: false}}/>
-        </Stack>
+        <SafeAreaProvider>
+          <Stack>
+            <Stack.Screen name="(tabs)" options={{headerShown: false}}/>
+            <Stack.Screen name="+not-found"/>
+            <Stack.Screen name="pokemon/[id]"/>
+            <Stack.Screen name="edit" options={{headerShown: false}}/>
+          </Stack>
+        </SafeAreaProvider>
       </SQLiteProvider>
     </>
   );

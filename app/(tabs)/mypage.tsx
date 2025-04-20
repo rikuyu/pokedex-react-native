@@ -1,22 +1,20 @@
 import React, { useCallback } from "react";
-import { ActivityIndicator, StyleSheet, Text, useWindowDimensions, View } from "react-native";
+import { ActivityIndicator, StyleSheet, Text, useWindowDimensions } from "react-native";
 import { useFocusEffect, useRouter } from "expo-router";
-import Setting from "@/components/Setting";
 import Animated, { useAnimatedScrollHandler, useSharedValue } from "react-native-reanimated";
 import MyPageHeader from "@/components/MyPageHeader";
-import ScrollView = Animated.ScrollView;
 import EditButtonSection from "@/components/EditButtonSection";
 import BiographySection from "@/components/BiographySection";
 import Residence from "@/components/Residence";
 import Birthday from "@/components/Birthday";
 import { useMyProfile } from "@/hooks/useMyProfile";
+import { ThemedView } from "@/components/ThemedView";
+import { ThemedText } from "@/components/ThemedText";
+import ScrollView = Animated.ScrollView;
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function MyPage() {
   const router = useRouter();
-
-  const headerRight = useCallback(() => {
-    return <Setting onPress={() => router.push("/setting")}/>;
-  }, []);
 
   const scrollY = useSharedValue(0);
   const scrollHandler = useAnimatedScrollHandler((event) => {
@@ -36,57 +34,60 @@ export default function MyPage() {
 
   if (loading) {
     return (
-      <View style={styles.container}>
+      <ThemedView style={styles.container}>
         <ActivityIndicator size="large"/>
-      </View>
+      </ThemedView>
     );
   }
 
   if (error) {
     return (
-      <View style={styles.container}>
+      <ThemedView style={styles.container}>
         <Text>Error</Text>
-      </View>
+      </ThemedView>
     );
   }
 
   return (
-    <View style={styles.container}>
-      <MyPageHeader
-        imageSize={imageSize}
-        scrollOffset={scrollY}
-        positionStyle={styles.headerPosition}
-      />
-      <ScrollView
-        style={styles.listContainer}
-        onScroll={scrollHandler}
-      >
-        <EditButtonSection
-          onPress={() => router.push("/edit")}
-          height={imageSize / 2}
+    <SafeAreaView style={{flex: 1}} edges={["top"]}>
+      <ThemedView style={styles.container}>
+        <MyPageHeader
+          imageSize={imageSize}
+          scrollOffset={scrollY}
+          positionStyle={styles.headerPosition}
         />
-        <BiographySection profile={profile}/>
-        <Residence/>
-        <View style={{height: 8}}/>
-        <Birthday/>
-        <View style={{height: 24}}/>
-        {Array.from({length: 10}).map((_, index) => {
-          return (
-            <View
-              key={index}
-              style={{
-                backgroundColor: COLORS[index % 4],
-                width: "100%",
-                height: 100,
-                justifyContent: "center",
-                alignItems: "center",
-              }}>
-              <Text style={{fontSize: 24}}>{index}</Text>
-            </View>
-          );
-        })}
-      </ScrollView>
-    </View>
+        <ScrollView
+          style={styles.listContainer}
+          onScroll={scrollHandler}
+        >
+          <EditButtonSection
+            onPress={() => router.push("/edit")}
+            height={imageSize / 2}
+          />
+          <BiographySection profile={profile}/>
+          <Residence/>
+          <ThemedView style={{height: 8}}/>
+          <Birthday/>
+          <ThemedView style={{height: 24}}/>
+          {Array.from({length: 10}).map((_, index) => {
+            return (
+              <ThemedView
+                key={index}
+                style={{
+                  width: "100%",
+                  height: 100,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  borderBottomWidth: 1,
+                  borderBottomColor: "#ff7300",
+                }}>
+                <ThemedText style={{fontSize: 24}}>{index}</ThemedText>
+              </ThemedView>
+            );
+          })}
+        </ScrollView>
+      </ThemedView>
+    </SafeAreaView>
   );
 };
 
@@ -110,6 +111,6 @@ const styles = StyleSheet.create({
   listContainer: {
     zIndex: 1,
     width: "100%",
-    backgroundColor: "#000000",
+    backgroundColor: "#ff7300",
   },
 });
