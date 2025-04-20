@@ -1,12 +1,17 @@
 import React, { useState } from "react";
-import { Platform, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Platform, StyleSheet, TouchableOpacity } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 import DateTimePicker, { DateTimePickerEvent } from "@react-native-community/datetimepicker";
+import { ThemedView } from "@/components/ThemedView";
+import { ThemedText } from "@/components/ThemedText";
+import { useThemeColor } from "@/hooks/useThemeColor";
 
 export default function Birthday() {
   const [birthdayIos, setBirthdayIos] = useState<Date>(new Date());
   const [birthdayAndroid, setBirthdayAndroid] = useState<string>("unknown");
   const [showAndroid, setShowAndroid] = useState(false);
+
+  const backgroundColor = useThemeColor(undefined, "background");
 
   const onChange = (_: DateTimePickerEvent, selectedDate?: Date) => {
     if (Platform.OS === "android") {
@@ -20,10 +25,16 @@ export default function Birthday() {
 
   if (Platform.OS === "ios") {
     return (
-      <View style={iosStyles.container}>
+      <ThemedView style={iosStyles.container}>
         <FontAwesome5 name="birthday-cake" size={16} color={"#b1b1b1"}/>
-        <View style={{width: 8}}/>
-        <Text style={commonStyles.text}>誕生日:</Text>
+        <ThemedView style={{width: 8}}/>
+        <ThemedText
+          type="size14Normal"
+          darkColor={"#b1b1b1"}
+          lightColor={"#b1b1b1"}
+        >
+          誕生日:
+        </ThemedText>
         <DateTimePicker
           value={birthdayIos}
           maximumDate={new Date()}
@@ -31,18 +42,18 @@ export default function Birthday() {
           onChange={onChange}
           themeVariant="dark"
         />
-      </View>
+      </ThemedView>
     );
   } else {
     return (
       <TouchableOpacity
-        style={androidStyles.container}
+        style={[androidStyles.container, {backgroundColor}]}
         onPress={() => setShowAndroid(true)}
         activeOpacity={0.8}
       >
         <FontAwesome5 name="birthday-cake" size={16} color={"#b1b1b1"}/>
-        <View style={{width: 8}}/>
-        <Text style={commonStyles.text}>誕生日: {birthdayAndroid}</Text>
+        <ThemedView style={{width: 8}}/>
+        <ThemedText type="size14Normal">誕生日: {birthdayAndroid}</ThemedText>
         {showAndroid && (
           <DateTimePicker
             value={new Date(birthdayAndroid)}
@@ -60,7 +71,6 @@ const iosStyles = StyleSheet.create({
   container: {
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "#000",
     paddingHorizontal: 20,
   },
 });
@@ -69,14 +79,6 @@ const androidStyles = StyleSheet.create({
   container: {
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "#000",
     paddingHorizontal: 20,
-  },
-});
-
-const commonStyles = StyleSheet.create({
-  text: {
-    fontSize: 14,
-    color: "#b1b1b1",
   },
 });

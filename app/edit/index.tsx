@@ -5,6 +5,7 @@ import EditBiographySection from "@/components/EditBiographySection";
 import { useRouter } from "expo-router";
 import { useMyProfile } from "@/hooks/useMyProfile";
 import EditSaveButton from "@/components/EditSaveButton";
+import { ThemedView } from "@/components/ThemedView";
 
 export default function Index() {
   const {
@@ -27,9 +28,9 @@ export default function Index() {
 
   if (loading) {
     return (
-      <View style={styles.container}>
+      <ThemedView style={styles.container}>
         <ActivityIndicator size="large"/>
-      </View>
+      </ThemedView>
     );
   }
 
@@ -40,16 +41,16 @@ export default function Index() {
 
   if (error) {
     return (
-      <View style={styles.container}>
+      <ThemedView style={styles.container}>
         <Text>Error</Text>
-      </View>
+      </ThemedView>
     );
   }
 
   return (
-    <View style={styles.container}>
+    <ThemedView style={styles.container}>
       <EditHeaderSection />
-      <View style={{height: 80}}/>
+      <ThemedView style={{height: 80, zIndex: -1}}/>
       <EditBiographySection
         name={name}
         setName={setName}
@@ -57,14 +58,13 @@ export default function Index() {
         setDescription={setDescription}
       />
       <EditSaveButton onPress={handleSave}/>
-      <View style={{height: 60}}/>
-    </View>
+      <ThemedView style={{height: 60}}/>
+    </ThemedView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#000",
   },
 });

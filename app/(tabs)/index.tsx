@@ -4,6 +4,8 @@ import { usePaginatedFetch } from "@/hooks/usePaginatedFetch";
 import { fetchPokemonList } from "@/services/fetchPokemonList";
 import { PokemonListItem } from "@/types/pokemon";
 import { useRouter } from "expo-router";
+import { ThemedView } from "@/components/ThemedView";
+import { ThemedText } from "@/components/ThemedText";
 
 export default function Index() {
   const router = useRouter();
@@ -18,22 +20,22 @@ export default function Index() {
 
   if (isRefreshing) {
     return (
-      <View style={styles.container}>
+      <ThemedView style={styles.container}>
         <ActivityIndicator size="small"/>
-      </View>
+      </ThemedView>
     );
   }
 
   if (hasError) {
     return (
-      <View style={styles.container}>
-        <Text>Error</Text>
-      </View>
+      <ThemedView style={styles.container}>
+        <ThemedText>Error</ThemedText>
+      </ThemedView>
     );
   }
 
   return (
-    <View style={styles.container}>
+    <ThemedView style={styles.container}>
       <FlatList
         style={{paddingVertical: 12}}
         keyExtractor={(item) => item.index.toString()}
@@ -58,7 +60,7 @@ export default function Index() {
         onEndReachedThreshold={0.2}
         ListFooterComponent={isLoading ? <ActivityIndicator size="small"/> : null}
       />
-    </View>
+    </ThemedView>
   );
 }
 

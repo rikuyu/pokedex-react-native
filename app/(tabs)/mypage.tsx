@@ -9,9 +9,9 @@ import Residence from "@/components/Residence";
 import Birthday from "@/components/Birthday";
 import { useMyProfile } from "@/hooks/useMyProfile";
 import { ThemedView } from "@/components/ThemedView";
-import { ThemedText } from "@/components/ThemedText";
-import ScrollView = Animated.ScrollView;
 import { SafeAreaView } from "react-native-safe-area-context";
+import PokemonToolItem from "@/components/PokemonToolItem";
+import ScrollView = Animated.ScrollView;
 
 export default function MyPage() {
   const router = useRouter();
@@ -71,18 +71,7 @@ export default function MyPage() {
           <ThemedView style={{height: 24}}/>
           {Array.from({length: 10}).map((_, index) => {
             return (
-              <ThemedView
-                key={index}
-                style={{
-                  width: "100%",
-                  height: 100,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  borderBottomWidth: 1,
-                  borderBottomColor: "#ff7300",
-                }}>
-                <ThemedText style={{fontSize: 24}}>{index}</ThemedText>
-              </ThemedView>
+              <PokemonToolItem key={index}/>
             );
           })}
         </ScrollView>
@@ -90,13 +79,6 @@ export default function MyPage() {
     </SafeAreaView>
   );
 };
-
-const COLORS = [
-  "#ff9396",
-  "#8bb7ff",
-  "#fbe87f",
-  "#9bff89",
-];
 
 const styles = StyleSheet.create({
   container: {

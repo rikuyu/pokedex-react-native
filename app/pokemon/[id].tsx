@@ -13,6 +13,7 @@ import TypeSection from "@/components/TypeSection";
 import PhysicalSection from "@/components/PhysicalSection";
 import { ThemedView } from "@/components/ThemedView";
 import { pokedexRed } from "@/constants/colors";
+import { ThemedText } from "@/components/ThemedText";
 
 export default function PokemonProfile() {
   const {id} = useLocalSearchParams();
@@ -39,7 +40,7 @@ export default function PokemonProfile() {
   if (hasError) {
     return (
       <ThemedView style={styles.container}>
-        <Text>Error</Text>
+        <ThemedText>Error</ThemedText>
       </ThemedView>
     );
   }
