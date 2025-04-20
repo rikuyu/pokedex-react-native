@@ -57,7 +57,7 @@ export const usePokemonProfileHeader = (
     };
   }, [data?.index, db]);
 
-  const headerRight = () => (
+  const HeaderRight = () => (
     <Bookmark
       color={contentColor}
       isBookmarked={isBookmarked}
@@ -85,8 +85,8 @@ export const usePokemonProfileHeader = (
           backgroundColor: firstColor,
         },
         headerTintColor: contentColor,
-        headerLeft: () => Platform.OS === "ios" ? <IosBackButton iconColor={contentColor} /> : null,
-        headerRight: headerRight,
+        headerLeft: () => Platform.OS === "ios" ? <IosBackButton iconColor={contentColor}/> : null,
+        headerRight: () => <HeaderRight />,
       });
     }
   }, [data, isLoading, hasError, firstColor, contentColor, navigation, isBookmarked]);
