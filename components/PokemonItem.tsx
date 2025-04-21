@@ -30,7 +30,12 @@ export default function PokemonItem({index, name, onPress}: Props) {
         <View style={styles.content}>
           <Text style={styles.index}>No.{index}</Text>
           <Image source={{uri: getPokemonDotImage(index)}} style={{height: imageSize, width: imageSize}}/>
-          <ThemedText type={"size12Bold"} style={styles.name}>{name}</ThemedText>
+          <ThemedText
+            type={"size12Bold"}
+            style={{fontFamily: Platform.OS === "ios" ? "PKMN-REGULAR" : "pkmn_regular"}}
+          >
+            {name}
+          </ThemedText>
         </View>
       </View>
     </Pressable>
@@ -64,8 +69,5 @@ const styles = StyleSheet.create({
     color: "white",
     fontWeight: "800",
     fontSize: 12,
-  },
-  name: {
-    fontFamily: Platform.OS === "ios" ? "PKMN-REGULAR" : "pkmn_regular",
   },
 });
