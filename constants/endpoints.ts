@@ -10,3 +10,5 @@ export const getPokemonImage = (index: number | undefined) =>
   `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${index || 0}.png`;
 
 export const getPokemonDetailUrl = (index: number) => `${POKEMON_URL}/${index}`;
+
+export const getBerryListUrl = (): string => "https://pokeapi.co/api/v2/item?offset=126&limit=63";
