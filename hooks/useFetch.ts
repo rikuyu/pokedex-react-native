@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
-export const useFetch = <T, K>(
-  arg: K,
-  fetchFunction: (arg: K) => Promise<T>
+export const useFetch = <T, K = void>(
+  fetchFunction: K extends void ? () => Promise<T> : (arg: K) => Promise<T>,
+  arg?: K,
 ) => {
   const [data, setData] = useState<T | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -13,7 +13,11 @@ export const useFetch = <T, K>(
       setIsLoading(true);
       setHasError(null);
 
-      const response = await fetchFunction(arg);
+      const response = await (
+        arg !== undefined
+          ? (fetchFunction as (arg: K) => Promise<T>)(arg)
+          : (fetchFunction as () => Promise<T>)()
+      );
       setData(response);
     } catch (e) {
       setHasError(e instanceof Error ? e : Error("unknown error"));
