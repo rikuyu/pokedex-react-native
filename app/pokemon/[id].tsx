@@ -22,7 +22,7 @@ export default function PokemonProfile() {
     data,
     isLoading,
     hasError,
-  } = useFetch<PokemonDetail, number>(Number(id), fetchPokemonDetail);
+  } = useFetch<PokemonDetail, number>(fetchPokemonDetail, Number(id));
 
   usePokemonProfileHeader(data, isLoading, isLoading);
 
