@@ -558,7 +558,7 @@ export const pokemonData = new Map<string, string>([
   ["glaceon", "グレイシア"], //  471
   ["gliscor", "グライオン"], //  472
   ["mamoswine", "マンムー"], //  473
-  ["porygonz", "ポリゴンZ"], //  474
+  ["porygon-z", "ポリゴンZ"], //  474
   ["gallade", "エルレイド"], //  475
   ["probopass", "ダイノーズ"], //  476
   ["dusknoir", "ヨノワール"], //  477
