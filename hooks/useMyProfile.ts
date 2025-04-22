@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { emptyProfile, getMyProfile, Profile, saveMyProfile } from "@/services/profileStore";
+import { emptyProfile, getMyProfile, Profile, saveMyProfile } from "@/services/profileStorage";
 
 export const useMyProfile = () => {
   const [profile, setProfile] = useState<Profile>(emptyProfile);
