@@ -1,5 +1,5 @@
 import React from "react";
-import { ActivityIndicator, Image, StyleSheet, Text, useWindowDimensions, View } from "react-native";
+import { ActivityIndicator, StyleSheet, useWindowDimensions, View } from "react-native";
 import { useLocalSearchParams } from "expo-router";
 import { useFetch } from "@/hooks/useFetch";
 import { PokemonDetail } from "@/types/pokemon";
@@ -14,6 +14,7 @@ import PhysicalSection from "@/components/PhysicalSection";
 import { ThemedView } from "@/components/ThemedView";
 import { pokedexRed } from "@/constants/colors";
 import { ThemedText } from "@/components/ThemedText";
+import PokemonProfileImage from "@/components/PokemonProfileImage";
 
 export default function PokemonProfile() {
   const {id} = useLocalSearchParams();
@@ -48,11 +49,7 @@ export default function PokemonProfile() {
   return (
     <View style={styles.container}>
       <GradientOrSolidBackground colors={data?.types.map((type) => type.color)}>
-        <Image
-          style={{height: imgSize, width: imgSize}}
-          source={{uri: getPokemonImage(data?.index)}}
-          resizeMode="cover"
-        />
+        <PokemonProfileImage imgSize={imgSize} url={getPokemonImage(data?.index)}/>
       </GradientOrSolidBackground>
       <ThemedView lightColor={pokedexRed} darkColor={pokedexRed} style={{height: 12}}/>
       <PokemonProfileTitle title={data?.name}/>
