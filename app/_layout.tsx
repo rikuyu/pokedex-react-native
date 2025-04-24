@@ -4,10 +4,11 @@ import { initDB } from "@/services/database";
 import { Alert } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
+import { ThemeProvider } from "@/utils/ThemeContext";
 
 export default function RootLayout() {
   return (
-    <>
+    <ThemeProvider>
       <SQLiteProvider
         databaseName="pokedex.db"
         onInit={initDB}
@@ -23,7 +24,7 @@ export default function RootLayout() {
         </SafeAreaProvider>
         <StatusBar style="light"/>
       </SQLiteProvider>
-    </>
+    </ThemeProvider>
   );
 }
 
