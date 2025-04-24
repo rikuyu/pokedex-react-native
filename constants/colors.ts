@@ -4,9 +4,6 @@ export const hpGreen = "#17ff4c";
 export const hpOrange = "#ffc117";
 export const hpRed = "#e83030";
 
-export const bookmarkBlue = "#0058b5CC";
-export const bookmarkBackground = "#96c3ff";
-
 export const maleBlue = "#68abfc";
 export const femalePink = "#fcacac";
 

@@ -58,7 +58,7 @@ export default function MyPageHeader({imageSize, positionStyle, scrollOffset}: P
   return (
     <Animated.View style={[styles.headerContainer, positionStyle, animatedHeaderStyle]}>
       <Animated.Image
-        source={require("../assets/images/pokedex_header.png")}
+        source={require("../assets/images/header_placeholder.png")}
         style={[styles.headerImage, animatedHeaderStyle]}
         resizeMode="cover"
       />

@@ -13,13 +13,7 @@ export default function BiographySection({profile}: Props) {
     <ThemedView style={styles.container}>
       <ThemedText type="size20Bold">{profile.name}</ThemedText>
       <ThemedView style={{height: 8}}/>
-      <ThemedText
-        type="size16Normal"
-        lightColor={"#b1b1b1"}
-        darkColor={"#b1b1b1"}
-      >
-        @xyz_abc_id
-      </ThemedText>
+      <ThemedText type="size16Normal">@xyz_abc_id</ThemedText>
       <ThemedView style={{height: 12}}/>
       <ThemedText type="size16Normal">{profile.description}</ThemedText>
     </ThemedView>

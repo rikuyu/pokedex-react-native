@@ -7,6 +7,7 @@ import { ThemedText } from "@/components/ThemedText";
 import { useThemeColor } from "@/hooks/useThemeColor";
 
 export default function Residence() {
+  const iconColor = useThemeColor(undefined, "text");
   const backgroundColor = useThemeColor(undefined, "background");
   const [location, setLocation] = useState<string>("unknown");
 
@@ -29,15 +30,9 @@ export default function Residence() {
       onPress={() => getCurrentLocation()}
       activeOpacity={0.8}
     >
-      <Ionicons name="location-outline" size={20} color={"#b1b1b1"}/>
+      <Ionicons name="location-outline" size={20} color={iconColor}/>
       <ThemedView style={{width: 4}}/>
-      <ThemedText
-        type="size14Normal"
-        lightColor={"#b1b1b1"}
-        darkColor={"#b1b1b1"}
-      >
-        {location}
-      </ThemedText>
+      <ThemedText type="size14Normal">{location}</ThemedText>
     </TouchableOpacity>
   );
 }

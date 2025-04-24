@@ -46,7 +46,6 @@ export default function _Layout() {
       <Tabs.Screen
         name="mypage"
         options={{
-          headerShown: false,
           title: "",
           tabBarLabel: "",
           tabBarIcon: ({focused}) => (

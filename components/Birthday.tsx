@@ -7,6 +7,7 @@ import { ThemedText } from "@/components/ThemedText";
 import { useThemeColor } from "@/hooks/useThemeColor";
 
 export default function Birthday() {
+  const iconColor = useThemeColor(undefined, "text");
   const [birthdayIos, setBirthdayIos] = useState<Date>(new Date());
   const [birthdayAndroid, setBirthdayAndroid] = useState<string>("unknown");
   const [showAndroid, setShowAndroid] = useState(false);
@@ -26,15 +27,9 @@ export default function Birthday() {
   if (Platform.OS === "ios") {
     return (
       <ThemedView style={iosStyles.container}>
-        <FontAwesome5 name="birthday-cake" size={16} color={"#b1b1b1"}/>
+        <FontAwesome5 name="birthday-cake" size={16} color={iconColor}/>
         <ThemedView style={{width: 8}}/>
-        <ThemedText
-          type="size14Normal"
-          darkColor={"#b1b1b1"}
-          lightColor={"#b1b1b1"}
-        >
-          誕生日:
-        </ThemedText>
+        <ThemedText type="size14Normal">誕生日:</ThemedText>
         <DateTimePicker
           value={birthdayIos}
           maximumDate={new Date()}

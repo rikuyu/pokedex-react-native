@@ -1,11 +1,13 @@
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from "react-native";
+import { StyleSheet, TouchableOpacity, useWindowDimensions, View } from "react-native";
 import { PokemonBookmark } from "@/types/pokemon";
 import Svg, { Path } from "react-native-svg";
 import BookmarkPokemonImage from "@/components/BookmarkPokemonImage";
 import GenderAndTypes from "@/components/GenderAndTypes";
 import HpBar from "@/components/HpBar";
-import { bookmarkBlue } from "@/constants/colors";
+import { ThemedView } from "@/components/ThemedView";
+import { ThemedText } from "@/components/ThemedText";
+import { useThemeColor } from "@/hooks/useThemeColor";
 
 type Props = {
   pokemon: PokemonBookmark;
@@ -13,6 +15,8 @@ type Props = {
 }
 
 export default function BookmarkPokemon({pokemon, onPress}: Props) {
+  const borderColor = useThemeColor(undefined, "text");
+  const svgFillColor = useThemeColor(undefined, "background");
   const {width: screenWidth} = useWindowDimensions();
   const itemWidth = (screenWidth - 8 * 3) / 2;
   const itemHeight = itemWidth / 2;
@@ -34,21 +38,26 @@ export default function BookmarkPokemon({pokemon, onPress}: Props) {
       <Svg
         width="100%"
         height="100%"
+        fill={svgFillColor}
         viewBox={canvas}
         style={StyleSheet.absoluteFill}
       >
-        <Path d={direction} fill={bookmarkBlue}/>
+        <Path
+          d={direction}
+          stroke={borderColor}
+          strokeWidth={1}
+        />
       </Svg>
       <View style={[styles.rowContent, {padding: 8}]}>
         <BookmarkPokemonImage pokemonId={pokemon.id} itemSize={itemHeight - 16}/>
-        <View style={{width: 6}}/>
-        <View style={styles.attr}>
-          <Text style={styles.label}>{pokemon.name}</Text>
-          <View style={{height: 8}}/>
-          <HpBar />
-          <View style={{height: 8}}/>
+        <ThemedView style={{width: 6}}/>
+        <ThemedView style={styles.attr}>
+          <ThemedText style={styles.label}>{pokemon.name}</ThemedText>
+          <ThemedView style={{height: 8}}/>
+          <HpBar/>
+          <ThemedView style={{height: 8}}/>
           <GenderAndTypes typeFirst={pokemon.typeFirst} typeSecond={pokemon.typeSecond}/>
-        </View>
+        </ThemedView>
       </View>
     </TouchableOpacity>
   );

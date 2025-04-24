@@ -18,7 +18,7 @@ export default function EditHeaderSection() {
   return (
     <ThemedView style={styles.headerContainer}>
       <Image
-        source={require("../assets/images/pokedex_header.png")}
+        source={require("../assets/images/header_placeholder.png")}
         style={[styles.headerImage]}
         resizeMode="cover"
       />

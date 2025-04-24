@@ -36,6 +36,8 @@ const styles = StyleSheet.create({
     height: 6,
     position: "relative",
     backgroundColor: "#edf3fc",
+    borderColor: "#000000",
+    borderWidth: 0.5,
   },
   hp: {
     height: 6,

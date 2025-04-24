@@ -3,6 +3,7 @@ import { ActivityIndicator, FlatList, StyleSheet, Text, View } from "react-nativ
 import { useBookmarkPokemon } from "@/hooks/useBookmarkPokemon";
 import BookmarkPokemon from "@/components/BookmarkPokemon";
 import { useRouter } from "expo-router";
+import { ThemedView } from "@/components/ThemedView";
 
 export default function Bookmark() {
   const router = useRouter();
@@ -14,22 +15,22 @@ export default function Bookmark() {
 
   if (isLoading) {
     return (
-      <View style={styles.container}>
+      <ThemedView style={styles.container}>
         <ActivityIndicator size="small"/>
-      </View>
+      </ThemedView>
     );
   }
 
   if (hasError) {
     return (
-      <View style={styles.container}>
+      <ThemedView style={styles.container}>
         <Text>Error</Text>
-      </View>
+      </ThemedView>
     );
   }
 
   return (
-    <View style={styles.container}>
+    <ThemedView style={styles.container}>
       <FlatList
         style={{paddingVertical: 12}}
         columnWrapperStyle={{
@@ -46,7 +47,7 @@ export default function Bookmark() {
           />
         )}
       />
-    </View>
+    </ThemedView>
   );
 };
 
@@ -55,6 +56,5 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#96c3ff"
   },
 });

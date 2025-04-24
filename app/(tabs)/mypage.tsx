@@ -59,36 +59,34 @@ export default function MyPage() {
   }
 
   return (
-    <SafeAreaView style={{flex: 1}} edges={["top"]}>
-      <ThemedView style={styles.container}>
-        <MyPageHeader
-          imageSize={imageSize}
-          scrollOffset={scrollY}
-          positionStyle={styles.headerPosition}
-        />
-        <AnimatedFlatList
-          onScroll={scrollHandler}
-          scrollEventThrottle={16}
-          ListHeaderComponent={() => (
-            <>
-              <EditButtonSection
-                onPress={() => router.push("/edit")}
-                height={imageSize / 2}
-              />
-              <BiographySection profile={profile}/>
-              <Residence/>
-              <ThemedView style={{height: 8}}/>
-              <Birthday/>
-              <ThemedView style={{height: 12, borderBottomWidth: 0.5, borderBottomColor: borderColor}}/>
-            </>
-          )}
-          data={berryList}
-          keyExtractor={(_, index) => index.toString()}
-          renderItem={({item}) => <PokemonToolItem berry={item}/>}
-          style={styles.listContainer}
-        />
-      </ThemedView>
-    </SafeAreaView>
+    <ThemedView style={styles.container}>
+      <MyPageHeader
+        imageSize={imageSize}
+        scrollOffset={scrollY}
+        positionStyle={styles.headerPosition}
+      />
+      <AnimatedFlatList
+        onScroll={scrollHandler}
+        scrollEventThrottle={16}
+        ListHeaderComponent={() => (
+          <>
+            <EditButtonSection
+              onPress={() => router.push("/edit")}
+              height={imageSize / 2}
+            />
+            <BiographySection profile={profile}/>
+            <Residence/>
+            <ThemedView style={{height: 8}}/>
+            <Birthday/>
+            <ThemedView style={{height: 12, borderBottomWidth: 0.5, borderBottomColor: borderColor}}/>
+          </>
+        )}
+        data={berryList}
+        keyExtractor={(_, index) => index.toString()}
+        renderItem={({item}) => <PokemonToolItem berry={item}/>}
+        style={styles.listContainer}
+      />
+    </ThemedView>
   );
 };
 
@@ -104,6 +102,5 @@ const styles = StyleSheet.create({
   listContainer: {
     zIndex: 1,
     width: "100%",
-    backgroundColor: "#ff7300",
   },
 });
