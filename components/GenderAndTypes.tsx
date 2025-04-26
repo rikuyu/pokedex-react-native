@@ -1,6 +1,6 @@
 import React from "react";
 import GenderIcon from "@/components/GenderIcon";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 import TypeBadge from "@/components/TypeBadge";
 import { ThemedView } from "@/components/ThemedView";
 import { ThemedText } from "@/components/ThemedText";
@@ -14,7 +14,7 @@ export default function GenderAndTypes({typeFirst, typeSecond}: Props) {
   return (
     <ThemedView style={styles.rowContent}>
       <GenderIcon/>
-      <ThemedText style={styles.label}>/</ThemedText>
+      <ThemedText type="size14Medium">/</ThemedText>
       <ThemedView style={{width: 8}}/>
       <TypeBadge type={typeFirst}/>
       {typeSecond && (
@@ -32,10 +32,5 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "flex-start",
-  },
-  label: {
-    fontSize: 14,
-    fontWeight: "500",
-    color: "#fff",
   },
 });

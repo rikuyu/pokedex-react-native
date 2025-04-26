@@ -52,7 +52,7 @@ export default function BookmarkPokemon({pokemon, onPress}: Props) {
         <BookmarkPokemonImage pokemonId={pokemon.id} itemSize={itemHeight - 16}/>
         <ThemedView style={{width: 6}}/>
         <ThemedView style={styles.attr}>
-          <ThemedText style={styles.label}>{pokemon.name}</ThemedText>
+          <ThemedText type="size14Medium">{pokemon.name}</ThemedText>
           <ThemedView style={{height: 8}}/>
           <HpBar/>
           <ThemedView style={{height: 8}}/>
@@ -78,10 +78,5 @@ const styles = StyleSheet.create({
   attr: {
     flex: 1,
     flexDirection: "column",
-  },
-  label: {
-    fontSize: 14,
-    fontWeight: "500",
-    color: "#fff",
   },
 });

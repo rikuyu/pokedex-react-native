@@ -1,5 +1,4 @@
 import React from "react";
-import { StyleSheet } from "react-native";
 import { Profile } from "@/services/profileStorage";
 import { ThemedView } from "@/components/ThemedView";
 import { ThemedText } from "@/components/ThemedText";
@@ -10,7 +9,7 @@ type Props = {
 
 export default function BiographySection({profile}: Props) {
   return (
-    <ThemedView style={styles.container}>
+    <ThemedView style={{paddingHorizontal: 20, paddingBottom: 16}}>
       <ThemedText type="size20Bold">{profile.name}</ThemedText>
       <ThemedView style={{height: 8}}/>
       <ThemedText type="size16Normal">@xyz_abc_id</ThemedText>
@@ -19,18 +18,3 @@ export default function BiographySection({profile}: Props) {
     </ThemedView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    paddingHorizontal: 20,
-    paddingBottom: 16,
-  },
-  name: {
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-  id: {
-    fontSize: 16,
-    color: "#b1b1b1",
-  },
-});

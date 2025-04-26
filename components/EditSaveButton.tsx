@@ -1,6 +1,7 @@
 import React from "react";
-import { Text, StyleSheet, TouchableOpacity, View } from "react-native";
-import { pokedexRed } from "@/constants/colors";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { darkTextColor, pokedexRed } from "@/constants/colors";
+import { ThemedText } from "@/components/ThemedText";
 
 type Props = {
   onPress: () => void,
@@ -12,7 +13,13 @@ export default function EditSaveButton({onPress}: Props) {
       <TouchableOpacity
         onPress={onPress}
         style={styles.btn}>
-        <Text style={styles.label}>Save</Text>
+        <ThemedText
+          type="size16Bold"
+          lightColor={darkTextColor}
+          darkColor={darkTextColor}
+        >
+          Save
+        </ThemedText>
       </TouchableOpacity>
     </View>
   );
@@ -30,10 +37,5 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     justifyContent: "center",
     alignItems: "center",
-  },
-  label: {
-    fontSize: 16,
-    color: "#fff",
-    fontWeight: "500",
   },
 });

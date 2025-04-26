@@ -17,7 +17,7 @@ export default function PokemonItem({index, name, onPress}: Props) {
   const itemSize = (width - padding * 4) / 3;
   const imageSize = itemSize / 1.5;
 
-  const borderColor = useThemeColor({light: darkBackground, dark: lightBackground})
+  const borderColor = useThemeColor({light: darkBackground, dark: lightBackground});
 
   return (
     <Pressable onPress={onPress}>
@@ -28,7 +28,13 @@ export default function PokemonItem({index, name, onPress}: Props) {
         </View>
 
         <View style={styles.content}>
-          <Text style={styles.index}>No.{index}</Text>
+          <ThemedText
+            type="size12Bold"
+            lightColor={"fff"}
+            darkColor={"#fff"}
+          >
+            No.{index}
+          </ThemedText>
           <Image source={{uri: getPokemonDotImage(index)}} style={{height: imageSize, width: imageSize}}/>
           <ThemedText
             type={"size12Bold"}
@@ -64,10 +70,5 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-  },
-  index: {
-    color: "white",
-    fontWeight: "800",
-    fontSize: 12,
   },
 });
