@@ -9,7 +9,6 @@ import Residence from "@/components/Residence";
 import Birthday from "@/components/Birthday";
 import { useMyProfile } from "@/hooks/useMyProfile";
 import { ThemedView } from "@/components/ThemedView";
-import { SafeAreaView } from "react-native-safe-area-context";
 import PokemonToolItem from "@/components/PokemonToolItem";
 import { useFetch } from "@/hooks/useFetch";
 import { BerryData } from "@/types/berry";
@@ -17,13 +16,11 @@ import { fetchBerryList } from "@/services/fetchBerryList";
 import { useThemeColor } from "@/hooks/useThemeColor";
 import { darkTextColor, lightTextColor } from "@/constants/colors";
 import { ThemedText } from "@/components/ThemedText";
+import { Profile } from "@/services/profileStorage";
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList<BerryData>);
 
 export default function MyPage() {
-  const borderColor = useThemeColor({light: lightTextColor, dark: darkTextColor});
-  const router = useRouter();
-
   const scrollY = useSharedValue(0);
   const scrollHandler = useAnimatedScrollHandler((event) => {
     scrollY.value = event.contentOffset.y;
@@ -68,27 +65,39 @@ export default function MyPage() {
       <AnimatedFlatList
         onScroll={scrollHandler}
         scrollEventThrottle={16}
-        ListHeaderComponent={() => (
-          <>
-            <EditButtonSection
-              onPress={() => router.push("/edit")}
-              height={imageSize / 2}
-            />
-            <BiographySection profile={profile}/>
-            <Residence/>
-            <ThemedView style={{height: 8}}/>
-            <Birthday/>
-            <ThemedView style={{height: 12, borderBottomWidth: 0.5, borderBottomColor: borderColor}}/>
-          </>
-        )}
+        ListHeaderComponent={<ProfileSection profile={profile} imageSize={imageSize} /> }
         data={berryList}
-        keyExtractor={(_, index) => index.toString()}
+        keyExtractor={(item) => item.name}
         renderItem={({item}) => <PokemonToolItem berry={item}/>}
         style={styles.listContainer}
       />
     </ThemedView>
   );
 };
+
+type Props = {
+  imageSize: number;
+  profile: Profile;
+}
+
+const ProfileSection = React.memo(({ imageSize, profile }: Props) => {
+  const borderColor = useThemeColor({ light: lightTextColor, dark: darkTextColor });
+  const router = useRouter();
+
+  return (
+    <>
+      <EditButtonSection
+        onPress={() => router.push("/edit")}
+        height={imageSize / 2}
+      />
+      <BiographySection profile={profile} />
+      <Residence />
+      <ThemedView style={{ height: 8 }} />
+      <Birthday />
+      <ThemedView style={{ height: 12, borderBottomWidth: 0.5, borderBottomColor: borderColor }} />
+    </>
+  );
+});
 
 const styles = StyleSheet.create({
   container: {

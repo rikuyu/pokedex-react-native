@@ -2,7 +2,6 @@ import React from "react";
 import Animated, { Extrapolation, interpolate, SharedValue, useAnimatedStyle } from "react-native-reanimated";
 import { StyleSheet } from "react-native";
 import { ViewStyle } from "react-native/Libraries/StyleSheet/StyleSheetTypes";
-import { LinearGradient } from "expo-linear-gradient";
 
 type Props = {
   imageSize: number;
@@ -34,7 +33,7 @@ export default function MyPageHeader({imageSize, positionStyle, scrollOffset}: P
       scrollOffset.value,
       [0, 160],
       [2, 0],
-      Extrapolation.CLAMP
+      Extrapolation.CLAMP,
     );
 
     return {
@@ -62,7 +61,7 @@ export default function MyPageHeader({imageSize, positionStyle, scrollOffset}: P
         style={[styles.headerImage, animatedHeaderStyle]}
         resizeMode="cover"
       />
-      <GradientBlur animStyle={animatedBlurStyle}/>
+      <Blur animStyle={animatedBlurStyle}/>
       <Animated.Image
         source={require("../assets/images/profile_image.png")}
         resizeMode="cover"
@@ -75,17 +74,9 @@ export default function MyPageHeader({imageSize, positionStyle, scrollOffset}: P
   );
 }
 
-const GradientBlur = ({animStyle}: { animStyle: ViewStyle }) => {
-  return (
-    <Animated.View style={[styles.headerImageBlur, animStyle]}>
-      <LinearGradient
-        colors={["rgba(0, 0, 0, 1)", "rgba(0, 0, 0, 0)"]}
-        style={[styles.headerImageBlur]}
-      />
-    </Animated.View>
-  );
+const Blur = ({animStyle}: { animStyle: ViewStyle }) => {
+  return <Animated.View style={[styles.headerImageBlur, animStyle]}/>;
 };
-
 
 const styles = StyleSheet.create({
   headerContainer: {
@@ -103,6 +94,6 @@ const styles = StyleSheet.create({
   imagePosition: {
     position: "absolute",
     left: 16,
-    borderColor: "#000"
+    borderColor: "#000",
   },
 });

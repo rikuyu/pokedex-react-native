@@ -3,18 +3,13 @@ import { Tabs } from "expo-router";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import { Platform } from "react-native";
+import { headerStyle, tabBarStyle } from "@/constants/colors";
 
 export default function _Layout() {
   return (
     <Tabs
-      screenOptions={{
-        tabBarStyle: {
-          backgroundColor: "#ff4545",
-        },
-        headerStyle: {
-          backgroundColor: "#ff4545",
-        },
-      }}>
+      screenOptions={{tabBarStyle, headerStyle}}>
       <Tabs.Screen
         name="index"
         options={{
@@ -48,6 +43,7 @@ export default function _Layout() {
         options={{
           title: "",
           tabBarLabel: "",
+          headerShown: Platform.OS === "ios",
           tabBarIcon: ({focused}) => (
             <MaterialCommunityIcons
               name={focused ? "account" : "account-outline"}
