@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet } from "react-native";
 import { ThemedView } from "@/components/ThemedView";
 import { ThemedText } from "@/components/ThemedText";
 
@@ -12,7 +12,7 @@ export default function PokemonProfileTitle({title}: Props) {
     <ThemedView style={styles.container}>
       <MonsterBall/>
       <ThemedView style={{width: 12}}/>
-      <ThemedText type={"size20Bold"}>{title || "unknown"}</ThemedText>
+      <ThemedText type={"size20Bold"} style={{fontFamily: "PKMN-REGULAR"}}>{title || "unknown"}</ThemedText>
       <ThemedView style={{width: 12}}/>
       <MonsterBall/>
     </ThemedView>

@@ -36,12 +36,7 @@ export default function PokemonItem({index, name, onPress}: Props) {
             No.{index}
           </ThemedText>
           <Image source={{uri: getPokemonDotImage(index)}} style={{height: imageSize, width: imageSize}}/>
-          <ThemedText
-            type={"size12Bold"}
-            style={{fontFamily: Platform.OS === "ios" ? "PKMN-REGULAR" : "pkmn_regular"}}
-          >
-            {name}
-          </ThemedText>
+          <ThemedText type={"size12Bold"}>{name}</ThemedText>
         </View>
       </View>
     </Pressable>
