@@ -5,9 +5,9 @@ import ThemeToggleButton from "@/components/ThemeToggleButton";
 import { ThemedView } from "@/components/ThemedView";
 
 type Props = {
-  iconImg?: string;
+  iconImg: string | undefined;
   setIcon: () => void;
-  headerImg?: string;
+  headerImg: string | undefined;
   setHeader: () => void;
 }
 
@@ -27,6 +27,7 @@ export default function EditHeaderSection({iconImg, setIcon, headerImg, setHeade
   return (
     <ThemedView style={styles.container}>
       <TouchableOpacity
+        onPress={setHeader}
         activeOpacity={0.9}
         style={styles.headerTouchable}
       >
@@ -47,6 +48,7 @@ export default function EditHeaderSection({iconImg, setIcon, headerImg, setHeade
         </View>
       </TouchableOpacity>
       <TouchableOpacity
+        onPress={setIcon}
         activeOpacity={0.9}
         style={[styles.iconTouchable, {bottom: imageSize / 2}]}
       >
@@ -68,7 +70,6 @@ export default function EditHeaderSection({iconImg, setIcon, headerImg, setHeade
     </ThemedView>
   );
 }
-
 
 const styles = StyleSheet.create({
   container: {
