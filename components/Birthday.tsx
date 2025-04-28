@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Platform, StyleSheet, TouchableOpacity } from "react-native";
-import { FontAwesome5 } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
 import DateTimePicker, { DateTimePickerEvent } from "@react-native-community/datetimepicker";
 import { ThemedView } from "@/components/ThemedView";
 import { ThemedText } from "@/components/ThemedText";
@@ -27,7 +27,7 @@ export default function Birthday() {
   if (Platform.OS === "ios") {
     return (
       <ThemedView style={iosStyles.container}>
-        <FontAwesome5 name="birthday-cake" size={16} color={iconColor}/>
+        <AntDesign name="calendar" size={16} color={iconColor} />
         <ThemedView style={{width: 8}}/>
         <ThemedText type="size14Normal">誕生日:</ThemedText>
         <DateTimePicker
@@ -46,7 +46,7 @@ export default function Birthday() {
         onPress={() => setShowAndroid(true)}
         activeOpacity={0.8}
       >
-        <FontAwesome5 name="birthday-cake" size={16} color={"#b1b1b1"}/>
+        <AntDesign name="calendar" size={16} color={iconColor} />
         <ThemedView style={{width: 8}}/>
         <ThemedText type="size14Normal">誕生日: {birthdayAndroid}</ThemedText>
         {showAndroid && (
@@ -66,7 +66,7 @@ const iosStyles = StyleSheet.create({
   container: {
     flexDirection: "row",
     alignItems: "center",
-    paddingHorizontal: 20,
+    paddingHorizontal: 18,
   },
 });
 
@@ -74,6 +74,6 @@ const androidStyles = StyleSheet.create({
   container: {
     flexDirection: "row",
     alignItems: "center",
-    paddingHorizontal: 20,
+    paddingHorizontal: 18,
   },
 });
