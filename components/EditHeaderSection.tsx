@@ -15,11 +15,10 @@ export default function EditHeaderSection({iconImg, setIcon, headerImg, setHeade
   const {width} = useWindowDimensions();
   const imageSize = width / 5;
 
-  const profileIconImageStyle = {
+  const imgStyle = {
     width: imageSize,
     height: imageSize,
     borderRadius: imageSize / 2,
-    bottom: -imageSize / 2,
   };
 
   const header = headerImg ? {uri: headerImg} : require("../assets/images/header_placeholder.png");
@@ -27,31 +26,45 @@ export default function EditHeaderSection({iconImg, setIcon, headerImg, setHeade
 
   return (
     <ThemedView style={styles.container}>
-      <Image
-        source={header}
-        style={[styles.headerImage]}
-        resizeMode="cover"
-      />
-      <ThemedView style={styles.blurHeader}>
-        <MaterialCommunityIcons
-          name="camera-plus-outline"
-          color="#fff"
-          size={32}
-        />
-      </ThemedView>
-      <ThemeToggleButton positionStyle={styles.themeBtn}/>
-      <Image
-        source={icon}
-        resizeMode="cover"
-        style={[styles.border, profileIconImageStyle]}
-      />
-      <ThemedView style={[styles.blurIcon, profileIconImageStyle]}>
-        <MaterialCommunityIcons
-          name="camera-plus-outline"
-          color="#fff"
-          size={28}
-        />
-      </ThemedView>
+      <TouchableOpacity
+        activeOpacity={0.9}
+        style={styles.headerTouchable}
+      >
+        <View style={styles.touchableContent}>
+          <Image
+            source={header}
+            style={[styles.headerImage]}
+            resizeMode="cover"
+          />
+          <ThemedView style={styles.blurHeader}>
+            <MaterialCommunityIcons
+              name="camera-plus-outline"
+              color="#fff"
+              size={32}
+            />
+          </ThemedView>
+          <ThemeToggleButton positionStyle={styles.themeBtn}/>
+        </View>
+      </TouchableOpacity>
+      <TouchableOpacity
+        activeOpacity={0.9}
+        style={[styles.iconTouchable, {bottom: imageSize / 2}]}
+      >
+        <View style={styles.touchableContent}>
+          <Image
+            source={icon}
+            resizeMode="cover"
+            style={[styles.border, imgStyle]}
+          />
+          <ThemedView style={[styles.blurIcon, imgStyle]}>
+            <MaterialCommunityIcons
+              name="camera-plus-outline"
+              color="#fff"
+              size={28}
+            />
+          </ThemedView>
+        </View>
+      </TouchableOpacity>
     </ThemedView>
   );
 }
@@ -63,14 +76,24 @@ const styles = StyleSheet.create({
     height: 130,
     position: "relative",
   },
-  headerImage: {
+  headerTouchable: {
     ...StyleSheet.absoluteFillObject,
     height: 130,
     width: "100%",
   },
+  touchableContent: {
+    position: "relative",
+    height: "100%",
+    width: "100%",
+  },
+  headerImage: {
+    ...StyleSheet.absoluteFillObject,
+    height: "100%",
+    width: "100%",
+  },
   blurHeader: {
     ...StyleSheet.absoluteFillObject,
-    height: 130,
+    height: "100%",
     width: "100%",
     backgroundColor: "#0000004D",
     justifyContent: "center",
@@ -81,15 +104,21 @@ const styles = StyleSheet.create({
     top: 8,
     right: 8,
   },
-  border: {
+  iconTouchable: {
     position: "absolute",
     left: 16,
+  },
+  border: {
+    ...StyleSheet.absoluteFillObject,
+    height: "100%",
+    width: "100%",
     borderWidth: 2,
     borderColor: "#000",
   },
   blurIcon: {
-    position: "absolute",
-    left: 16,
+    ...StyleSheet.absoluteFillObject,
+    height: "100%",
+    width: "100%",
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#00000033",
