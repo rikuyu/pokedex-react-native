@@ -30,7 +30,7 @@ export default function PokemonItem({index, name, onPress}: Props) {
         <View style={styles.content}>
           <ThemedText
             type="size12Bold"
-            lightColor={"fff"}
+            lightColor={"#fff"}
             darkColor={"#fff"}
           >
             No.{index}
