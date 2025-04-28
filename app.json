@@ -17,8 +17,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./assets/images/pokedex_android_icon.png"
       },
       "package": "com.rikuyu.pokedex"
     },
@@ -42,7 +41,7 @@
         "expo-font",
         {
           "fonts": [
-            "./assets/fonts/pkmn_regular.ttf"
+            "./assets/fonts/PKMN-REGULAR.ttf"
           ]
         }
       ],
