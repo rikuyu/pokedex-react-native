@@ -26,13 +26,13 @@ export default function EditHeaderSection({iconImg, setIcon, headerImg, setHeade
   const icon = iconImg ? {uri: iconImg} : require("../assets/images/profile_image.png");
 
   return (
-    <ThemedView style={styles.headerContainer}>
+    <ThemedView style={styles.container}>
       <Image
         source={header}
         style={[styles.headerImage]}
         resizeMode="cover"
       />
-      <ThemedView style={styles.blurHeaderContainer}>
+      <ThemedView style={styles.blurHeader}>
         <MaterialCommunityIcons
           name="camera-plus-outline"
           color="#fff"
@@ -43,9 +43,9 @@ export default function EditHeaderSection({iconImg, setIcon, headerImg, setHeade
       <Image
         source={icon}
         resizeMode="cover"
-        style={[styles.imagePosition, profileIconImageStyle]}
+        style={[styles.border, profileIconImageStyle]}
       />
-      <ThemedView style={[styles.blurProfileIconContainer, profileIconImageStyle]}>
+      <ThemedView style={[styles.blurIcon, profileIconImageStyle]}>
         <MaterialCommunityIcons
           name="camera-plus-outline"
           color="#fff"
@@ -58,21 +58,17 @@ export default function EditHeaderSection({iconImg, setIcon, headerImg, setHeade
 
 
 const styles = StyleSheet.create({
-  headerContainer: {
+  container: {
     width: "100%",
     height: 130,
     position: "relative",
-  },
-  headerImageBlur: {
-    ...StyleSheet.absoluteFillObject,
-    width: "100%",
   },
   headerImage: {
     ...StyleSheet.absoluteFillObject,
     height: 130,
     width: "100%",
   },
-  blurHeaderContainer: {
+  blurHeader: {
     ...StyleSheet.absoluteFillObject,
     height: 130,
     width: "100%",
@@ -85,13 +81,13 @@ const styles = StyleSheet.create({
     top: 8,
     right: 8,
   },
-  imagePosition: {
+  border: {
     position: "absolute",
     left: 16,
     borderWidth: 2,
     borderColor: "#000",
   },
-  blurProfileIconContainer: {
+  blurIcon: {
     position: "absolute",
     left: 16,
     justifyContent: "center",
