@@ -1,10 +1,17 @@
 import React from "react";
-import { Image, StyleSheet, useWindowDimensions, View } from "react-native";
+import { Image, StyleSheet, TouchableOpacity, useWindowDimensions, View } from "react-native";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import ThemeToggleButton from "@/components/ThemeToggleButton";
 import { ThemedView } from "@/components/ThemedView";
 
-export default function EditHeaderSection() {
+type Props = {
+  iconImg?: string;
+  setIcon: () => void;
+  headerImg?: string;
+  setHeader: () => void;
+}
+
+export default function EditHeaderSection({iconImg, setIcon, headerImg, setHeader}: Props) {
   const {width} = useWindowDimensions();
   const imageSize = width / 5;
 
@@ -15,10 +22,13 @@ export default function EditHeaderSection() {
     bottom: -imageSize / 2,
   };
 
+  const header = headerImg ? {uri: headerImg} : require("../assets/images/header_placeholder.png");
+  const icon = iconImg ? {uri: iconImg} : require("../assets/images/profile_image.png");
+
   return (
     <ThemedView style={styles.headerContainer}>
       <Image
-        source={require("../assets/images/header_placeholder.png")}
+        source={header}
         style={[styles.headerImage]}
         resizeMode="cover"
       />
@@ -31,7 +41,7 @@ export default function EditHeaderSection() {
       </ThemedView>
       <ThemeToggleButton positionStyle={styles.themeBtn}/>
       <Image
-        source={require("../assets/images/profile_image.png")}
+        source={icon}
         resizeMode="cover"
         style={[styles.imagePosition, profileIconImageStyle]}
       />
@@ -45,6 +55,7 @@ export default function EditHeaderSection() {
     </ThemedView>
   );
 }
+
 
 const styles = StyleSheet.create({
   headerContainer: {

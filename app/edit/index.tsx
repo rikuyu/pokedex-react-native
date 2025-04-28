@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator, StyleSheet, Text } from "react-native";
 import EditHeaderSection from "@/components/EditHeaderSection";
 import EditBiographySection from "@/components/EditBiographySection";
 import { useRouter } from "expo-router";
 import { useMyProfile } from "@/hooks/useMyProfile";
 import EditSaveButton from "@/components/EditSaveButton";
 import { ThemedView } from "@/components/ThemedView";
+import * as ImagePicker from "expo-image-picker";
+
+type ImageType = "icon" | "header";
 
 export default function Index() {
   const {
@@ -16,6 +19,8 @@ export default function Index() {
   } = useMyProfile();
   const [name, setName] = useState<string>("");
   const [description, setDescription] = useState<string>("");
+  const [iconImg, setIconImg] = useState<string | undefined>(undefined);
+  const [headerImg, setHeaderImg] = useState<string | undefined>(undefined);
 
   const router = useRouter();
 
@@ -25,6 +30,22 @@ export default function Index() {
       setDescription(profile.description);
     }
   }, [loading, profile]);
+
+  const pickImageAsync = async (type: ImageType) => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ["images"],
+      allowsEditing: true,
+      quality: 1,
+    });
+
+    if (!result.canceled) {
+      const uri = result.assets[0].uri;
+      if (type === "icon") setIconImg(uri);
+      if (type === "header") setHeaderImg(uri);
+    } else {
+      alert("You did not select any image.");
+    }
+  };
 
   if (loading) {
     return (
@@ -49,7 +70,12 @@ export default function Index() {
 
   return (
     <ThemedView style={styles.container}>
-      <EditHeaderSection />
+      <EditHeaderSection
+        iconImg={iconImg}
+        setIcon={async (): Promise<void> => pickImageAsync("icon")}
+        headerImg={headerImg}
+        setHeader={async (): Promise<void> => pickImageAsync("header")}
+      />
       <ThemedView style={{height: 80, zIndex: -1}}/>
       <EditBiographySection
         name={name}
