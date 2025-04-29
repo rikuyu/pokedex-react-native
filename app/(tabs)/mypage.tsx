@@ -21,6 +21,7 @@ import { Profile } from "@/services/profileStorage";
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList<BerryData>);
 
 export default function MyPage() {
+  const borderColor = useThemeColor({light: lightTextColor, dark: darkTextColor});
   const scrollY = useSharedValue(0);
   const scrollHandler = useAnimatedScrollHandler((event) => {
     scrollY.value = event.contentOffset.y;
@@ -65,7 +66,8 @@ export default function MyPage() {
       <AnimatedFlatList
         onScroll={scrollHandler}
         scrollEventThrottle={16}
-        ListHeaderComponent={<ProfileSection profile={profile} imageSize={imageSize} /> }
+        ListHeaderComponent={<ProfileSection profile={profile} imageSize={imageSize}/>}
+        ItemSeparatorComponent={() => <ThemedView style={{height: 1, flex: 1, backgroundColor: borderColor}}/>}
         data={berryList}
         keyExtractor={(item) => item.name}
         renderItem={({item}) => <PokemonToolItem berry={item}/>}
@@ -80,8 +82,8 @@ type Props = {
   profile: Profile;
 }
 
-const ProfileSection = React.memo(({ imageSize, profile }: Props) => {
-  const borderColor = useThemeColor({ light: lightTextColor, dark: darkTextColor });
+const ProfileSection = React.memo(({imageSize, profile}: Props) => {
+  const borderColor = useThemeColor({light: lightTextColor, dark: darkTextColor});
   const router = useRouter();
 
   return (
@@ -90,11 +92,12 @@ const ProfileSection = React.memo(({ imageSize, profile }: Props) => {
         onPress={() => router.push("/edit")}
         height={imageSize / 2}
       />
-      <BiographySection profile={profile} />
-      <Residence />
-      <ThemedView style={{ height: 8 }} />
-      <Birthday />
-      <ThemedView style={{ height: 12, borderBottomWidth: 0.5, borderBottomColor: borderColor }} />
+      <BiographySection profile={profile}/>
+      <Residence/>
+      <ThemedView style={{height: 8}}/>
+      <Birthday/>
+      <ThemedView style={{height: 16}}/>
+      <ThemedView style={{flex: 1, height: 1, backgroundColor: borderColor}}/>
     </>
   );
 });
