@@ -7,8 +7,7 @@ import { useMyProfile } from "@/hooks/useMyProfile";
 import EditSaveButton from "@/components/EditSaveButton";
 import { ThemedView } from "@/components/ThemedView";
 import * as ImagePicker from "expo-image-picker";
-
-type ImageType = "icon" | "header";
+import { ThemedText } from "@/components/ThemedText";
 
 export default function Index() {
   const {
@@ -31,7 +30,7 @@ export default function Index() {
     }
   }, [loading, profile]);
 
-  const pickImageAsync = async (type: ImageType) => {
+  const pickImageAsync = async (type: "icon" | "header") => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ["images"],
       allowsEditing: true,
@@ -42,14 +41,12 @@ export default function Index() {
       const uri = result.assets[0].uri;
       if (type === "icon") setIconImg(uri);
       if (type === "header") setHeaderImg(uri);
-    } else {
-      alert("You did not select any image.");
     }
   };
 
   if (loading) {
     return (
-      <ThemedView style={styles.container}>
+      <ThemedView style={{flex: 1}}>
         <ActivityIndicator size="large"/>
       </ThemedView>
     );
@@ -62,14 +59,14 @@ export default function Index() {
 
   if (error) {
     return (
-      <ThemedView style={styles.container}>
-        <Text>Error</Text>
+      <ThemedView style={{flex: 1}}>
+        <ThemedText>Error</ThemedText>
       </ThemedView>
     );
   }
 
   return (
-    <ThemedView style={styles.container}>
+    <ThemedView style={{flex: 1}}>
       <EditHeaderSection
         iconImg={iconImg}
         setIcon={async (): Promise<void> => pickImageAsync("icon")}
@@ -88,9 +85,3 @@ export default function Index() {
     </ThemedView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
