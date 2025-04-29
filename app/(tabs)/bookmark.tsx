@@ -1,9 +1,10 @@
 import React from "react";
-import { ActivityIndicator, FlatList, StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator, FlatList, StyleSheet } from "react-native";
 import { useBookmarkPokemon } from "@/hooks/useBookmarkPokemon";
 import BookmarkPokemon from "@/components/BookmarkPokemon";
 import { useRouter } from "expo-router";
 import { ThemedView } from "@/components/ThemedView";
+import { ThemedText } from "@/components/ThemedText";
 
 export default function Bookmark() {
   const router = useRouter();
@@ -24,7 +25,7 @@ export default function Bookmark() {
   if (hasError) {
     return (
       <ThemedView style={styles.container}>
-        <Text>Error</Text>
+        <ThemedText>Error</ThemedText>
       </ThemedView>
     );
   }

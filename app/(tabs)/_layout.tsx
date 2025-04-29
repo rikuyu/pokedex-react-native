@@ -15,7 +15,7 @@ export default function _Layout() {
         options={{
           title: "",
           tabBarLabel: "",
-          tabBarIcon: ({focused}) => (
+          tabBarIcon: ({focused}: { focused: boolean }) => (
             <Ionicons
               name={focused ? "home" : "home-outline"}
               color="white"
@@ -29,7 +29,7 @@ export default function _Layout() {
         options={{
           title: "",
           tabBarLabel: "",
-          tabBarIcon: ({focused}) => (
+          tabBarIcon: ({focused}: { focused: boolean }) => (
             <MaterialIcons
               name={focused ? "bookmark" : "bookmark-outline"}
               color="white"
@@ -44,7 +44,7 @@ export default function _Layout() {
           title: "",
           tabBarLabel: "",
           headerShown: Platform.OS === "ios",
-          tabBarIcon: ({focused}) => (
+          tabBarIcon: ({focused}: { focused: boolean }) => (
             <MaterialCommunityIcons
               name={focused ? "account" : "account-outline"}
               color="white"

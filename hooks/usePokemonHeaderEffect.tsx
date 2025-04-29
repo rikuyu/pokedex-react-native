@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useMemo, useState } from "react";
 import { useNavigation } from "expo-router";
 import { PokemonDetail } from "@/types/pokemon";
 import { getColorIsLight } from "@/utils/getColorIsLight";
@@ -57,14 +57,6 @@ export const usePokemonProfileHeader = (
     };
   }, [data?.index, db]);
 
-  const HeaderRight = () => (
-    <Bookmark
-      color={contentColor}
-      isBookmarked={isBookmarked}
-      onPress={toggleBookmark}
-    />
-  );
-
   const updateNavigationOptions = useCallback(() => {
     if (isLoading || hasError || !data) {
       navigation.setOptions({
@@ -86,7 +78,7 @@ export const usePokemonProfileHeader = (
         },
         headerTintColor: contentColor,
         headerLeft: () => Platform.OS === "ios" ? <IosBackButton iconColor={contentColor}/> : null,
-        headerRight: () => <HeaderRight />,
+        headerRight: () => <Bookmark color={contentColor} isBookmarked={isBookmarked} onPress={toggleBookmark}/>,
       });
     }
   }, [data, isLoading, hasError, firstColor, contentColor, navigation, isBookmarked]);

@@ -28,7 +28,7 @@ export default function Birthday() {
     return (
       <ThemedView style={iosStyles.container}>
         <AntDesign name="calendar" size={16} color={iconColor} />
-        <ThemedView style={{width: 8}}/>
+        <ThemedView style={{width: 6}}/>
         <ThemedText type="size14Normal">誕生日:</ThemedText>
         <DateTimePicker
           value={birthdayIos}

@@ -1,6 +1,6 @@
 import React from "react";
 import { PokemonType } from "@/types/pokemon";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet } from "react-native";
 import TypeChip from "@/components/TypeChip";
 import { ThemedView } from "@/components/ThemedView";
 
