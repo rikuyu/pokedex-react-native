@@ -29,6 +29,8 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
     alignItems: "center",
+    paddingTop: 12,
+    paddingBottom: 20,
   },
   btn: {
     backgroundColor: pokedexRed,

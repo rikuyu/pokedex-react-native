@@ -12,12 +12,11 @@ type Props = {
 }
 
 export default function PokemonToolItem({berry}: Props) {
-  const borderColor = useThemeColor({light: lightTextColor, dark: darkTextColor});
   const imageBackgroundColor = useThemeColor({light: darkBackground, dark: lightBackground});
   const {theme} = useAppTheme();
 
   return (
-    <ThemedView style={[styles.container, {borderColor}]}>
+    <ThemedView style={[styles.container]}>
       {theme === "light" ? (
         <Image
           style={styles.image}
@@ -51,7 +50,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: 20,
     paddingVertical: 16,
-    borderBottomWidth: 0.5,
   },
   imageContainer: {
     alignItems: "center",

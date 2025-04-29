@@ -1,4 +1,4 @@
-import { ActivityIndicator, FlatList, StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator, FlatList, StyleSheet } from "react-native";
 import PokemonItem from "@/components/PokemonItem";
 import { usePaginatedFetch } from "@/hooks/usePaginatedFetch";
 import { fetchPokemonList } from "@/services/fetchPokemonList";

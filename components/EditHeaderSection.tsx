@@ -5,16 +5,14 @@ import ThemeToggleButton from "@/components/ThemeToggleButton";
 import { ThemedView } from "@/components/ThemedView";
 
 type Props = {
+  imageSize: number,
   iconImg: string | undefined;
   setIcon: () => void;
   headerImg: string | undefined;
   setHeader: () => void;
 }
 
-export default function EditHeaderSection({iconImg, setIcon, headerImg, setHeader}: Props) {
-  const {width} = useWindowDimensions();
-  const imageSize = width / 5;
-
+export default function EditHeaderSection({imageSize, iconImg, setIcon, headerImg, setHeader}: Props) {
   const imgStyle = {
     width: imageSize,
     height: imageSize,
