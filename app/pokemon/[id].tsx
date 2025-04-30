@@ -1,10 +1,8 @@
 import React from "react";
 import { ActivityIndicator, StyleSheet, useWindowDimensions, View } from "react-native";
 import { useLocalSearchParams } from "expo-router";
-import { useFetch } from "@/hooks/useFetch";
-import { PokemonDetail } from "@/types/pokemon";
 import { fetchPokemonDetail } from "@/services/fetchPokemonDetail";
-import { usePokemonProfileHeader } from "@/hooks/usePokemonHeaderEffect";
+import { useBookmarkState, usePokemonProfileHeader } from "@/hooks/usePokemonHeaderEffect";
 import { getPokemonImage } from "@/constants/endpoints";
 import GradientOrSolidBackground from "@/components/GradientOrSolidBackground";
 import PokemonProfileTitle from "@/components/PokemonProfileTitle";
@@ -15,20 +13,28 @@ import { ThemedView } from "@/components/ThemedView";
 import { pokedexRed } from "@/constants/colors";
 import { ThemedText } from "@/components/ThemedText";
 import PokemonProfileImage from "@/components/PokemonProfileImage";
+import { useQuery } from "@tanstack/react-query";
 
 export default function PokemonProfile() {
   const {id} = useLocalSearchParams();
-
-  const {
-    data,
-    isLoading,
-    hasError,
-  } = useFetch<PokemonDetail, number>(fetchPokemonDetail, Number(id));
-
-  usePokemonProfileHeader(data, isLoading, isLoading);
+  const { data, isLoading, isError } = useQuery({
+    queryKey: [`pokemon_profile_${id}`],
+    queryFn: () => fetchPokemonDetail(Number(id)),
+    enabled: !!id,
+  });
+  const { isBookmarked, toggleBookmark } = useBookmarkState(data);
+  usePokemonProfileHeader(data, isLoading || isError, isBookmarked, toggleBookmark);
 
   const {height} = useWindowDimensions();
   const imgSize = height / 6;
+
+  if (!id) {
+    return (
+      <ThemedView style={styles.container}>
+        <ThemedText>IDが見つかりません</ThemedText>
+      </ThemedView>
+    );
+  }
 
   if (isLoading) {
     return (
@@ -38,7 +44,7 @@ export default function PokemonProfile() {
     );
   }
 
-  if (hasError) {
+  if (isError) {
     return (
       <ThemedView style={styles.container}>
         <ThemedText>Error</ThemedText>
@@ -69,6 +75,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
+    justifyContent: "center",
     backgroundColor: pokedexRed,
   },
   linearGradient: {
