@@ -10,13 +10,13 @@ import Birthday from "@/components/Birthday";
 import { useMyProfile } from "@/hooks/useMyProfile";
 import { ThemedView } from "@/components/ThemedView";
 import PokemonToolItem from "@/components/PokemonToolItem";
-import { useFetch } from "@/hooks/useFetch";
 import { BerryData } from "@/types/berry";
 import { fetchBerryList } from "@/services/fetchBerryList";
 import { useThemeColor } from "@/hooks/useThemeColor";
 import { darkTextColor, lightTextColor } from "@/constants/colors";
 import { ThemedText } from "@/components/ThemedText";
 import { Profile } from "@/services/profileStorage";
+import { useQuery } from "@tanstack/react-query";
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList<BerryData>);
 
@@ -38,7 +38,10 @@ export default function MyPage() {
     }, []),
   );
 
-  const {data: berryList, isLoading: l2, hasError: e2} = useFetch<BerryData[], void>(fetchBerryList);
+  const {data: berryList, isLoading: l2, isError: e2} = useQuery({
+    queryKey: ["berry_list"],
+    queryFn: fetchBerryList,
+  });
 
   if (l1 || l2) {
     return (
