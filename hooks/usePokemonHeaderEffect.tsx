@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useLayoutEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useNavigation } from "expo-router";
 import { PokemonDetail } from "@/types/pokemon";
 import { getColorIsLight } from "@/utils/getColorIsLight";
@@ -7,72 +7,33 @@ import IosBackButton from "@/components/IosBackButton";
 import { useSQLiteContext } from "expo-sqlite";
 import { addPokemon, deletePokemon, getIsPokemonBookmarked } from "@/services/database";
 import { Platform } from "react-native";
+import { headerStyle, pokedexRed } from "@/constants/colors";
 
 export const usePokemonProfileHeader = (
-  data: PokemonDetail | null,
-  isLoading: boolean,
-  hasError: boolean,
+  data: PokemonDetail | undefined,
+  shouldSkip: boolean,
+  isBookmarked: boolean,
+  toggleBookmark: () => void,
 ) => {
   const navigation = useNavigation();
 
-  const firstColor = data?.types[0].color ?? "fff";
-  const contentColor = useMemo(() => getColorIsLight(firstColor) ? "black" : "white", [firstColor]);
-
-  const db = useSQLiteContext();
-  const [isBookmarked, setIsBookmarked] = useState(false);
-
-  const toggleBookmark = useCallback(async () => {
-    if (!data) return;
-    const action = isBookmarked ? deletePokemon : addPokemon;
-    const actionName = isBookmarked ? "deleted" : "inserted";
-
-    try {
-      await action(db, data);
-      console.log(`[${data.name}] ${actionName} successfully`);
-      setIsBookmarked((prev) => !prev);
-    } catch (e) {
-      console.log(`Error while ${actionName}:`, e);
-    }
-  }, [data, db, isBookmarked]);
-
   useEffect(() => {
-    let isMounted = true;
-
-    const checkBookmark = async () => {
-      if (!data) return;
-      try {
-        const result = await getIsPokemonBookmarked(db, data.index);
-        if (isMounted) {
-          setIsBookmarked(result);
-        }
-      } catch (e) {
-        console.log("Error", e);
-      }
-    };
-
-    checkBookmark();
-
-    return () => {
-      isMounted = false;
-    };
-  }, [data?.index, db]);
-
-  const updateNavigationOptions = useCallback(() => {
-    if (isLoading || hasError || !data) {
+    if (!data || shouldSkip) {
       navigation.setOptions({
         headerShown: true,
         headerShadowVisible: false,
         title: "",
-        headerStyle: {
-          backgroundColor: "transparent",
-        },
-        headerTintColor: "transparent",
+        headerStyle,
+        headerTintColor: pokedexRed,
       });
     } else {
+      const firstColor = data.types[0].color ?? "#fff";
+      const contentColor = getColorIsLight(firstColor) ? "black" : "white";
+
       navigation.setOptions({
         headerShown: true,
         headerShadowVisible: false,
-        title: `ポケモン図鑑 No.${data?.index ?? -1}`,
+        title: `ポケモン図鑑 No.${data.index}`,
         headerStyle: {
           backgroundColor: firstColor,
         },
@@ -81,9 +42,42 @@ export const usePokemonProfileHeader = (
         headerRight: () => <Bookmark color={contentColor} isBookmarked={isBookmarked} onPress={toggleBookmark}/>,
       });
     }
-  }, [data, isLoading, hasError, firstColor, contentColor, navigation, isBookmarked]);
+    ;
+  }, [data, shouldSkip, isBookmarked, toggleBookmark, navigation]);
+};
+
+
+export const useBookmarkState = (data?: PokemonDetail) => {
+  const db = useSQLiteContext();
+  const [isBookmarked, setIsBookmarked] = useState(false);
 
   useEffect(() => {
-    updateNavigationOptions();
-  }, [updateNavigationOptions]);
+    if (!data) return;
+    let isMounted = true;
+
+    getIsPokemonBookmarked(db, data.index)
+      .then((result) => {
+        if (isMounted) setIsBookmarked(result);
+      })
+      .catch(console.log);
+
+    return () => {
+      isMounted = false;
+    };
+  }, [data?.index, db]);
+
+  const toggleBookmark = useCallback(async () => {
+    if (!data) return;
+    const action = isBookmarked ? deletePokemon : addPokemon;
+
+    try {
+      await action(db, data);
+      setIsBookmarked((prev) => !prev);
+    } catch (e) {
+      console.error(e);
+    }
+  }, [db, data, isBookmarked]);
+
+  return {isBookmarked, toggleBookmark};
 };
+
