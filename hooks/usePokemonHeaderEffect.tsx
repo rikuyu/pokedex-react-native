@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useState } from "react";
 import { useNavigation } from "expo-router";
 import { PokemonDetail } from "@/types/pokemon";
 import { getColorIsLight } from "@/utils/getColorIsLight";
@@ -17,7 +17,7 @@ export const usePokemonProfileHeader = (
 ) => {
   const navigation = useNavigation();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!data || shouldSkip) {
       navigation.setOptions({
         headerShown: true,
