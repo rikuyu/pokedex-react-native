@@ -26,7 +26,7 @@ export default function Birthday() {
 
   if (Platform.OS === "ios") {
     return (
-      <ThemedView style={iosStyles.container}>
+      <ThemedView style={styles.container}>
         <AntDesign name="calendar" size={16} color={iconColor} />
         <ThemedView style={{width: 6}}/>
         <ThemedText type="size14Normal">誕生日:</ThemedText>
@@ -42,7 +42,7 @@ export default function Birthday() {
   } else {
     return (
       <TouchableOpacity
-        style={[androidStyles.container, {backgroundColor}]}
+        style={[styles.container, {backgroundColor}]}
         onPress={() => setShowAndroid(true)}
         activeOpacity={0.8}
       >
@@ -62,15 +62,7 @@ export default function Birthday() {
   }
 }
 
-const iosStyles = StyleSheet.create({
-  container: {
-    flexDirection: "row",
-    alignItems: "center",
-    paddingHorizontal: 18,
-  },
-});
-
-const androidStyles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     alignItems: "center",

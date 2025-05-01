@@ -1,5 +1,5 @@
-import React, { useMemo } from "react";
-import { StyleSheet, Text, useWindowDimensions, View } from "react-native";
+import React from "react";
+import { StyleSheet } from "react-native";
 import StatItem from "@/components/StatItem";
 import { getStatColor, getStatLabel } from "@/utils/statData";
 import { PokemonStat } from "@/types/pokemon";
