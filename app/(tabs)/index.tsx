@@ -1,24 +1,22 @@
-import { ActivityIndicator, FlatList, StyleSheet } from "react-native";
+import { ActivityIndicator, FlatList, StyleSheet, useWindowDimensions, View } from "react-native";
 import PokemonItem from "@/components/PokemonItem";
-import { usePaginatedFetch } from "@/hooks/usePaginatedFetch";
-import { fetchPokemonList } from "@/services/fetchPokemonList";
-import { PokemonListItem } from "@/types/pokemon";
 import { useRouter } from "expo-router";
 import { ThemedView } from "@/components/ThemedView";
 import { ThemedText } from "@/components/ThemedText";
+import { useInfinitePokedex } from "@/hooks/useInfinitePokedex";
 
 export default function Index() {
   const router = useRouter();
   const {
-    data: pokemonList,
-    isRefreshing,
-    isLoading,
-    hasError,
-    fetchNext,
-    hasMore,
-  } = usePaginatedFetch<PokemonListItem>(fetchPokemonList);
+    data,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    isFetching,
+    isError,
+  } = useInfinitePokedex();
 
-  if (isRefreshing) {
+  if (!isFetchingNextPage && isFetching) {
     return (
       <ThemedView style={styles.container}>
         <ActivityIndicator size="small"/>
@@ -26,7 +24,7 @@ export default function Index() {
     );
   }
 
-  if (hasError) {
+  if (isError) {
     return (
       <ThemedView style={styles.container}>
         <ThemedText>Error</ThemedText>
@@ -40,7 +38,7 @@ export default function Index() {
         style={{paddingVertical: 12}}
         keyExtractor={(item) => item.index.toString()}
         numColumns={3}
-        data={pokemonList}
+        data={data?.pages.flat()}
         columnWrapperStyle={{
           gap: 8,
           marginVertical: 4,
@@ -53,12 +51,12 @@ export default function Index() {
           />
         )}
         onEndReached={() => {
-          if (hasMore && !isLoading && !isRefreshing) {
-            void fetchNext();
+          if (hasNextPage && !isFetchingNextPage) {
+            void fetchNextPage();
           }
         }}
-        onEndReachedThreshold={0.2}
-        ListFooterComponent={isLoading ? <ActivityIndicator size="small"/> : null}
+        onEndReachedThreshold={0.3}
+        ListFooterComponent={isFetchingNextPage ? <ActivityIndicator size="small"/> : null}
       />
     </ThemedView>
   );
