@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { PokemonBookmark } from "@/types/pokemon";
 import { getAllBookmarkPokemon } from "@/services/database";
 import { useSQLiteContext } from "expo-sqlite";

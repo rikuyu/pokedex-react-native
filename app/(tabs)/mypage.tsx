@@ -34,8 +34,8 @@ export default function MyPage() {
 
   useFocusEffect(
     useCallback(() => {
-      loadProfile();
-    }, []),
+      void loadProfile();
+    }, [loadProfile]),
   );
 
   const {data: berryList, isLoading: l2, isError: e2} = useQuery({

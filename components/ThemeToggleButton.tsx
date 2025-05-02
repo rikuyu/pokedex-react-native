@@ -19,7 +19,7 @@ export default function ThemeToggleButton({positionStyle}: Props) {
       activeOpacity={0.7}
     >
       {
-        theme == "light" ?
+        theme === "light" ?
           <Entypo name="light-up" size={iconSize} color={iconColor}/> :
           <Fontisto name="night-clear" size={iconSize} color={iconColor}/>
       }

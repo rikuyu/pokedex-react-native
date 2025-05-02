@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet } from "react-native";
 import PhysicalDataCard from "@/components/PhysicalDataCard";
 import { ThemedView } from "@/components/ThemedView";
 import { pokedexRed } from "@/constants/colors";

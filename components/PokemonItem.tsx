@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, Platform, Pressable, StyleSheet, Text, useWindowDimensions, View } from "react-native";
+import { Image, Pressable, StyleSheet, useWindowDimensions, View } from "react-native";
 import { getPokemonDotImage } from "@/constants/endpoints";
 import { PokemonListItem } from "@/types/pokemon";
 import { ThemedView } from "@/components/ThemedView";

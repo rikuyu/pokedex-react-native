@@ -3,7 +3,7 @@ import { ThemedView } from "@/components/ThemedView";
 import { Image, StyleSheet } from "react-native";
 import { ThemedText } from "@/components/ThemedText";
 import { useThemeColor } from "@/hooks/useThemeColor";
-import { darkBackground, darkTextColor, lightBackground, lightTextColor } from "@/constants/colors";
+import { darkBackground, lightBackground } from "@/constants/colors";
 import { BerryData } from "@/types/berry";
 import { useAppTheme } from "@/utils/ThemeContext";
 

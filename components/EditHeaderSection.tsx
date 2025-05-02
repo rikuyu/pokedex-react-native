@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, StyleSheet, TouchableOpacity, useWindowDimensions, View } from "react-native";
+import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import ThemeToggleButton from "@/components/ThemeToggleButton";
 import { ThemedView } from "@/components/ThemedView";

@@ -28,7 +28,7 @@ export default function StatItem({label, value, color}: Props) {
       useNativeDriver: true,
       delay: 100,
     }).start();
-  }, [value, barUnit]);
+  }, [value, barUnit, scaleAnim]);
 
   return (
     <View style={styles.container}>

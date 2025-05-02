@@ -17,12 +17,12 @@ import { useQuery } from "@tanstack/react-query";
 
 export default function PokemonProfile() {
   const {id} = useLocalSearchParams();
-  const { data, isLoading, isError } = useQuery({
+  const {data, isLoading, isError} = useQuery({
     queryKey: [`pokemon_profile_${id}`],
     queryFn: () => fetchPokemonDetail(Number(id)),
     enabled: !!id,
   });
-  const { isBookmarked, toggleBookmark } = useBookmarkState(data);
+  const {isBookmarked, toggleBookmark} = useBookmarkState(data);
   usePokemonProfileHeader(data, isLoading || isError, isBookmarked, toggleBookmark);
 
   const {height} = useWindowDimensions();

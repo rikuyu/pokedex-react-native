@@ -1,4 +1,4 @@
-import { ActivityIndicator, FlatList, StyleSheet, useWindowDimensions, View } from "react-native";
+import { ActivityIndicator, FlatList, StyleSheet } from "react-native";
 import PokemonItem from "@/components/PokemonItem";
 import { useRouter } from "expo-router";
 import { ThemedView } from "@/components/ThemedView";
