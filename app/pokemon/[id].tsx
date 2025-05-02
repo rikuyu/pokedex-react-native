@@ -1,7 +1,6 @@
 import React from "react";
 import { ActivityIndicator, StyleSheet, useWindowDimensions, View } from "react-native";
 import { useLocalSearchParams } from "expo-router";
-import { fetchPokemonDetail } from "@/services/fetchPokemonDetail";
 import { useBookmarkState, usePokemonProfileHeader } from "@/hooks/usePokemonHeaderEffect";
 import { getPokemonImage } from "@/constants/endpoints";
 import GradientOrSolidBackground from "@/components/GradientOrSolidBackground";
@@ -13,15 +12,11 @@ import { ThemedView } from "@/components/ThemedView";
 import { pokedexRed } from "@/constants/colors";
 import { ThemedText } from "@/components/ThemedText";
 import PokemonProfileImage from "@/components/PokemonProfileImage";
-import { useQuery } from "@tanstack/react-query";
+import { usePokemonProfile } from "@/hooks/usePokemonProfile";
 
 export default function PokemonProfile() {
   const {id} = useLocalSearchParams();
-  const {data, isLoading, isError} = useQuery({
-    queryKey: [`pokemon_profile_${id}`],
-    queryFn: () => fetchPokemonDetail(Number(id)),
-    enabled: !!id,
-  });
+  const {data, isLoading, isError} = usePokemonProfile(id);
   const {isBookmarked, toggleBookmark} = useBookmarkState(data);
   usePokemonProfileHeader(data, isLoading || isError, isBookmarked, toggleBookmark);
 
