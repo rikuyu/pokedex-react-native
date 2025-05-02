@@ -11,5 +11,6 @@ export const useInfinitePokedex = () => {
     getNextPageParam: (lastPage, allPages) => {
       return lastPage.length < limit ? undefined : allPages.length * limit;
     },
+    select: data => data?.pages.flat(),
   });
 };

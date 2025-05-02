@@ -8,7 +8,7 @@ import { useInfinitePokedex } from "@/hooks/useInfinitePokedex";
 export default function Index() {
   const router = useRouter();
   const {
-    data,
+    data: pokedex,
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
@@ -38,7 +38,7 @@ export default function Index() {
         style={{paddingVertical: 12}}
         keyExtractor={(item) => item.index.toString()}
         numColumns={3}
-        data={data?.pages.flat()}
+        data={pokedex}
         columnWrapperStyle={{
           gap: 8,
           marginVertical: 4,
