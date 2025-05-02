@@ -1,50 +1,25 @@
-# Welcome to your Expo app 👋
+# 🦁 Pokedex with React Native (expo) 🦊
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+|demo|Light|Dark|
+|:--:|:--:|:--:|
+|<video src="https://github.com/user-attachments/assets/bfcfba98-251f-46b4-b630-94b0dd038a4f" />|<img width="270" src="https://github.com/user-attachments/assets/b8e1a0cb-e013-4557-bfb8-dfc676628b34"/>|<img width="270" src="https://github.com/user-attachments/assets/37923751-2908-4669-bb1b-9203f3a63f07"/>|
 
-## Get started
 
-1. Install dependencies
+## 🛠 技術
+- `expo-router`
+- `expo-sqlite`
+- `expo-status-bar`
+- `tanstack/react-query`
+- `async-storage`
+- `datetimepicker`
+- `react-native-reanimated`
+- `react-native-keyboard-aware-scroll-view`
+- `eslint`
 
-   ```bash
-   npm install
-   ```
+## 📱 Screens
 
-2. Start the app
+|Home|Bookmark|MyPage (with Animation)|Edit|
+|:--:|:--:|:--:|:--:|
+|<img width="300" src="https://github.com/user-attachments/assets/2983d228-69fb-455f-8218-c82c5c19db90"/>|<img width="300" src="https://github.com/user-attachments/assets/90167690-9615-48d6-99d5-f9f0f143538b"/>|<video width="290" src="https://github.com/user-attachments/assets/d11d4acf-1aa3-4638-a202-321c27a5b5a2"/>|<img width="300" src="https://github.com/user-attachments/assets/8d4ff3e7-d2d9-498e-8700-81c5b11bc331"/>|
 
-   ```bash
-    npx expo start
-   ```
 
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
