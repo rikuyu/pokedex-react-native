@@ -7,7 +7,6 @@ import EditButtonSection from "@/components/EditButtonSection";
 import BiographySection from "@/components/BiographySection";
 import Residence from "@/components/Residence";
 import Birthday from "@/components/Birthday";
-import { useMyProfile } from "@/hooks/useMyProfile";
 import { ThemedView } from "@/components/ThemedView";
 import PokemonToolItem from "@/components/PokemonToolItem";
 import { BerryData } from "@/types/berry";
@@ -15,7 +14,7 @@ import { useThemeColor } from "@/hooks/useThemeColor";
 import { darkTextColor, lightTextColor } from "@/constants/colors";
 import { ThemedText } from "@/components/ThemedText";
 import { Profile } from "@/services/profileStorage";
-import { useBerryList } from "@/hooks/useBerryList";
+import { useMyPageData } from "@/hooks/useMyPageData";
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList<BerryData>);
 
@@ -29,10 +28,9 @@ export default function MyPage() {
   const {width} = useWindowDimensions();
   const imageSize = width / 5;
 
-  const {profile, isLoading: l1, isError: e1} = useMyProfile();
-  const {data: berryList, isLoading: l2, isError: e2} = useBerryList();
+  const {profile, berryList, isLoading, isError } = useMyPageData();
 
-  if (l1 || l2) {
+  if (isLoading) {
     return (
       <ThemedView style={styles.container}>
         <ActivityIndicator size="large"/>
@@ -40,7 +38,7 @@ export default function MyPage() {
     );
   }
 
-  if (e1 || e2) {
+  if (isError) {
     return (
       <ThemedView style={styles.container}>
         <ThemedText>Error</ThemedText>
