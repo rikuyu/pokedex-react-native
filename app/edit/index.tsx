@@ -15,8 +15,8 @@ export default function Index() {
   const imageSize = width / 5;
   const {
     profile,
-    loading,
-    error,
+    isLoading,
+    isError,
     updateProfile,
   } = useMyProfile();
   const [name, setName] = useState<string>("");
@@ -27,11 +27,11 @@ export default function Index() {
   const router = useRouter();
 
   useEffect(() => {
-    if (!loading && profile) {
+    if (!isLoading && profile) {
       setName(profile.name);
       setDescription(profile.description);
     }
-  }, [loading, profile]);
+  }, [isLoading, profile]);
 
   const pickImageAsync = async (type: "icon" | "header") => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -47,7 +47,7 @@ export default function Index() {
     }
   };
 
-  if (loading) {
+  if (isLoading) {
     return (
       <ThemedView style={{flex: 1}}>
         <ActivityIndicator size="large"/>
@@ -60,7 +60,7 @@ export default function Index() {
     router.dismiss();
   };
 
-  if (error) {
+  if (isError) {
     return (
       <ThemedView style={{flex: 1}}>
         <ThemedText>Error</ThemedText>
