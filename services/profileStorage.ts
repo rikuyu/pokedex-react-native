@@ -22,11 +22,8 @@ export const getMyProfile = async (): Promise<Profile> => {
   return jsonValue != null ? JSON.parse(jsonValue) : defaultProfile;
 };
 
-export const saveMyProfile = async (value: Profile): Promise<{ result: boolean, message: string }> => {
+export const saveMyProfile = async (value: Profile): Promise<boolean> => {
   const jsonValue = JSON.stringify(value);
   await AsyncStorage.setItem(key, jsonValue);
-  return {
-    result: true,
-    message: "success",
-  };
+  return true;
 };
