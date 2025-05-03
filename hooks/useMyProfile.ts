@@ -1,47 +1,37 @@
-import { useCallback, useEffect, useState } from "react";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { emptyProfile, getMyProfile, Profile, saveMyProfile } from "@/services/profileStorage";
 
 export const useMyProfile = () => {
-  const [profile, setProfile] = useState<Profile>(emptyProfile);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const queryClient = useQueryClient();
 
-  const loadProfile = useCallback(async () => {
-    try {
-      setLoading(true);
-      const profile = await getMyProfile();
-      setProfile(profile);
-      setError(null);
-    } catch (e) {
-      setError(e instanceof Error ? e.message : "unknown error");
-    } finally {
-      setLoading(false);
-    }
-  }, []);
+  const {
+    data: profile = emptyProfile,
+    isLoading,
+    isError,
+  } = useQuery<Profile>({
+    queryKey: ["my_profile"],
+    queryFn: getMyProfile,
+    staleTime: Infinity,
+  });
 
-  const updateProfile = useCallback(async (newProfile: Profile) => {
-    try {
-      setLoading(true);
-      await saveMyProfile(newProfile);
-      setProfile(newProfile);
-      setError(null);
-    } catch (e) {
-      const message = e instanceof Error ? e.message : "unknown error";
-      setError(message);
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
-  useEffect(() => {
-    void loadProfile();
-  }, []);
+  const {mutateAsync: updateProfile} = useMutation({
+    mutationFn: async (newProfile: Profile) => {
+      try {
+        await saveMyProfile(newProfile);
+        return newProfile;
+      } catch (e) {
+        console.error("Error saving profile:", e);
+      }
+    },
+    onSuccess: (newProfile) => {
+      queryClient.setQueryData(["my_profile"], newProfile);
+    },
+  });
 
   return {
     profile,
-    loading,
-    error,
+    isLoading,
+    isError,
     updateProfile,
-    loadProfile,
   };
 };

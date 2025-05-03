@@ -1,6 +1,6 @@
-import React, { useCallback } from "react";
+import React from "react";
 import { ActivityIndicator, FlatList, StyleSheet, useWindowDimensions } from "react-native";
-import { useFocusEffect, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 import Animated, { useAnimatedScrollHandler, useSharedValue } from "react-native-reanimated";
 import MyPageHeader from "@/components/MyPageHeader";
 import EditButtonSection from "@/components/EditButtonSection";
@@ -11,12 +11,11 @@ import { useMyProfile } from "@/hooks/useMyProfile";
 import { ThemedView } from "@/components/ThemedView";
 import PokemonToolItem from "@/components/PokemonToolItem";
 import { BerryData } from "@/types/berry";
-import { fetchBerryList } from "@/services/fetchBerryList";
 import { useThemeColor } from "@/hooks/useThemeColor";
 import { darkTextColor, lightTextColor } from "@/constants/colors";
 import { ThemedText } from "@/components/ThemedText";
 import { Profile } from "@/services/profileStorage";
-import { useQuery } from "@tanstack/react-query";
+import { useBerryList } from "@/hooks/useBerryList";
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList<BerryData>);
 
@@ -30,18 +29,8 @@ export default function MyPage() {
   const {width} = useWindowDimensions();
   const imageSize = width / 5;
 
-  const {profile, loading: l1, error: e1, loadProfile} = useMyProfile();
-
-  useFocusEffect(
-    useCallback(() => {
-      void loadProfile();
-    }, [loadProfile]),
-  );
-
-  const {data: berryList, isLoading: l2, isError: e2} = useQuery({
-    queryKey: ["berry_list"],
-    queryFn: fetchBerryList,
-  });
+  const {profile, isLoading: l1, isError: e1} = useMyProfile();
+  const {data: berryList, isLoading: l2, isError: e2} = useBerryList();
 
   if (l1 || l2) {
     return (
