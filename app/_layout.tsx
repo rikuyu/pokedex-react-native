@@ -10,6 +10,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 const client = new QueryClient();
 
 export default function RootLayout() {
+  console.log(`EXPO_PUBLIC_TEST=${process.env.EXPO_PUBLIC_TEST}`);
+
   return (
     <ThemeProvider>
       <QueryClientProvider client={client}>
