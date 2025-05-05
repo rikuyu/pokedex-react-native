@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
+import { Image, Pressable, StyleSheet, View } from "react-native";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import ThemeToggleButton from "@/components/ThemeToggleButton";
 import { ThemedView } from "@/components/ThemedView";
@@ -24,10 +24,12 @@ export default function EditHeaderSection({imageSize, iconImg, setIcon, headerIm
 
   return (
     <ThemedView style={styles.container}>
-      <TouchableOpacity
+      <Pressable
         onPress={setHeader}
-        activeOpacity={0.9}
-        style={styles.headerTouchable}
+        style={({pressed}) => [
+          styles.headerTouchable,
+          {opacity: pressed ? 0.9 : 1},
+        ]}
       >
         <View style={styles.touchableContent}>
           <Image
@@ -44,11 +46,15 @@ export default function EditHeaderSection({imageSize, iconImg, setIcon, headerIm
           </ThemedView>
           <ThemeToggleButton positionStyle={styles.themeBtn}/>
         </View>
-      </TouchableOpacity>
-      <TouchableOpacity
+      </Pressable>
+      <Pressable
         onPress={setIcon}
-        activeOpacity={0.9}
-        style={[styles.iconTouchable, {bottom: imageSize / 2}]}
+        style={({pressed}) => [
+          styles.iconTouchable, {
+            bottom: imageSize / 2,
+            opacity: pressed ? 0.9 : 1,
+          },
+        ]}
       >
         <View style={styles.touchableContent}>
           <Image
@@ -64,7 +70,7 @@ export default function EditHeaderSection({imageSize, iconImg, setIcon, headerIm
             />
           </ThemedView>
         </View>
-      </TouchableOpacity>
+      </Pressable>
     </ThemedView>
   );
 }

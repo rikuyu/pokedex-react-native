@@ -1,4 +1,4 @@
-import { StyleSheet, TouchableOpacity } from "react-native";
+import { Pressable, StyleSheet } from "react-native";
 import React from "react";
 import { ThemedView } from "@/components/ThemedView";
 import { ThemedText } from "@/components/ThemedText";
@@ -14,16 +14,15 @@ export default function EditButtonSection({height, onPress}: Props) {
 
   return (
     <ThemedView style={{height: height + 16}}>
-      <TouchableOpacity
-        style={[
-          styles.button,
-          {
+      <Pressable
+        style={({pressed}) => [
+          styles.button, {
             borderColor: color,
             borderRadius: height / 2,
+            opacity: pressed ? 0.5 : 1,
           },
         ]}
         onPress={onPress}
-        activeOpacity={0.5}
       >
         <ThemedText
           type="size16Medium"
@@ -31,7 +30,7 @@ export default function EditButtonSection({height, onPress}: Props) {
         >
           Edit Profile
         </ThemedText>
-      </TouchableOpacity>
+      </Pressable>
     </ThemedView>
   );
 };

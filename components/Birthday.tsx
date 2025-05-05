@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Platform, StyleSheet, TouchableOpacity } from "react-native";
+import { Platform, Pressable, StyleSheet } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import DateTimePicker, { DateTimePickerEvent } from "@react-native-community/datetimepicker";
 import { ThemedView } from "@/components/ThemedView";
@@ -27,7 +27,7 @@ export default function Birthday() {
   if (Platform.OS === "ios") {
     return (
       <ThemedView style={styles.container}>
-        <AntDesign name="calendar" size={16} color={iconColor} />
+        <AntDesign name="calendar" size={16} color={iconColor}/>
         <ThemedView style={{width: 6}}/>
         <ThemedText type="size14Normal">誕生日:</ThemedText>
         <DateTimePicker
@@ -41,12 +41,16 @@ export default function Birthday() {
     );
   } else {
     return (
-      <TouchableOpacity
-        style={[styles.container, {backgroundColor}]}
+      <Pressable
         onPress={() => setShowAndroid(true)}
-        activeOpacity={0.8}
+        style={({pressed}) => [
+          styles.container, {
+            backgroundColor,
+            opacity: pressed ? 0.8 : 1,
+          },
+        ]}
       >
-        <AntDesign name="calendar" size={16} color={iconColor} />
+        <AntDesign name="calendar" size={16} color={iconColor}/>
         <ThemedView style={{width: 8}}/>
         <ThemedText type="size14Normal">誕生日: {birthdayAndroid}</ThemedText>
         {showAndroid && (
@@ -57,7 +61,7 @@ export default function Birthday() {
             onChange={onChange}
           />
         )}
-      </TouchableOpacity>
+      </Pressable>
     );
   }
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, TouchableOpacity, useWindowDimensions, View } from "react-native";
+import { Pressable, StyleSheet, useWindowDimensions, View } from "react-native";
 import { PokemonBookmark } from "@/types/pokemon";
 import Svg, { Path } from "react-native-svg";
 import BookmarkPokemonImage from "@/components/BookmarkPokemonImage";
@@ -32,7 +32,7 @@ export default function BookmarkPokemon({pokemon, onPress}: Props) {
     `;
 
   return (
-    <TouchableOpacity
+    <Pressable
       onPress={onPress}
       style={[styles.container, {width: itemWidth, height: itemHeight}]}>
       <Svg
@@ -59,7 +59,7 @@ export default function BookmarkPokemon({pokemon, onPress}: Props) {
           <GenderAndTypes typeFirst={pokemon.typeFirst} typeSecond={pokemon.typeSecond}/>
         </ThemedView>
       </View>
-    </TouchableOpacity>
+    </Pressable>
   );
 }
 

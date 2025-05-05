@@ -1,6 +1,6 @@
 import React from "react";
 import { AntDesign } from "@expo/vector-icons";
-import { TouchableOpacity } from "react-native";
+import { Pressable } from "react-native";
 import { useRouter } from "expo-router";
 
 type Props = {
@@ -10,7 +10,7 @@ type Props = {
 export default function IosBackButton({iconColor}: Props) {
   const router = useRouter();
   return (
-    <TouchableOpacity
+    <Pressable
       onPress={() => router.dismiss()}
       hitSlop={40}
       style={{
@@ -19,6 +19,6 @@ export default function IosBackButton({iconColor}: Props) {
       }}
     >
       <AntDesign name="left" size={24} color={iconColor}/>
-    </TouchableOpacity>
+    </Pressable>
   );
 }
