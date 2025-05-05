@@ -4,6 +4,9 @@ export const hpGreen = "#17ff4c";
 export const hpOrange = "#ffc117";
 export const hpRed = "#e83030";
 
+export const itemBadgeYellow = "#ffff00";
+export const itemBadgeOrange = "#ff8000";
+
 export const maleBlue = "#68abfc";
 export const femalePink = "#fcacac";
 

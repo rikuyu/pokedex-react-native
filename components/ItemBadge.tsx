@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 import { StyleProp } from "react-native/Libraries/StyleSheet/StyleSheet";
 import { ViewStyle } from "react-native/Libraries/StyleSheet/StyleSheetTypes";
+import { itemBadgeOrange, itemBadgeYellow } from "@/constants/colors";
 
 type Props = {
   style: StyleProp<ViewStyle>
@@ -26,14 +27,14 @@ const styles = StyleSheet.create({
   },
   top: {
     flex: 1,
-    backgroundColor: "#dddd00",
+    backgroundColor: itemBadgeYellow,
   },
   middle: {
     flex: 1,
-    backgroundColor: "#FF8000",
+    backgroundColor: itemBadgeOrange,
   },
   bottom: {
     flex: 1,
-    backgroundColor: "#FFFF00",
+    backgroundColor: itemBadgeYellow,
   },
 });
