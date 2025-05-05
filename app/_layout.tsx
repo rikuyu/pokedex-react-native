@@ -1,6 +1,6 @@
 import { Stack } from "expo-router";
 import { SQLiteProvider } from "expo-sqlite";
-import { initDB } from "@/services/database";
+import { alertDBError, initDB } from "@/services/database";
 import { Alert } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
@@ -23,9 +23,9 @@ export default function RootLayout() {
           <SafeAreaProvider>
             <Stack>
               <Stack.Screen name="(tabs)" options={{headerShown: false}}/>
-              <Stack.Screen name="+not-found"/>
               <Stack.Screen name="pokemon/[id]"/>
               <Stack.Screen name="edit" options={{headerShown: false}}/>
+              <Stack.Screen name="+not-found"/>
             </Stack>
           </SafeAreaProvider>
           <StatusBar style="light"/>
@@ -34,18 +34,3 @@ export default function RootLayout() {
     </ThemeProvider>
   );
 }
-
-const alertDBError = (error: Error) => {
-  return Alert.alert(
-    "DB Error",
-    "Failed to initialize the database.",
-    [
-      {
-        text: "OK",
-        onPress: () => {
-          console.log(error.name);
-          console.log(error.message);
-        },
-      },
-    ]);
-};
