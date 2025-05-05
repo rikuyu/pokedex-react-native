@@ -1,5 +1,21 @@
 import { SQLiteDatabase } from "expo-sqlite";
 import { PokemonBookmark, PokemonDetail } from "@/types/pokemon";
+import { Alert } from "react-native";
+
+export const alertDBError = (error: Error) => {
+  return Alert.alert(
+    "DB Error",
+    "Failed to initialize the database.",
+    [
+      {
+        text: "OK",
+        onPress: () => {
+          console.log(error.name);
+          console.log(error.message);
+        },
+      },
+    ]);
+};
 
 export async function initDB(db: SQLiteDatabase) {
   await db.execAsync(`

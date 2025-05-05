@@ -1,7 +1,6 @@
 import { Stack } from "expo-router";
 import { SQLiteProvider } from "expo-sqlite";
 import { alertDBError, initDB } from "@/services/database";
-import { Alert } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import { ThemeProvider } from "@/utils/ThemeContext";
