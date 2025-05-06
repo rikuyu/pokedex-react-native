@@ -1,6 +1,5 @@
 import React from "react";
 import { Pressable, StyleSheet, useWindowDimensions, View } from "react-native";
-import { PokemonBookmark } from "@/types/pokemon";
 import Svg, { Path } from "react-native-svg";
 import BookmarkPokemonImage from "@/components/BookmarkPokemonImage";
 import GenderAndTypes from "@/components/GenderAndTypes";
@@ -8,6 +7,7 @@ import HpBar from "@/components/HpBar";
 import { ThemedView } from "@/components/ThemedView";
 import { ThemedText } from "@/components/ThemedText";
 import { useThemeColor } from "@/hooks/useThemeColor";
+import { PokemonBookmark } from "@/services/db";
 
 type Props = {
   pokemon: PokemonBookmark;
@@ -56,7 +56,7 @@ export default function BookmarkPokemon({pokemon, onPress}: Props) {
           <ThemedView style={{height: 8}}/>
           <HpBar/>
           <ThemedView style={{height: 8}}/>
-          <GenderAndTypes typeFirst={pokemon.typeFirst} typeSecond={pokemon.typeSecond}/>
+          <GenderAndTypes typeFirst={pokemon.type_first} typeSecond={pokemon.type_second}/>
         </ThemedView>
       </View>
     </Pressable>

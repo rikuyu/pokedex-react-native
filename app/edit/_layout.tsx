@@ -5,6 +5,7 @@ import React from "react";
 import { headerStyle } from "@/constants/colors";
 
 export default function EditLayout() {
+  console.log(`EXPO_PUBLIC_TEST=${process.env.EXPO_PUBLIC_TEST}`);
   return (
     <Stack
       screenOptions={{

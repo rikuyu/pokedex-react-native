@@ -1,18 +1,14 @@
 import React from "react";
 import { ActivityIndicator, FlatList, StyleSheet } from "react-native";
-import { useBookmarkPokemon } from "@/hooks/useBookmarkPokemon";
 import BookmarkPokemon from "@/components/BookmarkPokemon";
 import { useRouter } from "expo-router";
 import { ThemedView } from "@/components/ThemedView";
 import { ThemedText } from "@/components/ThemedText";
+import { useBookmarkPokemon } from "@/hooks/useDrizzleClient";
 
 export default function Bookmark() {
   const router = useRouter();
-  const {
-    data: bookmarks,
-    isLoading,
-    hasError,
-  } = useBookmarkPokemon();
+  const {data: bookmarks, isLoading, isError} = useBookmarkPokemon();
 
   if (isLoading) {
     return (
@@ -22,7 +18,7 @@ export default function Bookmark() {
     );
   }
 
-  if (hasError) {
+  if (isError) {
     return (
       <ThemedView style={styles.container}>
         <ThemedText>Error</ThemedText>

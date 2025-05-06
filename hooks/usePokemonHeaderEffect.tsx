@@ -1,11 +1,9 @@
-import { useCallback, useEffect, useLayoutEffect, useState } from "react";
+import { useLayoutEffect } from "react";
 import { useNavigation } from "expo-router";
 import { PokemonDetail } from "@/types/pokemon";
 import { getColorIsLight } from "@/utils/getColorIsLight";
 import Bookmark from "@/components/Bookmark";
 import IosBackButton from "@/components/IosBackButton";
-import { useSQLiteContext } from "expo-sqlite";
-import { addPokemon, deletePokemon, getIsPokemonBookmarked } from "@/services/database";
 import { Platform } from "react-native";
 import { headerStyle, pokedexRed } from "@/constants/colors";
 
@@ -42,42 +40,5 @@ export const usePokemonProfileHeader = (
         headerRight: () => <Bookmark color={contentColor} isBookmarked={isBookmarked} onPress={toggleBookmark}/>,
       });
     }
-    ;
   }, [data, shouldSkip, isBookmarked, toggleBookmark, navigation]);
 };
-
-
-export const useBookmarkState = (data?: PokemonDetail) => {
-  const db = useSQLiteContext();
-  const [isBookmarked, setIsBookmarked] = useState(false);
-
-  useEffect(() => {
-    if (!data) return;
-    let isMounted = true;
-
-    getIsPokemonBookmarked(db, data.index)
-      .then((result) => {
-        if (isMounted) setIsBookmarked(result);
-      })
-      .catch(console.log);
-
-    return () => {
-      isMounted = false;
-    };
-  }, [data?.index, db]);
-
-  const toggleBookmark = useCallback(async () => {
-    if (!data) return;
-    const action = isBookmarked ? deletePokemon : addPokemon;
-
-    try {
-      await action(db, data);
-      setIsBookmarked((prev) => !prev);
-    } catch (e) {
-      console.error(e);
-    }
-  }, [db, data, isBookmarked]);
-
-  return {isBookmarked, toggleBookmark};
-};
-

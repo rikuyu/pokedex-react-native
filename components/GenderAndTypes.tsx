@@ -7,7 +7,7 @@ import { ThemedText } from "@/components/ThemedText";
 
 type Props = {
   typeFirst: string;
-  typeSecond: string | undefined;
+  typeSecond: string | null;
 };
 
 export default function GenderAndTypes({typeFirst, typeSecond}: Props) {
