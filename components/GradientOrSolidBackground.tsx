@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import { useThemeColor } from "@/hooks/useThemeColor";
+import { LinearGradient } from "expo-linear-gradient";
 
 type Props = {
   colors: string[] | undefined;
@@ -12,29 +13,15 @@ export default function GradientOrSolidBackground({colors, children}: Props) {
   const safeColors = colors?.length ? colors : [fallbackColor];
 
   if (safeColors.length >= 2) {
-    // const gradientColors = safeColors as [string, string, ...string[]];
+    const gradientColors = safeColors as [string, string, ...string[]];
     return (
-      <View
-        style={[
-          styles.linearGradient,
-          {
-            width: "100%",
-            backgroundColor: safeColors[0],
-          },
-        ]}
+      <LinearGradient
+        colors={gradientColors}
+        style={styles.linearGradient}
       >
         {children}
-      </View>
+      </LinearGradient>
     );
-    // TODO expo sdk 53 Error
-    // return (
-    //   <LinearGradient
-    //     colors={gradientColors}
-    //     style={styles.linearGradient}
-    //   >
-    //     {children}
-    //   </LinearGradient>
-    // );
   } else {
     return (
       <View
