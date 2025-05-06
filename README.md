@@ -8,11 +8,14 @@
 ## 🛠 技術
 - `expo-router`
 - `expo-sqlite`
+- `expo-location`
 - `expo-status-bar`
-- `tanstack/react-query`
+- `expo-localization`
 - `async-storage`
 - `datetimepicker`
+- `tanstack/react-query`
 - `react-native-reanimated`
+- `react-native-edge-to-edge`
 - `react-native-keyboard-aware-scroll-view`
 - `eslint`
 
