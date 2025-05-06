@@ -3,6 +3,7 @@ import React from "react";
 import { ThemedView } from "@/components/ThemedView";
 import { ThemedText } from "@/components/ThemedText";
 import { useThemeColor } from "@/hooks/useThemeColor";
+import { i18nText } from "@/utils/i18n";
 
 type Props = {
   height: number;
@@ -15,6 +16,7 @@ export default function EditButtonSection({height, onPress}: Props) {
   return (
     <ThemedView style={{height: height + 16}}>
       <Pressable
+        onPress={onPress}
         style={({pressed}) => [
           styles.button, {
             borderColor: color,
@@ -22,14 +24,8 @@ export default function EditButtonSection({height, onPress}: Props) {
             opacity: pressed ? 0.5 : 1,
           },
         ]}
-        onPress={onPress}
       >
-        <ThemedText
-          type="size16Medium"
-          style={{textAlign: "center"}}
-        >
-          Edit Profile
-        </ThemedText>
+        <ThemedText type="size16Medium" style={{textAlign: "center"}}>{i18nText("editBtn")}</ThemedText>
       </Pressable>
     </ThemedView>
   );

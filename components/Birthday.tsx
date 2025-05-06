@@ -5,6 +5,7 @@ import DateTimePicker, { DateTimePickerEvent } from "@react-native-community/dat
 import { ThemedView } from "@/components/ThemedView";
 import { ThemedText } from "@/components/ThemedText";
 import { useThemeColor } from "@/hooks/useThemeColor";
+import { i18nText } from "@/utils/i18n";
 
 export default function Birthday() {
   const iconColor = useThemeColor(undefined, "text");
@@ -29,7 +30,7 @@ export default function Birthday() {
       <ThemedView style={styles.container}>
         <AntDesign name="calendar" size={16} color={iconColor}/>
         <ThemedView style={{width: 6}}/>
-        <ThemedText type="size14Normal">誕生日:</ThemedText>
+        <ThemedText type="size14Normal">{`${i18nText("birthDay")}:`}</ThemedText>
         <DateTimePicker
           value={birthdayIos}
           maximumDate={new Date()}
@@ -52,7 +53,7 @@ export default function Birthday() {
       >
         <AntDesign name="calendar" size={16} color={iconColor}/>
         <ThemedView style={{width: 8}}/>
-        <ThemedText type="size14Normal">誕生日: {birthdayAndroid}</ThemedText>
+        <ThemedText type="size14Normal">{`${i18nText("birthDay")}: ${birthdayAndroid}`}</ThemedText>
         {showAndroid && (
           <DateTimePicker
             value={new Date(birthdayAndroid)}

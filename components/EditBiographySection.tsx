@@ -3,6 +3,7 @@ import { StyleSheet, TextInput } from "react-native";
 import { ThemedView } from "@/components/ThemedView";
 import { useThemeColor } from "@/hooks/useThemeColor";
 import { ThemedText } from "@/components/ThemedText";
+import { i18nText } from "@/utils/i18n";
 
 type Props = {
   name: string,
@@ -17,7 +18,7 @@ export default function EditBiographySection(props: Props) {
 
   return (
     <ThemedView style={styles.container}>
-      <ThemedText type="size16Normal">Name</ThemedText>
+      <ThemedText type="size16Normal">{i18nText("name")}</ThemedText>
       <ThemedView style={{height: 12}}/>
       <TextInput
         style={[
@@ -35,7 +36,7 @@ export default function EditBiographySection(props: Props) {
         selectionColor={textColor}
       />
       <ThemedView style={{height: 20}}/>
-      <ThemedText type="size16Normal">Description</ThemedText>
+      <ThemedText type="size16Normal">{i18nText("description")}</ThemedText>
       <ThemedView style={{height: 12}}/>
       <TextInput
         style={[

@@ -2,6 +2,7 @@ import React from "react";
 import { Pressable, StyleSheet, View } from "react-native";
 import { darkTextColor, pokedexRed } from "@/constants/colors";
 import { ThemedText } from "@/components/ThemedText";
+import { i18nText } from "@/utils/i18n";
 
 type Props = {
   onPress: () => void,
@@ -16,7 +17,7 @@ export default function EditSaveButton({onPress}: Props) {
           lightColor={darkTextColor}
           darkColor={darkTextColor}
         >
-          Save
+          {i18nText("save")}
         </ThemedText>
       </Pressable>
     </View>
