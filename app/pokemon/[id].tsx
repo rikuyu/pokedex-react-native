@@ -1,7 +1,7 @@
 import React from "react";
 import { ActivityIndicator, StyleSheet, useWindowDimensions, View } from "react-native";
 import { useLocalSearchParams } from "expo-router";
-import { useBookmarkState, usePokemonProfileHeader } from "@/hooks/usePokemonHeaderEffect";
+import { usePokemonProfileHeader } from "@/hooks/usePokemonHeaderEffect";
 import { getPokemonImage } from "@/constants/endpoints";
 import GradientOrSolidBackground from "@/components/GradientOrSolidBackground";
 import PokemonProfileTitle from "@/components/PokemonProfileTitle";
@@ -13,6 +13,7 @@ import { pokedexRed } from "@/constants/colors";
 import { ThemedText } from "@/components/ThemedText";
 import PokemonProfileImage from "@/components/PokemonProfileImage";
 import { usePokemonProfile } from "@/hooks/usePokemonProfile";
+import { useBookmarkState } from "@/hooks/useDrizzleClient";
 
 export default function PokemonProfile() {
   const {id} = useLocalSearchParams();

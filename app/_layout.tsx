@@ -1,24 +1,32 @@
 import { Stack } from "expo-router";
-import { SQLiteProvider } from "expo-sqlite";
-import { alertDBError, initDB } from "@/services/database";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import { ThemeProvider } from "@/utils/ThemeContext";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { alertDBError, DATABASE_NAME } from "@/services/db";
+import { openDatabaseSync, SQLiteProvider } from "expo-sqlite";
+import { drizzle } from "drizzle-orm/expo-sqlite";
+import { useMigrations } from "drizzle-orm/expo-sqlite/migrator";
+import migrations from "@/drizzle/migrations";
+import { useDrizzleStudio } from "expo-drizzle-studio-plugin";
 
 const client = new QueryClient();
 
 export default function RootLayout() {
-  console.log(`EXPO_PUBLIC_TEST=${process.env.EXPO_PUBLIC_TEST}`);
+  const expoDb = openDatabaseSync(DATABASE_NAME);
+  const db = drizzle(expoDb);
+  const {error} = useMigrations(db, migrations);
+
+  if (error) {
+    alertDBError(error);
+  }
+
+  useDrizzleStudio(expoDb);
 
   return (
     <ThemeProvider>
       <QueryClientProvider client={client}>
-        <SQLiteProvider
-          databaseName="pokedex.db"
-          onInit={initDB}
-          onError={alertDBError}
-        >
+        <SQLiteProvider databaseName={DATABASE_NAME}>
           <SafeAreaProvider>
             <Stack>
               <Stack.Screen name="(tabs)" options={{headerShown: false}}/>
