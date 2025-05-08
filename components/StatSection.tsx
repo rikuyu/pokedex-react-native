@@ -5,6 +5,7 @@ import { getStatColor, getStatLabel } from "@/utils/statData";
 import { PokemonStat } from "@/types/pokemon";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
+import { i18nText } from "@/utils/i18n";
 
 type Props = {
   stats: PokemonStat[] | undefined;
@@ -14,7 +15,7 @@ export default function StatSection({stats}: Props) {
   const safeStats = stats ?? [];
   return (
     <ThemedView style={styles.container}>
-      <ThemedText type={"size16Medium"}>種族値</ThemedText>
+      <ThemedText type={"size16Medium"}>{i18nText("stat")}</ThemedText>
       <ThemedView style={{height: 12}}/>
       {
         safeStats.flatMap((stat, index) => [
