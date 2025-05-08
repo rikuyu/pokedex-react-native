@@ -23,11 +23,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run Expo Lint
-        run: npx expo lint
-
       - name: Drizzle Generate
         run: npx drizzle-kit generate
+
+      - name: Run Expo Lint
+        run: npx expo lint
 
       - name: Run Expo Prebuild
         run: npx expo prebuild
