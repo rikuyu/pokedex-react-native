@@ -3,17 +3,18 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import { ThemeProvider } from "@/utils/ThemeContext";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { alertDBError, DATABASE_NAME } from "@/services/db";
+import { DATABASE_NAME } from "@/services/db";
 import { openDatabaseSync, SQLiteProvider } from "expo-sqlite";
 import { drizzle } from "drizzle-orm/expo-sqlite";
 import { useMigrations } from "drizzle-orm/expo-sqlite/migrator";
 import migrations from "@/drizzle/migrations";
 import { useDrizzleStudio } from "expo-drizzle-studio-plugin";
+import { Alert } from "react-native";
 
 const client = new QueryClient();
+const expoDb = openDatabaseSync(DATABASE_NAME);
 
 export default function RootLayout() {
-  const expoDb = openDatabaseSync(DATABASE_NAME);
   const db = drizzle(expoDb);
   const {error} = useMigrations(db, migrations);
 
@@ -24,9 +25,9 @@ export default function RootLayout() {
   useDrizzleStudio(expoDb);
 
   return (
-    <ThemeProvider>
-      <QueryClientProvider client={client}>
-        <SQLiteProvider databaseName={DATABASE_NAME}>
+    <QueryClientProvider client={client}>
+      <SQLiteProvider databaseName={DATABASE_NAME}>
+        <ThemeProvider>
           <SafeAreaProvider>
             <Stack>
               <Stack.Screen name="(tabs)" options={{headerShown: false}}/>
@@ -36,8 +37,23 @@ export default function RootLayout() {
             </Stack>
           </SafeAreaProvider>
           <StatusBar style="light"/>
-        </SQLiteProvider>
-      </QueryClientProvider>
-    </ThemeProvider>
+        </ThemeProvider>
+      </SQLiteProvider>
+    </QueryClientProvider>
   );
 }
+
+const alertDBError = (error: Error) => {
+  return Alert.alert(
+    "DB Error",
+    "Failed to initialize the database.",
+    [
+      {
+        text: "OK",
+        onPress: () => {
+          console.log(error.name);
+          console.log(error.message);
+        },
+      },
+    ]);
+};

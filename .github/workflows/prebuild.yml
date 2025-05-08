@@ -2,9 +2,9 @@ name: Expo Prebuild
 
 on:
   push:
-    branches: [main]
+    branches: [ main ]
   pull_request:
-    branches: [main]
+    branches: [ main ]
 
 jobs:
   lint:
@@ -25,6 +25,9 @@ jobs:
 
       - name: Run Expo Lint
         run: npx expo lint
+
+      - name: Drizzle Generate
+        run: npx drizzle-kit generate
 
       - name: Run Expo Prebuild
         run: npx expo prebuild
