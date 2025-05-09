@@ -1,6 +1,8 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { getColorIsLight } from "@/utils/getColorIsLight";
+import { ThemedText } from "@/components/ThemedText";
+import { ThemedView } from "@/components/ThemedView";
 
 type Props = {
   name: string;
@@ -10,9 +12,11 @@ type Props = {
 export default function TypeChip({name, color}: Props) {
   const labelColor = getColorIsLight(color) ? "black" : "white";
   return (
-    <View style={[styles.chip, {backgroundColor: color}]}>
-      <Text style={[styles.name, {color: labelColor}]}>{name}</Text>
-    </View>
+    <ThemedView style={styles.chip} lightColor={color} darkColor={color}>
+      <ThemedText type="size16Bold" lightColor={labelColor} darkColor={labelColor}>
+        {name}
+      </ThemedText>
+    </ThemedView>
   );
 }
 
@@ -24,8 +28,4 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  name: {
-    fontSize: 16,
-    fontWeight: "500",
-  }
 });
