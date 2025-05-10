@@ -1,3 +1,5 @@
+import { isJa } from "@/utils/i18n";
+
 export const typeData = new Map<string, { label: string; color: string }>([
   ["normal", { label: "ノーマル", color: "#d7d9d8" }],
   ["fighting", { label: "かくとう", color: "#bc1a1a" }],
@@ -20,7 +22,7 @@ export const typeData = new Map<string, { label: string; color: string }>([
 ]);
 
 export function getTypeLabel(key: string): string {
-  return typeData.get(key)?.label ?? "unknown";
+  return isJa ? typeData.get(key)?.label ?? "unknown" : key;
 }
 
 export function getTypeColor(key: string): string {

@@ -2,17 +2,22 @@ import React from "react";
 import { Image, StyleSheet } from "react-native";
 import { ThemedView } from "@/components/ThemedView";
 import { ThemedText } from "@/components/ThemedText";
+import { isJa } from "@/utils/i18n";
+import { pokemonData } from "@/utils/pokemonData";
 
 type Props = {
   title: string | undefined;
 }
 
 export default function PokemonProfileTitle({title}: Props) {
+  const safeTitle = title ?? "unknown";
   return (
     <ThemedView style={styles.container}>
       <MonsterBall/>
       <ThemedView style={{width: 12}}/>
-      <ThemedText type={"size20Bold"} style={{fontFamily: "PKMN-REGULAR"}}>{title || "unknown"}</ThemedText>
+      <ThemedText type={"size20Bold"} style={{fontFamily: "PKMN-REGULAR"}}>
+        {isJa ? pokemonData.get(safeTitle) : safeTitle}
+      </ThemedText>
       <ThemedView style={{width: 12}}/>
       <MonsterBall/>
     </ThemedView>
