@@ -32,3 +32,5 @@ i18n.locale = getLocales()[0].languageCode ?? "en";
 i18n.enableFallback = true;
 
 export const i18nText = (key: TranslationKeys): string => i18n.t(key);
+
+export const isJa = i18n.locale === "ja";
