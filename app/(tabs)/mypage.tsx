@@ -28,7 +28,7 @@ export default function MyPage() {
   const {width} = useWindowDimensions();
   const imageSize = width / 5;
 
-  const {profile, berryList, isLoading, isError } = useMyPageData();
+  const {profile, berryList, isLoading, isError} = useMyPageData();
 
   if (isLoading) {
     return (
@@ -67,21 +67,13 @@ export default function MyPage() {
   );
 };
 
-type Props = {
-  imageSize: number;
-  profile: Profile;
-}
-
-const ProfileSection = React.memo(({imageSize, profile}: Props) => {
+const ProfileSection = React.memo(({imageSize, profile}: { imageSize: number; profile: Profile; }) => {
   const borderColor = useThemeColor({light: lightTextColor, dark: darkTextColor});
   const router = useRouter();
 
   return (
     <>
-      <EditButtonSection
-        onPress={() => router.push("/edit")}
-        height={imageSize / 2}
-      />
+      <EditButtonSection onPress={() => router.push("/edit")} height={imageSize / 2}/>
       <BiographySection profile={profile}/>
       <Residence/>
       <ThemedView style={{height: 8}}/>
