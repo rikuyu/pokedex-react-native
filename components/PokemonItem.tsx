@@ -6,6 +6,8 @@ import { ThemedView } from "@/components/ThemedView";
 import { ThemedText } from "@/components/ThemedText";
 import { useThemeColor } from "@/hooks/useThemeColor";
 import { darkBackground, lightBackground } from "@/constants/colors";
+import { isJa } from "@/utils/i18n";
+import { pokemonData } from "@/utils/pokemonData";
 
 type Props = PokemonListItem & {
   onPress: () => void;
@@ -28,15 +30,11 @@ export default function PokemonItem({index, name, onPress}: Props) {
         </View>
 
         <View style={styles.content}>
-          <ThemedText
-            type="size12Bold"
-            lightColor={"#fff"}
-            darkColor={"#fff"}
-          >
+          <ThemedText type="size12Bold" lightColor={"#fff"} darkColor={"#fff"}>
             No.{index}
           </ThemedText>
           <Image source={{uri: getPokemonDotImage(index)}} style={{height: imageSize, width: imageSize}}/>
-          <ThemedText type={"size12Bold"}>{name}</ThemedText>
+          <ThemedText type={"size12Bold"}>{isJa ? pokemonData.get(name) : name}</ThemedText>
         </View>
       </View>
     </Pressable>

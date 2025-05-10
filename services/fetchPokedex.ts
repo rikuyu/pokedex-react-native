@@ -1,6 +1,5 @@
 import { PokemonListItem, PokemonListResponseItem } from "@/types/pokemon";
 import { getPokemonListUrl } from "@/constants/endpoints";
-import { pokemonData } from "@/utils/pokemonData";
 
 export const fetchPokedex = async (
   offset: number = 0,
@@ -14,6 +13,6 @@ export const fetchPokedex = async (
   const data = await res.json();
   return data.results.map((item: PokemonListResponseItem, index: number) => ({
     index: offset + index + 1,
-    name: pokemonData.get(item.name),
+    name: item.name,
   }));
 };
