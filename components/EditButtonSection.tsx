@@ -42,7 +42,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     backgroundColor: "transparent",
     borderWidth: 1,
-    width: "30%",
     position: "absolute",
     right: 12,
     top: 12,
