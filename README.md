@@ -23,4 +23,4 @@
 
 |All Pokemon|Bookmark|MyPage (Animated header like Twitter)|EditProfile|
 |:--:|:--:|:--:|:--:|
-|<img src="https://github.com/user-attachments/assets/622b2205-fdfe-4100-936a-333c7ffe04df"/>|<img src="https://github.com/user-attachments/assets/86c41ce5-4467-4d39-b766-bfb401bf52e0"/>|<img src="https://github.com/user-attachments/assets/0e119d8e-bd73-4d26-a596-3a2b1d551715"/>|<img src="https://github.com/user-attachments/assets/969a2dea-2b9b-448e-a274-9ecd9b01e5b7"/>|
+|<img src="https://github.com/user-attachments/assets/622b2205-fdfe-4100-936a-333c7ffe04df"/>|<img src="https://github.com/user-attachments/assets/86c41ce5-4467-4d39-b766-bfb401bf52e0"/>|<img src="https://github.com/user-attachments/assets/0e119d8e-bd73-4d26-a596-3a2b1d551715"/>|<img src="https://github.com/user-attachments/assets/d4424d76-5cf2-4baa-b134-6d079df9aead"/>|
