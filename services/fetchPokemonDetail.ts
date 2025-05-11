@@ -1,7 +1,6 @@
 import { getPokemonDetailUrl } from "@/constants/endpoints";
 import { PokemonDetail, PokemonStat, PokemonType, RawPokemonStat, RawPokemonType } from "@/types/pokemon";
 import { getTypeColor, getTypeLabel } from "@/utils/typeData";
-import { pokemonData } from "@/utils/pokemonData";
 
 export const fetchPokemonDetail = async (index: number): Promise<PokemonDetail> => {
   const url = getPokemonDetailUrl(index);
@@ -16,7 +15,7 @@ export const fetchPokemonDetail = async (index: number): Promise<PokemonDetail> 
     .then((data) => {
       const pokemonDetail: PokemonDetail = {
         index: data.id,
-        name: pokemonData.get(data.name) ?? "unknown",
+        name: data.name,
         height: data.height,
         weight: data.weight,
         types: data.types.map((v: RawPokemonType) => {

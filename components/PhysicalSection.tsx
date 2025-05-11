@@ -12,9 +12,9 @@ type Props = {
 export default function PhysicalSection({height, weight}: Props) {
   return (
     <ThemedView lightColor={pokedexRed} darkColor={pokedexRed} style={styles.container}>
-      <PhysicalDataCard label={"たかさ"} value={height || 0}/>
+      <PhysicalDataCard label={"h"} value={height || 0}/>
       <ThemedView style={{width: 12}}/>
-      <PhysicalDataCard label={"おもさ"} value={weight || 0}/>
+      <PhysicalDataCard label={"w"} value={weight || 0}/>
     </ThemedView>
   );
 }

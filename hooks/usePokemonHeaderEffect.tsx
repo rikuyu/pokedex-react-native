@@ -6,6 +6,7 @@ import Bookmark from "@/components/Bookmark";
 import IosBackButton from "@/components/IosBackButton";
 import { Platform } from "react-native";
 import { headerStyle, pokedexRed } from "@/constants/colors";
+import { isJa } from "@/utils/i18n";
 
 export const usePokemonProfileHeader = (
   data: PokemonDetail | undefined,
@@ -31,7 +32,7 @@ export const usePokemonProfileHeader = (
       navigation.setOptions({
         headerShown: true,
         headerShadowVisible: false,
-        title: `ポケモン図鑑 No.${data.index}`,
+        title: `${isJa ? "ポケモン図鑑" : "Pokedex"} No.${data.index}`,
         headerStyle: {
           backgroundColor: firstColor,
         },

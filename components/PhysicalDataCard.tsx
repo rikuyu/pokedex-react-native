@@ -2,18 +2,23 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
+import { isJa } from "@/utils/i18n";
 
 type Props = {
-  label: "たかさ" | "おもさ";
+  label: "h" | "w";
   value: number;
 }
 
 export default function PhysicalDataCard({label, value}: Props) {
   return (
     <ThemedView style={styles.card}>
-      <ThemedText type={"size16Bold"}>{label}</ThemedText>
+      <ThemedText type={"size16Bold"}>
+        {isJa
+          ? label === "h" ? "たかさ" : "おもさ"
+          : label === "h" ? "Height" : "Weight"}
+      </ThemedText>
       <ThemedView style={{height: 8}}/>
-      <ThemedText type={"size16Medium"}>{`${value}${label === "たかさ" ? "m" : "kg"}`}</ThemedText>
+      <ThemedText type={"size16Medium"}>{`${value}${label === "h" ? "m" : "kg"}`}</ThemedText>
     </ThemedView>
   );
 }
