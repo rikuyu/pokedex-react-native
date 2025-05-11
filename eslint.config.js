@@ -8,6 +8,7 @@ module.exports = defineConfig([
         ignores: ["dist/*"],
         rules: {
             "react/display-name": "off",
+            "@typescript-eslint/no-unused-vars": "error",
         },
     }
 ]);
