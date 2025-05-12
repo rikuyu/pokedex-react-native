@@ -7,11 +7,5 @@ type Props = {
 }
 
 export default function PokemonProfileImage({imgSize, url}: Props) {
-  return (
-    <Image
-      style={{height: imgSize, width: imgSize}}
-      source={{uri: url}}
-      resizeMode="cover"
-    />
-  );
+  return <Image style={{height: imgSize, width: imgSize}} source={{uri: url}} resizeMode="cover"/>;
 }

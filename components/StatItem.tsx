@@ -33,11 +33,7 @@ export default function StatItem({label, value, color}: Props) {
   return (
     <View style={styles.container}>
       <ThemedView style={styles.labelContainer}>
-        <ThemedText
-          type={"size16Medium"}
-          numberOfLines={1}
-          ellipsizeMode="tail"
-        >
+        <ThemedText type={"size16Medium"} numberOfLines={1} ellipsizeMode="tail">
           {label}
         </ThemedText>
       </ThemedView>

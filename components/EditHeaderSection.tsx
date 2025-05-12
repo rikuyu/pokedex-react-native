@@ -32,11 +32,7 @@ export default function EditHeaderSection({imageSize, iconImg, setIcon, headerIm
         ]}
       >
         <View style={styles.touchableContent}>
-          <Image
-            source={header}
-            style={[styles.headerImage]}
-            resizeMode="cover"
-          />
+          <Image source={header} style={[styles.headerImage]} resizeMode="cover"/>
           <ThemedView style={styles.blurHeader}>
             <MaterialCommunityIcons
               name="camera-plus-outline"
@@ -57,17 +53,9 @@ export default function EditHeaderSection({imageSize, iconImg, setIcon, headerIm
         ]}
       >
         <View style={styles.touchableContent}>
-          <Image
-            source={icon}
-            resizeMode="cover"
-            style={[styles.border, imgStyle]}
-          />
+          <Image source={icon} resizeMode="cover" style={[styles.border, imgStyle]}/>
           <ThemedView style={[styles.blurIcon, imgStyle]}>
-            <MaterialCommunityIcons
-              name="camera-plus-outline"
-              color="#fff"
-              size={28}
-            />
+            <MaterialCommunityIcons name="camera-plus-outline" color="#fff" size={28}/>
           </ThemedView>
         </View>
       </Pressable>

@@ -42,11 +42,7 @@ export default function BookmarkPokemon({pokemon, onPress}: Props) {
         viewBox={canvas}
         style={StyleSheet.absoluteFill}
       >
-        <Path
-          d={direction}
-          stroke={borderColor}
-          strokeWidth={1}
-        />
+        <Path d={direction} stroke={borderColor} strokeWidth={1}/>
       </Svg>
       <View style={[styles.rowContent, {padding: 8}]}>
         <BookmarkPokemonImage pokemonId={pokemon.id} itemSize={itemHeight - 16}/>

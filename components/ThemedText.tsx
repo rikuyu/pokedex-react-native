@@ -30,12 +30,7 @@ export function ThemedText(
 ) {
   const color = useThemeColor({light: lightColor, dark: darkColor}, "text");
 
-  return (
-    <Text
-      style={[{color}, styles[type]]}
-      {...otherProps}
-    />
-  );
+  return <Text style={[{color}, styles[type]]} {...otherProps}/>;
 }
 
 const styles = StyleSheet.create({

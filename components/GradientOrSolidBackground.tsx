@@ -15,10 +15,7 @@ export default function GradientOrSolidBackground({colors, children}: Props) {
   if (safeColors.length >= 2) {
     const gradientColors = safeColors as [string, string, ...string[]];
     return (
-      <LinearGradient
-        colors={gradientColors}
-        style={styles.linearGradient}
-      >
+      <LinearGradient colors={gradientColors} style={styles.linearGradient}>
         {children}
       </LinearGradient>
     );
