@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
+import { hpGreen, hpOrange, hpRed } from "@/constants/colors";
 
 export default function HpBar() {
   const [width, setWidth] = useState(0);
@@ -7,13 +8,13 @@ export default function HpBar() {
   let hpColor: string;
   switch (true) {
     case hp <= (width / 10) * 2:
-      hpColor = "#e83030";
+      hpColor = hpRed;
       break;
     case hp <= (width / 10) * 4:
-      hpColor = "#ffc117";
+      hpColor = hpOrange;
       break;
     default:
-      hpColor = "#17ff4c";
+      hpColor = hpGreen;
       break;
   }
 
