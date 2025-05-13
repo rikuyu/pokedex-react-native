@@ -5,11 +5,7 @@ import { ThemedText } from "@/components/ThemedText";
 import { isJa } from "@/utils/i18n";
 import { pokemonData } from "@/utils/pokemonData";
 
-type Props = {
-  title: string | undefined;
-}
-
-export default function PokemonProfileTitle({title}: Props) {
+export default function PokemonProfileTitle({title}: { title: string | undefined }) {
   const safeTitle = title ?? "unknown";
   return (
     <ThemedView style={styles.container}>

@@ -1,13 +1,11 @@
 import React from "react";
-import { Image } from "react-native";
+import { Image, ImageSourcePropType } from "react-native";
 import { getKeyByLabel } from "@/utils/typeData";
 
-type Props = {
-  type: string;
-}
-
-export default function TypeBadge({type}: Props) {
+export default function TypeBadge({type}: { type: string }) {
   const image = getTypeImageByKey(getKeyByLabel(type) ?? "unknown");
+
+  if (!image) return null;
 
   return (
     <Image
@@ -21,7 +19,7 @@ export default function TypeBadge({type}: Props) {
   );
 }
 
-function getTypeImageByKey(key: string) {
+function getTypeImageByKey(key: string): ImageSourcePropType | null {
   switch (key) {
     case "normal":
       return require("../assets/images/type_normal.png");
@@ -60,6 +58,6 @@ function getTypeImageByKey(key: string) {
     case "fairy":
       return require("../assets/images/type_fairy.png");
     default:
-      return undefined;
+      return null;
   }
 }

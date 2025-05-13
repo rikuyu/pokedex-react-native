@@ -4,11 +4,7 @@ import { StyleSheet } from "react-native";
 import TypeChip from "@/components/TypeChip";
 import { ThemedView } from "@/components/ThemedView";
 
-type Props = {
-  types: PokemonType[] | undefined;
-}
-
-export default function TypeSection({types}: Props) {
+export default function TypeSection({types}: { types: PokemonType[] | undefined }) {
   const safeTypes = types ?? [];
   return (
     <ThemedView style={styles.container}>

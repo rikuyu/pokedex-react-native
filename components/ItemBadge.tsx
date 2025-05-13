@@ -4,11 +4,7 @@ import { StyleProp } from "react-native/Libraries/StyleSheet/StyleSheet";
 import { ViewStyle } from "react-native/Libraries/StyleSheet/StyleSheetTypes";
 import { itemBadgeOrange, itemBadgeYellow } from "@/constants/colors";
 
-type Props = {
-  style: StyleProp<ViewStyle>
-}
-
-export default function ItemBadge({style}: Props) {
+export default function ItemBadge({style}: { style: StyleProp<ViewStyle> }) {
   return (
     <View style={[style, styles.container]}>
       <View style={styles.top}/>

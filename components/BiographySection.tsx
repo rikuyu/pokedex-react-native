@@ -3,11 +3,7 @@ import { Profile } from "@/services/profileStorage";
 import { ThemedView } from "@/components/ThemedView";
 import { ThemedText } from "@/components/ThemedText";
 
-type Props = {
-  profile: Profile;
-}
-
-export default function BiographySection({profile}: Props) {
+export default function BiographySection({profile}: { profile: Profile }) {
   return (
     <ThemedView style={{paddingHorizontal: 20, paddingBottom: 16}}>
       <ThemedText type="size20Bold">{profile.name}</ThemedText>

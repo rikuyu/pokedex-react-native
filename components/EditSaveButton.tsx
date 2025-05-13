@@ -4,19 +4,11 @@ import { darkTextColor, pokedexRed } from "@/constants/colors";
 import { ThemedText } from "@/components/ThemedText";
 import { i18nText } from "@/utils/i18n";
 
-type Props = {
-  onPress: () => void,
-}
-
-export default function EditSaveButton({onPress}: Props) {
+export default function EditSaveButton({onPress}: { onPress: () => void }) {
   return (
     <View style={styles.container}>
       <Pressable onPress={onPress} style={styles.btn}>
-        <ThemedText
-          type="size16Bold"
-          lightColor={darkTextColor}
-          darkColor={darkTextColor}
-        >
+        <ThemedText type="size16Bold" lightColor={darkTextColor} darkColor={darkTextColor}>
           {i18nText("save")}
         </ThemedText>
       </Pressable>

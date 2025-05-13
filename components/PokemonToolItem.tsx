@@ -7,11 +7,7 @@ import { darkBackground, lightBackground } from "@/constants/colors";
 import { BerryData } from "@/types/berry";
 import { useAppTheme } from "@/utils/ThemeContext";
 
-type Props = {
-  berry: BerryData;
-}
-
-export default function PokemonToolItem({berry}: Props) {
+export default function PokemonToolItem({berry}: { berry: BerryData }) {
   const imageBackgroundColor = useThemeColor({light: darkBackground, dark: lightBackground});
   const {theme} = useAppTheme();
 

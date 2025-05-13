@@ -7,11 +7,7 @@ import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import { i18nText } from "@/utils/i18n";
 
-type Props = {
-  stats: PokemonStat[] | undefined;
-}
-
-export default function StatSection({stats}: Props) {
+export default function StatSection({stats}: { stats: PokemonStat[] | undefined }) {
   const safeStats = stats ?? [];
   return (
     <ThemedView style={styles.container}>
