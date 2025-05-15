@@ -1,37 +1,26 @@
 import React from "react";
-import { Entypo, Fontisto } from "@expo/vector-icons";
-import { Pressable, StyleSheet } from "react-native";
 import { ViewStyle } from "react-native/Libraries/StyleSheet/StyleSheetTypes";
 import { useAppTheme } from "@/utils/ThemeContext";
+import { Moon, Sun } from "@tamagui/lucide-icons";
+import { View } from "tamagui";
 
 export default function ThemeToggleButton({positionStyle}: { positionStyle: ViewStyle }) {
   const {theme, setTheme} = useAppTheme();
+
   return (
-    <Pressable
+    <View
       onPress={() => setTheme(theme === "light" ? "dark" : "light")}
-      style={({pressed}) => [
-        styles.btn,
-        positionStyle,
-        {opacity: pressed ? 0.7 : 1},
-      ]}
+      pressStyle={{o: 0.7}}
+      style={positionStyle}
+      bg={"rgba(100,98,98,0.6)"}
+      ai={"center"}
+      jc={"center"}
+      br={18}
+      ar={1}
+      h={"$3.5"}
+      w={"$3.5"}
     >
-      {
-        theme === "light" ?
-          <Fontisto name="night-clear" size={20} color="white"/> :
-          <Entypo name="light-up" size={20} color="white"/>
-      }
-    </Pressable>
+      {theme === "light" ? <Moon size="$1" col="white"/> : <Sun size="$1" col="white"/>}
+    </View>
   );
 }
-
-const styles = StyleSheet.create({
-  btn: {
-    height: 40,
-    width: 40,
-    aspectRatio: 1,
-    borderRadius: 18,
-    backgroundColor: "rgba(100,98,98,0.6)",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
