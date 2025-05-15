@@ -10,6 +10,8 @@ import { useMigrations } from "drizzle-orm/expo-sqlite/migrator";
 import migrations from "@/drizzle/migrations";
 import { useDrizzleStudio } from "expo-drizzle-studio-plugin";
 import { Alert } from "react-native";
+import tamaguiConfig from "@/tamagui.config";
+import { TamaguiProvider } from "tamagui";
 
 const client = new QueryClient();
 const expoDb = openDatabaseSync(DATABASE_NAME);
@@ -27,17 +29,19 @@ export default function RootLayout() {
   return (
     <QueryClientProvider client={client}>
       <SQLiteProvider databaseName={DATABASE_NAME}>
-        <ThemeProvider>
-          <SafeAreaProvider>
-            <Stack>
-              <Stack.Screen name="(tabs)" options={{headerShown: false}}/>
-              <Stack.Screen name="pokemon/[id]"/>
-              <Stack.Screen name="edit" options={{headerShown: false}}/>
-              <Stack.Screen name="+not-found"/>
-            </Stack>
-          </SafeAreaProvider>
-          <StatusBar style="light"/>
-        </ThemeProvider>
+        <TamaguiProvider config={tamaguiConfig}>
+          <ThemeProvider>
+            <SafeAreaProvider>
+              <Stack>
+                <Stack.Screen name="(tabs)" options={{headerShown: false}}/>
+                <Stack.Screen name="pokemon/[id]"/>
+                <Stack.Screen name="edit" options={{headerShown: false}}/>
+                <Stack.Screen name="+not-found"/>
+              </Stack>
+            </SafeAreaProvider>
+            <StatusBar style="light"/>
+          </ThemeProvider>
+        </TamaguiProvider>
       </SQLiteProvider>
     </QueryClientProvider>
   );
