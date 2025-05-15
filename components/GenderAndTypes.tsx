@@ -14,6 +14,7 @@ export default function GenderAndTypes({typeFirst, typeSecond}: Props) {
   return (
     <ThemedView style={styles.rowContent}>
       <GenderIcon/>
+      <ThemedView style={{width: 4}}/>
       <ThemedText type="size14Medium">/</ThemedText>
       <ThemedView style={{width: 8}}/>
       <TypeBadge type={typeFirst}/>

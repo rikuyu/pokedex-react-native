@@ -1,13 +1,10 @@
 import React from "react";
-import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { femalePink, maleBlue } from "@/constants/colors";
+import { Mars, Venus } from "@tamagui/lucide-icons";
 
 export default function GenderIcon() {
   const isMale = Math.random() < 0.5;
   return (
-    isMale ?
-      <MaterialIcons name="male" size={20} color={maleBlue}/>
-      :
-      <MaterialIcons name="female" size={20} color={femalePink}/>
+    isMale ? <Mars size="$1" color={maleBlue} /> : <Venus size="$1" color={femalePink} />
   );
 }
