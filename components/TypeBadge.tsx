@@ -1,22 +1,14 @@
 import React from "react";
-import { Image, ImageSourcePropType } from "react-native";
+import { ImageSourcePropType } from "react-native";
 import { getKeyByLabel } from "@/utils/typeData";
+import { Image } from "tamagui";
 
 export default function TypeBadge({type}: { type: string }) {
   const image = getTypeImageByKey(getKeyByLabel(type) ?? "unknown");
 
   if (!image) return null;
 
-  return (
-    <Image
-      style={{
-        width: 18,
-        aspectRatio: 1,
-        borderRadius: 4,
-      }}
-      source={image}
-    />
-  );
+  return <Image ar={1} br={4} w={18} source={image}/>;
 }
 
 function getTypeImageByKey(key: string): ImageSourcePropType | null {
