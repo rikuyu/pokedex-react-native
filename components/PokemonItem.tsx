@@ -1,13 +1,10 @@
 import React from "react";
-import { Image, Pressable, StyleSheet, useWindowDimensions, View } from "react-native";
+import { useWindowDimensions } from "react-native";
 import { getPokemonDotImage } from "@/constants/endpoints";
 import { PokemonListItem } from "@/types/pokemon";
-import { ThemedView } from "@/components/ThemedView";
-import { ThemedText } from "@/components/ThemedText";
-import { useThemeColor } from "@/hooks/useThemeColor";
-import { darkBackground, lightBackground } from "@/constants/colors";
 import { isJa } from "@/utils/i18n";
 import { pokemonData } from "@/utils/pokemonData";
+import { Image, Text, View, YStack } from "tamagui";
 
 type Props = PokemonListItem & {
   onPress: () => void;
@@ -19,49 +16,18 @@ export default function PokemonItem({index, name, onPress}: Props) {
   const itemSize = (width - padding * 4) / 3;
   const imageSize = itemSize / 1.5;
 
-  const borderColor = useThemeColor({light: darkBackground, dark: lightBackground});
-
   return (
-    <Pressable onPress={onPress}>
-      <View style={[styles.container, {width: itemSize, height: itemSize, borderColor}]}>
-        <View style={styles.background}>
-          <View style={styles.topHalf}/>
-          <ThemedView darkColor={"#333333"} style={styles.bottomHalf}/>
-        </View>
+    <View onPress={onPress} boc={"$color"} w={itemSize} h={itemSize} pos={"relative"} br={12} ov={"hidden"} bw={0.5}>
+      <YStack pos={"absolute"} t={0} l={0} r={0} b={0}>
+        <View f={1} bg={"$pokedexRed"}/>
+        <View f={1}/>
+      </YStack>
 
-        <View style={styles.content}>
-          <ThemedText type="size12Bold" lightColor={"#fff"} darkColor={"#fff"}>
-            No.{index}
-          </ThemedText>
-          <Image source={{uri: getPokemonDotImage(index)}} style={{height: imageSize, width: imageSize}}/>
-          <ThemedText type={"size12Bold"}>{isJa ? pokemonData.get(name) : name}</ThemedText>
-        </View>
+      <View f={1} ai={"center"} jc={"center"}>
+        <Text fos={12} fow={"bold"} col={"white"}>No.{index}</Text>
+        <Image source={{uri: getPokemonDotImage(index)}} h={imageSize} w={imageSize}/>
+        <Text fos={12} fow={"bold"}>{isJa ? pokemonData.get(name) : name}</Text>
       </View>
-    </Pressable>
+    </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    position: "relative",
-    borderRadius: 12,
-    overflow: "hidden",
-    borderWidth: 0.5,
-  },
-  background: {
-    ...StyleSheet.absoluteFillObject,
-    flexDirection: "column",
-  },
-  topHalf: {
-    flex: 1,
-    backgroundColor: "red",
-  },
-  bottomHalf: {
-    flex: 1,
-  },
-  content: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-});
