@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { getTheme, saveTheme, Theme } from "@/services/themeStorage";
+import { Theme as TamaguiTheme } from "tamagui";
 
 type ThemeContextType = {
   theme: Theme;
@@ -8,7 +9,7 @@ type ThemeContextType = {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-export const ThemeProvider = ({ children }: { children: React.ReactElement | React.ReactElement[] }) => {
+export const ThemeProvider = ({children}: { children: React.ReactElement | React.ReactElement[] }) => {
   const [theme, setThemeState] = useState<Theme>("light");
 
   useEffect(() => {
@@ -24,8 +25,10 @@ export const ThemeProvider = ({ children }: { children: React.ReactElement | Rea
   };
 
   return (
-    <ThemeContext.Provider value={{ theme, setTheme }}>
-      {children}
+    <ThemeContext.Provider value={{theme, setTheme}}>
+      <TamaguiTheme name={theme}>
+        {children}
+      </TamaguiTheme>
     </ThemeContext.Provider>
   );
 };

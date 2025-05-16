@@ -10,7 +10,7 @@ import { useMigrations } from "drizzle-orm/expo-sqlite/migrator";
 import migrations from "@/drizzle/migrations";
 import { useDrizzleStudio } from "expo-drizzle-studio-plugin";
 import { Alert } from "react-native";
-import tamaguiConfig from "@/tamagui.config";
+import { tamaguiConfig } from "@/tamagui.config";
 import { TamaguiProvider } from "tamagui";
 
 const client = new QueryClient();
@@ -29,7 +29,7 @@ export default function RootLayout() {
   return (
     <QueryClientProvider client={client}>
       <SQLiteProvider databaseName={DATABASE_NAME}>
-        <TamaguiProvider config={tamaguiConfig}>
+        <TamaguiProvider config={tamaguiConfig} defaultTheme={"light"}>
           <ThemeProvider>
             <SafeAreaProvider>
               <Stack>
