@@ -26,7 +26,7 @@ export default function Residence() {
       onPress={() => getCurrentLocation()}
       pressStyle={{o: 0.7}}
     >
-      <MapPin size={"$1"} col={"$color"}/>
+      <MapPin size={"$1"} col={"$color"} strokeWidth={2}/>
       <View w={4}/>
       <Text fow={"normal"} fos={14}>{location}</Text>
     </XStack>

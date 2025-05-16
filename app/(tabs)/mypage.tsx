@@ -8,7 +8,7 @@ import BiographySection from "@/components/BiographySection";
 import Residence from "@/components/Residence";
 import Birthday from "@/components/Birthday";
 import { ThemedView } from "@/components/ThemedView";
-import PokemonToolItem from "@/components/PokemonToolItem";
+import BerryItem from "@/components/BerryItem";
 import { BerryData } from "@/types/berry";
 import { useThemeColor } from "@/hooks/useThemeColor";
 import { darkTextColor, lightTextColor } from "@/constants/colors";
@@ -60,7 +60,7 @@ export default function MyPage() {
         ItemSeparatorComponent={() => <ThemedView style={{height: 1, flex: 1, backgroundColor: borderColor}}/>}
         data={berryList}
         keyExtractor={(item) => item.name}
-        renderItem={({item}) => <PokemonToolItem berry={item}/>}
+        renderItem={({item}) => <BerryItem berry={item}/>}
         style={styles.listContainer}
       />
     </ThemedView>
