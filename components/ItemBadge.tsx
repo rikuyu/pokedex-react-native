@@ -1,36 +1,14 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
 import { StyleProp } from "react-native/Libraries/StyleSheet/StyleSheet";
 import { ViewStyle } from "react-native/Libraries/StyleSheet/StyleSheetTypes";
-import { itemBadgeOrange, itemBadgeYellow } from "@/constants/colors";
+import { View } from "tamagui";
 
-export default function ItemBadge({style}: { style: StyleProp<ViewStyle> }) {
+export default function ItemBadge({positionStyle}: { positionStyle: StyleProp<ViewStyle> }) {
   return (
-    <View style={[style, styles.container]}>
-      <View style={styles.top}/>
-      <View style={styles.middle}/>
-      <View style={styles.bottom}/>
+    <View style={positionStyle} w={8} h={12} boc={"#808080"} bw={0.5}>
+      <View f={1} bc={"$itemBadgeYellow"}/>
+      <View f={1} bc={"$itemBadgeOrange"}/>
+      <View f={1} bc={"$itemBadgeYellow"}/>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    width: 8,
-    height: 12,
-    borderColor: "#808080",
-    borderWidth: 0.5,
-  },
-  top: {
-    flex: 1,
-    backgroundColor: itemBadgeYellow,
-  },
-  middle: {
-    flex: 1,
-    backgroundColor: itemBadgeOrange,
-  },
-  bottom: {
-    flex: 1,
-    backgroundColor: itemBadgeYellow,
-  },
-});

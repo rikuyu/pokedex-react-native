@@ -23,7 +23,7 @@ export default function BookmarkPokemonImage({pokemonId, itemSize}: Props) {
         source={{uri: getPokemonDotImage(pokemonId)}}
         style={{height: imageSize, aspectRatio: 1}}
       />
-      {Math.random() > 0.4 && <ItemBadge style={styles.bottomRightOverlay}/>}
+      {Math.random() > 0.4 && <ItemBadge positionStyle={styles.bottomRightOverlay}/>}
     </View>
   );
 }
