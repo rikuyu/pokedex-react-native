@@ -4,7 +4,7 @@ import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 
 type Props = {
   isBookmarked: boolean;
-  color: string;
+  color: "black" | "white";
   onPress: () => void;
 }
 
