@@ -1,9 +1,7 @@
 import React from "react";
 import GenderIcon from "@/components/GenderIcon";
-import { StyleSheet } from "react-native";
 import TypeBadge from "@/components/TypeBadge";
-import { ThemedView } from "@/components/ThemedView";
-import { ThemedText } from "@/components/ThemedText";
+import { Text, View } from "tamagui";
 
 type Props = {
   typeFirst: string;
@@ -12,26 +10,18 @@ type Props = {
 
 export default function GenderAndTypes({typeFirst, typeSecond}: Props) {
   return (
-    <ThemedView style={styles.rowContent}>
+    <View fd={"row"} ai={"center"} jc={"flex-start"}>
       <GenderIcon/>
-      <ThemedView style={{width: 4}}/>
-      <ThemedText type="size14Medium">/</ThemedText>
-      <ThemedView style={{width: 8}}/>
+      <View w={4}/>
+      <Text fs={18} fow={"normal"}>/</Text>
+      <View w={8}/>
       <TypeBadge type={typeFirst}/>
       {typeSecond && (
         <>
-          <ThemedView style={{width: 4}}/>
+          <View w={4}/>
           <TypeBadge type={typeSecond}/>
         </>
       )}
-    </ThemedView>
+    </View>
   );
 }
-
-const styles = StyleSheet.create({
-  rowContent: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "flex-start",
-  },
-});
