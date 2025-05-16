@@ -1,3 +1,5 @@
+import { TypeColor } from "@/utils/typeData";
+
 export type PokemonListResponseItem = {
   name: string;
 }
@@ -22,7 +24,7 @@ export type PokemonStat = {
 
 export type PokemonType = {
   name: string;
-  color: string;
+  color: TypeColor;
 }
 
 export type RawPokemonType = {

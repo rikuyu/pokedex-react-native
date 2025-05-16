@@ -1,6 +1,6 @@
 import { isJa } from "@/utils/i18n";
 
-export const typeData = new Map<string, { label: string; color: string }>([
+export const typeData = new Map<string, { label: string; color: TypeColor }>([
   ["normal", { label: "ノーマル", color: "#d7d9d8" }],
   ["fighting", { label: "かくとう", color: "#bc1a1a" }],
   ["flying", { label: "ひこう", color: "#97b0e7" }],
@@ -21,11 +21,32 @@ export const typeData = new Map<string, { label: string; color: string }>([
   ["fairy", { label: "フェアリー", color: "#ee99ac" }],
 ]);
 
+export type TypeColor =
+  | "#d7d9d8"
+  | "#bc1a1a"
+  | "#97b0e7"
+  | "#a040a0"
+  | "#e0c068"
+  | "#b8a038"
+  | "#a8b820"
+  | "#705898"
+  | "#4d989e"
+  | "#ff8833"
+  | "#47bafc"
+  | "#78c850"
+  | "#f8d030"
+  | "#f85888"
+  | "#9ef0f0"
+  | "#066fb5"
+  | "#705848"
+  | "#ee99ac"
+  | "#ffffff";
+
 export function getTypeLabel(key: string): string {
   return isJa ? typeData.get(key)?.label ?? "unknown" : key;
 }
 
-export function getTypeColor(key: string): string {
+export function getTypeColor(key: string): TypeColor {
   return typeData.get(key)?.color ?? "#ffffff";
 }
 
