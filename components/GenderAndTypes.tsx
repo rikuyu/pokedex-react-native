@@ -13,7 +13,7 @@ export default function GenderAndTypes({typeFirst, typeSecond}: Props) {
     <View fd={"row"} ai={"center"} jc={"flex-start"}>
       <GenderIcon/>
       <View w={4}/>
-      <Text fs={18} fow={"normal"}>/</Text>
+      <Text fos={14} fow={"normal"}>/</Text>
       <View w={8}/>
       <TypeBadge type={typeFirst}/>
       {typeSecond && (
