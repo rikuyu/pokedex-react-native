@@ -1,32 +1,16 @@
 import React from "react";
 import { PokemonType } from "@/types/pokemon";
-import { StyleSheet } from "react-native";
 import TypeChip from "@/components/TypeChip";
-import { ThemedView } from "@/components/ThemedView";
+import { View } from "tamagui";
 
 export default function TypeSection({types}: { types: PokemonType[] | undefined }) {
   const safeTypes = types ?? [];
   return (
-    <ThemedView style={styles.container}>
-      {
-        safeTypes?.flatMap((type, index) => [
-          <TypeChip key={`chip-${index}`} name={type.name} color={type.color}/>,
-          index !== safeTypes.length - 1 && (
-            <ThemedView key={`spacer-${index}`} style={{width: 10}}/>
-          ),
-        ])
-      }
-    </ThemedView>
+    <View fd={"row"} jc={"center"} ai={"center"} br={24} py={8} px={12}>
+      {safeTypes?.flatMap((type, index) => [
+        <TypeChip key={`chip-${index}`} name={type.name} color={type.color}/>,
+        index !== safeTypes.length - 1 && <View key={`spacer-${index}`} w={10}/>,
+      ])}
+    </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 24,
-    paddingVertical: 8,
-    paddingHorizontal: 12,
-  },
-});
