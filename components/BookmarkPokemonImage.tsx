@@ -1,9 +1,7 @@
 import React from "react";
-import { Image, StyleSheet, View } from "react-native";
 import { getPokemonDotImage } from "@/constants/endpoints";
 import ItemBadge from "@/components/ItemBadge";
-import { useThemeColor } from "@/hooks/useThemeColor";
-import { ThemedView } from "@/components/ThemedView";
+import { Image, View, YStack } from "tamagui";
 
 type Props = {
   pokemonId: number;
@@ -12,45 +10,14 @@ type Props = {
 
 export default function BookmarkPokemonImage({pokemonId, itemSize}: Props) {
   const imageSize = itemSize - 12;
-  const borderColor = useThemeColor(undefined, "text");
   return (
-    <View style={[styles.container, {width: itemSize, aspectRatio: 1, borderColor}]}>
-      <View style={styles.background}>
-        <View style={styles.topHalf}/>
-        <ThemedView style={styles.bottomHalf}/>
-      </View>
-      <Image
-        source={{uri: getPokemonDotImage(pokemonId)}}
-        style={{height: imageSize, aspectRatio: 1}}
-      />
-      {Math.random() > 0.4 && <ItemBadge positionStyle={styles.bottomRightOverlay}/>}
+    <View w={itemSize} ar={1} boc={"$color"} br={50} bw={1} ov={"hidden"} pos={"relative"} jc={"center"} ai={"center"} >
+      <YStack pos={"absolute"} t={0} l={0} r={0} b={0}>
+        <View f={1} bg={"$pokedexRed"}/>
+        <View f={1}/>
+      </YStack>
+      <Image h={imageSize} ar={1} source={{uri: getPokemonDotImage(pokemonId)}}/>
+      {Math.random() > 0.4 && <ItemBadge />}
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    position: "relative",
-    borderRadius: 50,
-    overflow: "hidden",
-    justifyContent: "center",
-    alignItems: "center",
-    borderWidth: 1,
-  },
-  background: {
-    ...StyleSheet.absoluteFillObject,
-    flexDirection: "column",
-  },
-  topHalf: {
-    flex: 1,
-    backgroundColor: "red",
-  },
-  bottomHalf: {
-    flex: 1,
-  },
-  bottomRightOverlay: {
-    position: "absolute",
-    bottom: 12,
-    right: 16,
-  },
-});
