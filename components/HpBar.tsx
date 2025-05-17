@@ -1,49 +1,36 @@
 import React, { useState } from "react";
-import { StyleSheet, View } from "react-native";
-import { hpGreen, hpOrange, hpRed } from "@/constants/colors";
+import { View } from "tamagui";
 
 export default function HpBar() {
   const [width, setWidth] = useState(0);
   const hp = (width / 10) * (Math.floor(Math.random() * 10) + 1);
-  let hpColor: string;
+  let hpColor: "$hpRed" | "$hpOrange" | "$hpGreen";
   switch (true) {
     case hp <= (width / 10) * 2:
-      hpColor = hpRed;
+      hpColor = "$hpRed";
       break;
     case hp <= (width / 10) * 4:
-      hpColor = hpOrange;
+      hpColor = "$hpOrange";
       break;
     default:
-      hpColor = hpGreen;
+      hpColor = "$hpGreen";
       break;
   }
 
   return (
     <View
-      style={styles.container}
+      h={6}
+      w={"100%"}
+      bw={0.5}
+      boc={"#000000"}
+      bg={"#edf3fc"}
+      pos={"relative"}
       onLayout={(event) => {
         const layout = event.nativeEvent.layout;
         setWidth(layout.width);
       }}
     >
-      <View style={[styles.hp, {width: hp, backgroundColor: hpColor}]}/>
+      <View h={6} w={hp} pos={"absolute"} t={0} l={0} bg={hpColor}/>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    width: "100%",
-    height: 6,
-    position: "relative",
-    backgroundColor: "#edf3fc",
-    borderColor: "#000000",
-    borderWidth: 0.5,
-  },
-  hp: {
-    height: 6,
-    position: "absolute",
-    top: 0,
-    left: 0,
-  },
-});
