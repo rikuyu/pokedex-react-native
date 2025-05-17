@@ -1,9 +1,6 @@
-import { Pressable, StyleSheet } from "react-native";
 import React from "react";
-import { ThemedView } from "@/components/ThemedView";
-import { ThemedText } from "@/components/ThemedText";
-import { useThemeColor } from "@/hooks/useThemeColor";
 import { i18nText } from "@/utils/i18n";
+import { Text, View, XStack } from "tamagui";
 
 type Props = {
   height: number;
@@ -11,39 +8,22 @@ type Props = {
 }
 
 export default function EditButtonSection({height, onPress}: Props) {
-  const color = useThemeColor(undefined, "text");
-
   return (
-    <ThemedView style={{height: height + 16}}>
-      <Pressable
+    <XStack h={height + 16}>
+      <View f={1}/>
+      <View
         onPress={onPress}
-        style={({pressed}) => [
-          styles.button, {
-            borderColor: color,
-            borderRadius: height / 2,
-            opacity: pressed ? 0.5 : 1,
-          },
-        ]}
+        pressStyle={{o: 0.5}}
+        br={1000_000}
+        als={"center"}
+        py={4}
+        px={12}
+        bw={1}
+        boc={"$color"}
+        mr={8}
       >
-        <ThemedText type="size16Medium" style={{textAlign: "center"}}>{i18nText("editBtn")}</ThemedText>
-      </Pressable>
-    </ThemedView>
+        <Text fos={16} fow={"400"}>{i18nText("editBtn")}</Text>
+      </View>
+    </XStack>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    position: "relative",
-  },
-  button: {
-    alignItems: "center",
-    justifyContent: "center",
-    paddingVertical: 4,
-    paddingHorizontal: 12,
-    backgroundColor: "transparent",
-    borderWidth: 1,
-    position: "absolute",
-    right: 12,
-    top: 12,
-  },
-});
