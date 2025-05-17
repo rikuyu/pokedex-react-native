@@ -1,34 +1,13 @@
 import React from "react";
-import { Pressable, StyleSheet, View } from "react-native";
-import { darkTextColor, pokedexRed } from "@/constants/colors";
-import { ThemedText } from "@/components/ThemedText";
+import { Text, View } from "tamagui";
 import { i18nText } from "@/utils/i18n";
 
 export default function EditSaveButton({onPress}: { onPress: () => void }) {
   return (
-    <View style={styles.container}>
-      <Pressable onPress={onPress} style={styles.btn}>
-        <ThemedText type="size16Bold" lightColor={darkTextColor} darkColor={darkTextColor}>
-          {i18nText("save")}
-        </ThemedText>
-      </Pressable>
+    <View ai={"center"} jc={"center"} mt={12} mb={40}>
+      <View onPress={onPress} bg={"$pokedexRed"} mx={12} py={12} w={"90%"} jc={"center"} ai={"center"} br={8}>
+        <Text col={"white"} fow={"bold"}>{i18nText("save")}</Text>
+      </View>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    justifyContent: "center",
-    alignItems: "center",
-    paddingTop: 12,
-    paddingBottom: 20,
-  },
-  btn: {
-    backgroundColor: pokedexRed,
-    borderRadius: 8,
-    width: "90%",
-    paddingVertical: 12,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-});
