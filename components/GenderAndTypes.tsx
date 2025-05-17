@@ -1,7 +1,7 @@
 import React from "react";
 import GenderIcon from "@/components/GenderIcon";
 import TypeBadge from "@/components/TypeBadge";
-import { Text, View, XStack, YStack } from "tamagui";
+import { Text, View, XStack } from "tamagui";
 
 type Props = {
   typeFirst: string;
