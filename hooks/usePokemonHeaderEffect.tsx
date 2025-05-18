@@ -26,7 +26,7 @@ export const usePokemonProfileHeader = (
         headerTintColor: pokedexRed,
       });
     } else {
-      const firstColor = data.types[0].color ?? "#fff";
+      const firstColor = data.types[0].color ?? "#ffffff";
       const contentColor = getColorIsLight(firstColor) ? "black" : "white";
 
       navigation.setOptions({
