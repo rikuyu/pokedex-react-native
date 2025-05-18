@@ -1,5 +1,5 @@
 import React from "react";
-import { Image } from "react-native";
+import { Image } from "tamagui";
 
 type Props = {
   imgSize: number;
@@ -7,5 +7,5 @@ type Props = {
 }
 
 export default function PokemonProfileImage({imgSize, url}: Props) {
-  return <Image style={{height: imgSize, width: imgSize}} source={{uri: url}} resizeMode="cover"/>;
+  return <Image h={imgSize} w={imgSize} source={{uri: url}} objectFit="cover"/>;
 }
