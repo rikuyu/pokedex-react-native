@@ -37,7 +37,7 @@ export default function StatItem({label, value, color}: Props) {
         </Text>
       </View>
       <View w={8}/>
-      <ZStack f={4} bg={"$statBar"} h={24} br={50} ov={"hidden"}>
+      <ZStack f={4} bg={"$statBar"} h={24} br={50} ov={"hidden"} jc={"center"} ai={"center"}>
         <Animated.View
           style={[{
             backgroundColor: color,
@@ -51,7 +51,7 @@ export default function StatItem({label, value, color}: Props) {
             width: 1,
           }]}
         />
-        <View jc={"center"} ai={"flex-start"}>
+        <View jc={"center"} ai={"flex-start"} t={0} b={0} pos={"absolute"}>
           <Text ml={8} fow={"bold"} col={"white"}>{value}</Text>
         </View>
       </ZStack>

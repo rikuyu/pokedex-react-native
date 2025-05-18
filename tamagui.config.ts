@@ -44,11 +44,13 @@ export const tamaguiConfig = createTamagui({
     light: {
       background: "#edf3fc",
       color: "#1a1a1a",
+      statBar: "#e0e8f0",
       ...sharedColors,
     },
     dark: {
       background: "#2c2c2c",
       color: "#fafafa",
+      statBar: "#464646",
       ...sharedColors,
     },
   },
