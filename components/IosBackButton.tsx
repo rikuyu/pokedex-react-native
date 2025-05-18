@@ -10,6 +10,7 @@ export default function IosBackButton({iconColor}: { iconColor: string }) {
       style={{padding: 10, marginLeft: -10}}
       onPress={() => router.dismiss()}
       hitSlop={40}
+      testID={"ios-back-button"}
     >
       <AntDesign name="left" size={24} color={iconColor}/>
     </Pressable>

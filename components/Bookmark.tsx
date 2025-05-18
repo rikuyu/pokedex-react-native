@@ -10,7 +10,11 @@ type Props = {
 
 export default function Bookmark({color, isBookmarked, onPress}: Props) {
   return (
-    <Pressable onPress={onPress} hitSlop={40}>
+    <Pressable
+      onPress={onPress}
+      hitSlop={40}
+      testID={isBookmarked ? "bookmark-button-on" : "bookmark-button-off"}
+    >
       <MaterialIcons
         name={isBookmarked ? "bookmark" : "bookmark-outline"}
         color={color}

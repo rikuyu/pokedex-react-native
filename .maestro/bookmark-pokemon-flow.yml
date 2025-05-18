@@ -1,0 +1,35 @@
+appId: com.rikuyu.pokedex
+---
+- launchApp
+- assertVisible:
+    id: "pokemon-1"
+- scrollUntilVisible:
+    direction: DOWN
+    timeout: 10000
+    element:
+      id: "pokemon-25"
+- tapOn:
+    id: "pokemon-25"
+- assertVisible:
+    id: "bookmark-button-off"
+- tapOn:
+    id: "bookmark-button-off"
+- runFlow:
+    when:
+      platform: android
+    commands:
+      - back
+- runFlow:
+    when:
+      platform: ios
+    commands:
+      - tapOn:
+          id: "ios-back-button"
+- tapOn:
+    id: "bookmark-tab-icon"
+- assertVisible:
+    id: "bookmark-pokemon-25"
+- tapOn:
+    id: "bookmark-pokemon-25"
+- assertVisible:
+    id: "bookmark-button-on"

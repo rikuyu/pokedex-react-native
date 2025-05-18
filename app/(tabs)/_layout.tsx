@@ -20,6 +20,7 @@ export default function _Layout() {
               name={focused ? "home" : "home-outline"}
               color="white"
               size={24}
+              testID={"home-tab-icon"}
             />
           ),
         }}
@@ -34,6 +35,7 @@ export default function _Layout() {
               name={focused ? "bookmark" : "bookmark-outline"}
               color="white"
               size={24}
+              testID={"bookmark-tab-icon"}
             />
           ),
         }}
@@ -49,6 +51,7 @@ export default function _Layout() {
               name={focused ? "account" : "account-outline"}
               color="white"
               size={24}
+              testID={"mypage-tab-icon"}
             />
           ),
         }}
