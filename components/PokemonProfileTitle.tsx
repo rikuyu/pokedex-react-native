@@ -1,41 +1,26 @@
 import React from "react";
-import { Image, StyleSheet } from "react-native";
-import { ThemedView } from "@/components/ThemedView";
-import { ThemedText } from "@/components/ThemedText";
 import { isJa } from "@/utils/i18n";
 import { pokemonData } from "@/utils/pokemonData";
+import { Image, Text, View, XStack } from "tamagui";
 
 export default function PokemonProfileTitle({title}: { title: string | undefined }) {
   const safeTitle = title ?? "unknown";
   return (
-    <ThemedView style={styles.container}>
+    <XStack bg={"$background"} ac={"center"} jc={"center"} br={50} py={8} px={12} als={"center"}>
       <MonsterBall/>
-      <ThemedView style={{width: 12}}/>
-      <ThemedText type={"size20Bold"} style={{fontFamily: "PKMN-REGULAR"}}>
+      <View w={12}/>
+      {/* style={{fontFamily: "PKMN-REGULAR"}} */}
+      <Text fos={20} fow={"bold"}>
         {isJa ? pokemonData.get(safeTitle) : safeTitle}
-      </ThemedText>
-      <ThemedView style={{width: 12}}/>
+      </Text>
+      <View w={12}/>
       <MonsterBall/>
-    </ThemedView>
+    </XStack>
   );
 }
 
 function MonsterBall() {
   return (
-    <Image
-      style={{width: 24, height: 24}}
-      source={require("../assets/images/monster_ball.png")}
-    />
+    <Image w={24} h={24} source={require("../assets/images/monster_ball.png")}/>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 50,
-    paddingHorizontal: 8,
-    paddingVertical: 8,
-  },
-});
