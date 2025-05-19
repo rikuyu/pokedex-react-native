@@ -1,10 +1,9 @@
 import React from "react";
-import { ActivityIndicator, FlatList, StyleSheet } from "react-native";
+import { ActivityIndicator, FlatList } from "react-native";
 import BookmarkPokemon from "@/components/BookmarkPokemon";
 import { useRouter } from "expo-router";
-import { ThemedView } from "@/components/ThemedView";
-import { ThemedText } from "@/components/ThemedText";
 import { useBookmarkPokemon } from "@/hooks/useDrizzleClient";
+import { Text, View } from "tamagui";
 
 export default function Bookmark() {
   const router = useRouter();
@@ -12,22 +11,22 @@ export default function Bookmark() {
 
   if (isLoading) {
     return (
-      <ThemedView style={styles.container}>
+      <View f={1} ai={"center"} jc={"center"}>
         <ActivityIndicator size="small"/>
-      </ThemedView>
+      </View>
     );
   }
 
   if (isError) {
     return (
-      <ThemedView style={styles.container}>
-        <ThemedText>Error</ThemedText>
-      </ThemedView>
+      <View f={1} ai={"center"} jc={"center"}>
+        <Text>Error</Text>
+      </View>
     );
   }
 
   return (
-    <ThemedView style={styles.container}>
+    <View f={1} ai={"center"} jc={"center"} bg={"$background"}>
       <FlatList
         style={{paddingVertical: 12}}
         columnWrapperStyle={{
@@ -44,14 +43,6 @@ export default function Bookmark() {
           />
         )}
       />
-    </ThemedView>
+    </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
