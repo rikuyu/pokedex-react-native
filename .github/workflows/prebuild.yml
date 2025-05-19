@@ -11,8 +11,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  lint:
-    name: Run expo lint
+  expo-prebuild:
+    name: Run expo prebuild
     runs-on: ubuntu-latest
 
     steps:
