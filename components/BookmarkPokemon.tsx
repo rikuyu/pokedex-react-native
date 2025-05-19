@@ -1,13 +1,14 @@
 import React from "react";
-import { Pressable, StyleSheet, useWindowDimensions, View } from "react-native";
+import { useWindowDimensions } from "react-native";
 import Svg, { Path } from "react-native-svg";
 import BookmarkPokemonImage from "@/components/BookmarkPokemonImage";
 import GenderAndTypes from "@/components/GenderAndTypes";
 import HpBar from "@/components/HpBar";
-import { ThemedView } from "@/components/ThemedView";
-import { ThemedText } from "@/components/ThemedText";
 import { useThemeColor } from "@/hooks/useThemeColor";
 import { PokemonBookmark } from "@/services/db";
+import { Text, View, XStack, YStack, ZStack } from "tamagui";
+import { isJa } from "@/utils/i18n";
+import { pokemonData } from "@/utils/pokemonData";
 
 type Props = {
   pokemon: PokemonBookmark;
@@ -32,47 +33,21 @@ export default function BookmarkPokemon({pokemon, onPress}: Props) {
     `;
 
   return (
-    <Pressable
-      onPress={onPress}
-      style={[styles.container, {width: itemWidth, height: itemHeight}]}>
-      <Svg
-        width="100%"
-        height="100%"
-        fill={svgFillColor}
-        viewBox={canvas}
-        style={StyleSheet.absoluteFill}
-      >
+    <ZStack onPress={onPress} w={itemWidth} h={itemHeight} ai={"flex-start"} jc={"center"} testID={`bookmark-pokemon-${pokemon.id}`}>
+      <Svg width="100%" height="100%" fill={svgFillColor} viewBox={canvas}>
         <Path d={direction} stroke={borderColor} strokeWidth={1}/>
       </Svg>
-      <View style={[styles.rowContent, {padding: 8}]}>
+      <XStack ai={"center"} jc={"flex-start"} p={8}>
         <BookmarkPokemonImage pokemonId={pokemon.id} itemSize={itemHeight - 16}/>
-        <ThemedView style={{width: 6}}/>
-        <ThemedView style={styles.attr}>
-          <ThemedText type="size14Medium">{pokemon.name}</ThemedText>
-          <ThemedView style={{height: 8}}/>
+        <View w={6}/>
+        <YStack f={1}>
+          <Text fos={14} fow={"500"}>{isJa ? pokemonData.get(pokemon.name) : pokemon.name}</Text>
+          <View h={8}/>
           <HpBar/>
-          <ThemedView style={{height: 8}}/>
+          <View h={8}/>
           <GenderAndTypes typeFirst={pokemon.type_first} typeSecond={pokemon.type_second}/>
-        </ThemedView>
-      </View>
-    </Pressable>
+        </YStack>
+      </XStack>
+    </ZStack>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: "flex-start",
-    justifyContent: "center",
-    position: "relative",
-  },
-  rowContent: {
-    ...StyleSheet.absoluteFillObject,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "flex-start",
-  },
-  attr: {
-    flex: 1,
-    flexDirection: "column",
-  },
-});
