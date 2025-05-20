@@ -1,9 +1,8 @@
-import { ActivityIndicator, FlatList, StyleSheet } from "react-native";
+import { ActivityIndicator, FlatList } from "react-native";
 import PokemonItem from "@/components/PokemonItem";
 import { useRouter } from "expo-router";
-import { ThemedView } from "@/components/ThemedView";
-import { ThemedText } from "@/components/ThemedText";
 import { useInfinitePokedex } from "@/hooks/useInfinitePokedex";
+import { Text, View } from "tamagui";
 
 export default function Index() {
   const router = useRouter();
@@ -18,31 +17,28 @@ export default function Index() {
 
   if (!isFetchingNextPage && isFetching) {
     return (
-      <ThemedView style={styles.container}>
+      <View f={1} ai={"center"} jc={"center"}>
         <ActivityIndicator size="small"/>
-      </ThemedView>
+      </View>
     );
   }
 
   if (isError) {
     return (
-      <ThemedView style={styles.container}>
-        <ThemedText>Error</ThemedText>
-      </ThemedView>
+      <View f={1} ai={"center"} jc={"center"}>
+        <Text>Error</Text>
+      </View>
     );
   }
 
   return (
-    <ThemedView style={styles.container}>
+    <View f={1} ai={"center"} jc={"center"} bg={"$background"}>
       <FlatList
         style={{paddingVertical: 12}}
         keyExtractor={(item) => item.index.toString()}
         numColumns={3}
         data={pokedex}
-        columnWrapperStyle={{
-          gap: 8,
-          marginVertical: 4,
-        }}
+        columnWrapperStyle={{gap: 8, marginVertical: 4}}
         renderItem={({item}) => (
           <PokemonItem
             index={item.index}
@@ -58,15 +54,6 @@ export default function Index() {
         onEndReachedThreshold={0.3}
         ListFooterComponent={isFetchingNextPage ? <ActivityIndicator size="small"/> : null}
       />
-    </ThemedView>
+    </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    flexDirection: "column",
-  },
-});
