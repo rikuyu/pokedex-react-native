@@ -6,6 +6,7 @@
 
 
 ## 🛠 技術
+- `tamagui`
 - `expo-router`
 - `expo-sqlite`
 - `expo-location`
@@ -18,6 +19,7 @@
 - `react-native-edge-to-edge`
 - `react-native-keyboard-aware-scroll-view`
 - `eslint`
+- `maestro`
 
 ## 📱 Screens
 
