@@ -1,5 +1,5 @@
 import React from "react";
-import { ActivityIndicator, StyleSheet, useWindowDimensions, View } from "react-native";
+import { ActivityIndicator, useWindowDimensions } from "react-native";
 import { useLocalSearchParams } from "expo-router";
 import { usePokemonProfileHeader } from "@/hooks/usePokemonHeaderEffect";
 import { getPokemonImage } from "@/constants/endpoints";
@@ -8,12 +8,10 @@ import PokemonProfileTitle from "@/components/PokemonProfileTitle";
 import StatSection from "@/components/StatSection";
 import TypeSection from "@/components/TypeSection";
 import PhysicalSection from "@/components/PhysicalSection";
-import { ThemedView } from "@/components/ThemedView";
-import { pokedexRed } from "@/constants/colors";
-import { ThemedText } from "@/components/ThemedText";
 import PokemonProfileImage from "@/components/PokemonProfileImage";
 import { usePokemonProfile } from "@/hooks/usePokemonProfile";
 import { useBookmarkState } from "@/hooks/useDrizzleClient";
+import { Text, View, YStack } from "tamagui";
 
 export default function PokemonProfile() {
   const {id} = useLocalSearchParams();
@@ -26,62 +24,44 @@ export default function PokemonProfile() {
 
   if (!id) {
     return (
-      <ThemedView style={styles.container}>
-        <ThemedText>IDが見つかりません</ThemedText>
-      </ThemedView>
+      <View ac={"center"} jc={"center"}>
+        <Text>IDが見つかりません</Text>
+      </View>
     );
   }
 
   if (isLoading) {
     return (
-      <ThemedView style={styles.container}>
+      <View ac={"center"} jc={"center"}>
         <ActivityIndicator size="large"/>
-      </ThemedView>
+      </View>
     );
   }
 
   if (isError) {
     return (
-      <ThemedView style={styles.container}>
-        <ThemedText>Error</ThemedText>
-      </ThemedView>
+      <View ac={"center"} jc={"center"}>
+        <Text>Error</Text>
+      </View>
     );
   }
 
   return (
-    <View style={styles.container}>
+    <YStack f={1} ac={"center"} jc={"center"} bg={"$pokedexRed"}>
       <GradientOrSolidBackground colors={data?.types.map((type) => type.color)}>
         <PokemonProfileImage imgSize={imgSize} url={getPokemonImage(data?.index)}/>
       </GradientOrSolidBackground>
-      <ThemedView lightColor={pokedexRed} darkColor={pokedexRed} style={{height: 12}}/>
+      <View h={12}/>
       <PokemonProfileTitle title={data?.name}/>
-      <ThemedView lightColor={pokedexRed} darkColor={pokedexRed} style={{height: 12}}/>
-      <ThemedView lightColor={pokedexRed} darkColor={pokedexRed} style={{flex: 4, alignItems: "center"}}>
+      <View h={12}/>
+      <View ai={"center"} f={4}>
         <TypeSection types={data?.types}/>
-        <ThemedView style={{height: 12}}/>
+        <View h={12}/>
         <PhysicalSection height={data?.height} weight={data?.weight}/>
-        <ThemedView style={{height: 16}}/>
+        <View h={16}/>
         <StatSection stats={data?.stats}/>
-      </ThemedView>
-    </View>
+      </View>
+    </YStack>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: pokedexRed,
-  },
-  linearGradient: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  rowCenter: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-});
