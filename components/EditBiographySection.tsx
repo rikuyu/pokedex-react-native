@@ -1,9 +1,8 @@
 import React from "react";
 import { StyleSheet, TextInput } from "react-native";
-import { ThemedView } from "@/components/ThemedView";
 import { useThemeColor } from "@/hooks/useThemeColor";
-import { ThemedText } from "@/components/ThemedText";
 import { i18nText } from "@/utils/i18n";
+import { Text, View } from "tamagui";
 
 type Props = {
   name: string,
@@ -17,9 +16,9 @@ export default function EditBiographySection(props: Props) {
   const textColor = useThemeColor(undefined, "text");
 
   return (
-    <ThemedView style={styles.container}>
-      <ThemedText type="size16Normal">{i18nText("name")}</ThemedText>
-      <ThemedView style={{height: 12}}/>
+    <View px={20}>
+      <Text fos={16}>{i18nText("name")}</Text>
+      <View h={12} />
       <TextInput
         style={[
           styles.textInput,
@@ -35,9 +34,9 @@ export default function EditBiographySection(props: Props) {
         placeholder={"Enter Your Name"}
         selectionColor={textColor}
       />
-      <ThemedView style={{height: 20}}/>
-      <ThemedText type="size16Normal">{i18nText("description")}</ThemedText>
-      <ThemedView style={{height: 12}}/>
+      <View h={20} />
+      <Text fos={16}>{i18nText("description")}</Text>
+      <View h={12} />
       <TextInput
         style={[
           styles.textInput,
@@ -57,15 +56,11 @@ export default function EditBiographySection(props: Props) {
         multiline={true}
         maxLength={200}
       />
-    </ThemedView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingHorizontal: 20,
-  },
   textInput: {
     borderWidth: 1,
     borderRadius: 4,
