@@ -1,5 +1,5 @@
 import React from "react";
-import { ActivityIndicator, FlatList, StyleSheet, useWindowDimensions } from "react-native";
+import { ActivityIndicator, FlatList, useWindowDimensions } from "react-native";
 import { useRouter } from "expo-router";
 import Animated, { useAnimatedScrollHandler, useSharedValue } from "react-native-reanimated";
 import MyPageHeader from "@/components/MyPageHeader";
@@ -7,19 +7,15 @@ import EditButtonSection from "@/components/EditButtonSection";
 import BiographySection from "@/components/BiographySection";
 import Residence from "@/components/Residence";
 import Birthday from "@/components/Birthday";
-import { ThemedView } from "@/components/ThemedView";
 import BerryItem from "@/components/BerryItem";
 import { BerryData } from "@/types/berry";
-import { useThemeColor } from "@/hooks/useThemeColor";
-import { darkTextColor, lightTextColor } from "@/constants/colors";
-import { ThemedText } from "@/components/ThemedText";
 import { Profile } from "@/services/profileStorage";
 import { useMyPageData } from "@/hooks/useMyPageData";
+import { Text, View, YStack } from "tamagui";
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList<BerryData>);
 
 export default function MyPage() {
-  const borderColor = useThemeColor({light: lightTextColor, dark: darkTextColor});
   const scrollY = useSharedValue(0);
   const scrollHandler = useAnimatedScrollHandler((event) => {
     scrollY.value = event.contentOffset.y;
@@ -32,43 +28,42 @@ export default function MyPage() {
 
   if (isLoading) {
     return (
-      <ThemedView style={styles.container}>
+      <View f={1} ac={"center"} jc={"center"}>
         <ActivityIndicator size="large"/>
-      </ThemedView>
+      </View>
     );
   }
 
   if (isError) {
     return (
-      <ThemedView style={styles.container}>
-        <ThemedText>Error</ThemedText>
-      </ThemedView>
+      <View f={1} ac={"center"} jc={"center"}>
+        <Text>Error</Text>
+      </View>
     );
   }
 
   return (
-    <ThemedView style={styles.container}>
+    <YStack f={1} ac={"center"} jc={"center"} bg={"$background"}>
       <MyPageHeader
         imageSize={imageSize}
         scrollOffset={scrollY}
-        positionStyle={styles.headerPosition}
+        positionStyle={{zIndex: 2}}
       />
       <AnimatedFlatList
         onScroll={scrollHandler}
         scrollEventThrottle={16}
         ListHeaderComponent={<ProfileSection profile={profile} imageSize={imageSize}/>}
-        ItemSeparatorComponent={() => <ThemedView style={{height: 1, flex: 1, backgroundColor: borderColor}}/>}
+        ItemSeparatorComponent={() => <View f={1} h={1} bg={"$color"}/>}
         data={berryList}
         keyExtractor={(item) => item.name}
         renderItem={({item}) => <BerryItem berry={item}/>}
-        style={styles.listContainer}
+        style={{zIndex: 1}}
       />
-    </ThemedView>
+    </YStack>
   );
 };
 
 const ProfileSection = React.memo(({imageSize, profile}: { imageSize: number; profile: Profile; }) => {
-  const borderColor = useThemeColor({light: lightTextColor, dark: darkTextColor});
   const router = useRouter();
 
   return (
@@ -76,25 +71,10 @@ const ProfileSection = React.memo(({imageSize, profile}: { imageSize: number; pr
       <EditButtonSection onPress={() => router.push("/edit")} height={imageSize / 2}/>
       <BiographySection profile={profile}/>
       <Residence/>
-      <ThemedView style={{height: 8}}/>
+      <View h={8}/>
       <Birthday/>
-      <ThemedView style={{height: 16}}/>
-      <ThemedView style={{flex: 1, height: 1, backgroundColor: borderColor}}/>
+      <View h={16}/>
+      <View f={1} h={1} bg={"$color"}/>
     </>
   );
-});
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  headerPosition: {
-    zIndex: 2,
-  },
-  listContainer: {
-    zIndex: 1,
-    width: "100%",
-  },
 });
