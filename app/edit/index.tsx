@@ -5,10 +5,9 @@ import EditBiographySection from "@/components/EditBiographySection";
 import { useRouter } from "expo-router";
 import { useMyProfile } from "@/hooks/useMyProfile";
 import EditSaveButton from "@/components/EditSaveButton";
-import { ThemedView } from "@/components/ThemedView";
 import * as ImagePicker from "expo-image-picker";
-import { ThemedText } from "@/components/ThemedText";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { Text, View } from "tamagui";
 
 export default function Index() {
   const {width} = useWindowDimensions();
@@ -49,9 +48,9 @@ export default function Index() {
 
   if (isLoading) {
     return (
-      <ThemedView style={{flex: 1}}>
+      <View f={1} ai={"center"} jc={"center"}>
         <ActivityIndicator size="large"/>
-      </ThemedView>
+      </View>
     );
   }
 
@@ -62,14 +61,14 @@ export default function Index() {
 
   if (isError) {
     return (
-      <ThemedView style={{flex: 1}}>
-        <ThemedText>Error</ThemedText>
-      </ThemedView>
+      <View f={1}>
+        <Text>Error</Text>
+      </View>
     );
   }
 
   return (
-    <ThemedView style={{flex: 1}}>
+    <View f={1} bg={"$background"}>
       <EditHeaderSection
         imageSize={imageSize}
         iconImg={iconImg}
@@ -77,7 +76,7 @@ export default function Index() {
         headerImg={headerImg}
         setHeader={async (): Promise<void> => pickImageAsync("header")}
       />
-      <ThemedView style={{height: imageSize / 2 + 20, zIndex: -1}}/>
+      <View h={imageSize / 2 + 20} zi={1}/>
       <KeyboardAwareScrollView>
         <EditBiographySection
           name={name}
@@ -85,9 +84,9 @@ export default function Index() {
           description={description}
           setDescription={setDescription}
         />
-        <ThemedView style={{flex: 1}}/>
+        <View f={1}/>
       </KeyboardAwareScrollView>
       <EditSaveButton onPress={handleSave}/>
-    </ThemedView>
+    </View>
   );
 }
