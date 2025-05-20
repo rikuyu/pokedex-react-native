@@ -1,19 +1,14 @@
 import React, { useState } from "react";
-import { Platform, Pressable, StyleSheet } from "react-native";
-import { AntDesign } from "@expo/vector-icons";
+import { Platform } from "react-native";
 import DateTimePicker, { DateTimePickerEvent } from "@react-native-community/datetimepicker";
-import { ThemedView } from "@/components/ThemedView";
-import { ThemedText } from "@/components/ThemedText";
-import { useThemeColor } from "@/hooks/useThemeColor";
 import { i18nText } from "@/utils/i18n";
+import { CalendarDays } from "@tamagui/lucide-icons";
+import { Text, View, XStack } from "tamagui";
 
 export default function Birthday() {
-  const iconColor = useThemeColor(undefined, "text");
   const [birthdayIos, setBirthdayIos] = useState<Date>(new Date());
   const [birthdayAndroid, setBirthdayAndroid] = useState<string>("unknown");
   const [showAndroid, setShowAndroid] = useState(false);
-
-  const backgroundColor = useThemeColor(undefined, "background");
 
   const onChange = (_: DateTimePickerEvent, selectedDate?: Date) => {
     if (Platform.OS === "android") {
@@ -27,10 +22,10 @@ export default function Birthday() {
 
   if (Platform.OS === "ios") {
     return (
-      <ThemedView style={styles.container}>
-        <AntDesign name="calendar" size={16} color={iconColor}/>
-        <ThemedView style={{width: 6}}/>
-        <ThemedText type="size14Normal">{`${i18nText("birthDay")}:`}</ThemedText>
+      <XStack px={18} ai={"center"}>
+        <CalendarDays size={18} strokeWidth={2}/>
+        <View w={6}/>
+        <Text fos={14} fow={"normal"}>{`${i18nText("birthDay")}:`}</Text>
         <DateTimePicker
           value={birthdayIos}
           maximumDate={new Date()}
@@ -38,22 +33,19 @@ export default function Birthday() {
           onChange={onChange}
           themeVariant="dark"
         />
-      </ThemedView>
+      </XStack>
     );
   } else {
     return (
-      <Pressable
+      <XStack
         onPress={() => setShowAndroid(true)}
-        style={({pressed}) => [
-          styles.container, {
-            backgroundColor,
-            opacity: pressed ? 0.8 : 1,
-          },
-        ]}
+        pressStyle={{o: 0.8}}
+        ai={"center"}
+        px={18}
       >
-        <AntDesign name="calendar" size={16} color={iconColor}/>
-        <ThemedView style={{width: 8}}/>
-        <ThemedText type="size14Normal">{`${i18nText("birthDay")}: ${birthdayAndroid}`}</ThemedText>
+        <CalendarDays size={18} strokeWidth={2}/>
+        <View w={6}/>
+        <Text fos={14} fow={"normal"}>{`${i18nText("birthDay")}: ${birthdayAndroid}`}</Text>
         {showAndroid && (
           <DateTimePicker
             value={new Date(birthdayAndroid)}
@@ -62,15 +54,7 @@ export default function Birthday() {
             onChange={onChange}
           />
         )}
-      </Pressable>
+      </XStack>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: "row",
-    alignItems: "center",
-    paddingHorizontal: 18,
-  },
-});
