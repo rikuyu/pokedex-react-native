@@ -11,15 +11,11 @@ export default function ThemeToggleButton() {
       onPress={() => setTheme(theme === "light" ? "dark" : "light")}
       pressStyle={{o: 0.7}}
       bg={"rgba(100,98,98,0.6)"}
-      ai={"center"}
-      jc={"center"}
+      ai={"center"} jc={"center"}
       br={18}
       ar={1}
-      h={"$3.5"}
-      w={"$3.5"}
-      pos={"absolute"}
-      t={8}
-      r={8}
+      w={"$3.5"} h={"$3.5"}
+      pos={"absolute"} t={8} r={8}
     >
       {theme === "light" ? <Moon size="$1" col="white"/> : <Sun size="$1" col="white"/>}
     </View>
