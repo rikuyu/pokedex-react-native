@@ -14,12 +14,9 @@ export default function EditButtonSection({height, onPress}: Props) {
       <View
         onPress={onPress}
         pressStyle={{o: 0.5}}
-        br={1000_000}
         als={"center"}
-        py={4}
-        px={12}
-        bw={1}
-        boc={"$color"}
+        px={12} py={4}
+        br={1000_000} bw={1} boc={"$color"}
         mr={8}
       >
         <Text fos={16} fow={"400"}>{i18nText("editBtn")}</Text>

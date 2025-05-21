@@ -34,12 +34,9 @@ export default function EditHeaderSection({imageSize, iconImg, setIcon, headerIm
         <View
           jc={"center"} ai={"center"}
           w={imageSize} h={imageSize}
-          t={0} b={0} r={0} l={0}
-          pos={"absolute"}
+          pos={"absolute"} t={0} b={0} r={0} l={0}
+          br={50} bw={2} boc={"black"}
           bg={"#00000055"}
-          br={50}
-          bw={2}
-          boc={"black"}
         >
           <MaterialCommunityIcons name="camera-plus-outline" color="#fff" size={28}/>
         </View>
