@@ -11,8 +11,9 @@ import BerryItem from "@/components/BerryItem";
 import { BerryData } from "@/types/berry";
 import { Profile } from "@/services/profileStorage";
 import { useMyPageData } from "@/hooks/useMyPageData";
-import { Text, View, YStack } from "tamagui";
+import { View, YStack } from "tamagui";
 import FullScreenLoadingIndicator from "@/components/FullScreenLoadingIndicator";
+import FullScreenErrorView from "@/components/FullScreenErrorView";
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList<BerryData>);
 
@@ -32,11 +33,7 @@ export default function MyPage() {
   }
 
   if (isError) {
-    return (
-      <View f={1} ac={"center"} jc={"center"}>
-        <Text>Error</Text>
-      </View>
-    );
+    return <FullScreenErrorView/>;
   }
 
   return (

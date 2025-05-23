@@ -7,8 +7,9 @@ import { useMyProfile } from "@/hooks/useMyProfile";
 import EditSaveButton from "@/components/EditSaveButton";
 import * as ImagePicker from "expo-image-picker";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { Text, View } from "tamagui";
+import { View } from "tamagui";
 import FullScreenLoadingIndicator from "@/components/FullScreenLoadingIndicator";
+import FullScreenErrorView from "@/components/FullScreenErrorView";
 
 export default function Index() {
   const {width} = useWindowDimensions();
@@ -51,18 +52,14 @@ export default function Index() {
     return <FullScreenLoadingIndicator />;
   }
 
+  if (isError) {
+    return <FullScreenErrorView/>;
+  }
+
   const handleSave = async () => {
     await updateProfile({name, description});
     router.dismiss();
   };
-
-  if (isError) {
-    return (
-      <View f={1}>
-        <Text>Error</Text>
-      </View>
-    );
-  }
 
   return (
     <View f={1} bg={"$background"}>

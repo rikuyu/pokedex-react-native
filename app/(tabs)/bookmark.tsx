@@ -3,8 +3,9 @@ import { FlatList } from "react-native";
 import BookmarkPokemon from "@/components/BookmarkPokemon";
 import { useRouter } from "expo-router";
 import { useBookmarkPokemon } from "@/hooks/useDrizzleClient";
-import { Text, View } from "tamagui";
+import { View } from "tamagui";
 import FullScreenLoadingIndicator from "@/components/FullScreenLoadingIndicator";
+import FullScreenErrorView from "@/components/FullScreenErrorView";
 
 export default function Bookmark() {
   const router = useRouter();
@@ -15,11 +16,7 @@ export default function Bookmark() {
   }
 
   if (isError) {
-    return (
-      <View f={1} ai={"center"} jc={"center"}>
-        <Text>Error</Text>
-      </View>
-    );
+    return <FullScreenErrorView/>;
   }
 
   return (
