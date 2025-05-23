@@ -11,8 +11,9 @@ import PhysicalSection from "@/components/PhysicalSection";
 import PokemonProfileImage from "@/components/PokemonProfileImage";
 import { usePokemonProfile } from "@/hooks/usePokemonProfile";
 import { useBookmarkState } from "@/hooks/useDrizzleClient";
-import { Text, View, YStack } from "tamagui";
+import { View, YStack } from "tamagui";
 import FullScreenLoadingIndicator from "@/components/FullScreenLoadingIndicator";
+import FullScreenErrorView from "@/components/FullScreenErrorView";
 
 export default function PokemonProfile() {
   const {id} = useLocalSearchParams();
@@ -23,24 +24,13 @@ export default function PokemonProfile() {
   const {height} = useWindowDimensions();
   const imgSize = height / 6;
 
-  if (!id) {
-    return (
-      <View ac={"center"} jc={"center"}>
-        <Text>IDが見つかりません</Text>
-      </View>
-    );
+  if (!id || isError) {
+    const msg = !id ? "ID not found" : "failed to load pokemon data";
+    return <FullScreenErrorView message={`Error: ${msg}`}/>;
   }
 
   if (isLoading) {
-    return <FullScreenLoadingIndicator />;
-  }
-
-  if (isError) {
-    return (
-      <View ac={"center"} jc={"center"}>
-        <Text>Error</Text>
-      </View>
-    );
+    return <FullScreenLoadingIndicator/>;
   }
 
   return (
