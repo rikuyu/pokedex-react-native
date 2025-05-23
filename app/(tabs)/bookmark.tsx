@@ -1,20 +1,17 @@
 import React from "react";
-import { ActivityIndicator, FlatList } from "react-native";
+import { FlatList } from "react-native";
 import BookmarkPokemon from "@/components/BookmarkPokemon";
 import { useRouter } from "expo-router";
 import { useBookmarkPokemon } from "@/hooks/useDrizzleClient";
 import { Text, View } from "tamagui";
+import FullScreenLoadingIndicator from "@/components/FullScreenLoadingIndicator";
 
 export default function Bookmark() {
   const router = useRouter();
   const {data: bookmarks, isLoading, isError} = useBookmarkPokemon();
 
   if (isLoading) {
-    return (
-      <View f={1} ai={"center"} jc={"center"}>
-        <ActivityIndicator size="small"/>
-      </View>
-    );
+    return <FullScreenLoadingIndicator/>;
   }
 
   if (isError) {

@@ -1,5 +1,5 @@
 import React from "react";
-import { ActivityIndicator, FlatList, useWindowDimensions } from "react-native";
+import { FlatList, useWindowDimensions } from "react-native";
 import { useRouter } from "expo-router";
 import Animated, { useAnimatedScrollHandler, useSharedValue } from "react-native-reanimated";
 import MyPageHeader from "@/components/MyPageHeader";
@@ -12,6 +12,7 @@ import { BerryData } from "@/types/berry";
 import { Profile } from "@/services/profileStorage";
 import { useMyPageData } from "@/hooks/useMyPageData";
 import { Text, View, YStack } from "tamagui";
+import FullScreenLoadingIndicator from "@/components/FullScreenLoadingIndicator";
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList<BerryData>);
 
@@ -27,11 +28,7 @@ export default function MyPage() {
   const {profile, berryList, isLoading, isError} = useMyPageData();
 
   if (isLoading) {
-    return (
-      <View f={1} ac={"center"} jc={"center"}>
-        <ActivityIndicator size="large"/>
-      </View>
-    );
+    return <FullScreenLoadingIndicator />;
   }
 
   if (isError) {

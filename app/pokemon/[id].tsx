@@ -1,5 +1,5 @@
 import React from "react";
-import { ActivityIndicator, useWindowDimensions } from "react-native";
+import { useWindowDimensions } from "react-native";
 import { useLocalSearchParams } from "expo-router";
 import { usePokemonProfileHeader } from "@/hooks/usePokemonHeaderEffect";
 import { getPokemonImage } from "@/constants/endpoints";
@@ -12,6 +12,7 @@ import PokemonProfileImage from "@/components/PokemonProfileImage";
 import { usePokemonProfile } from "@/hooks/usePokemonProfile";
 import { useBookmarkState } from "@/hooks/useDrizzleClient";
 import { Text, View, YStack } from "tamagui";
+import FullScreenLoadingIndicator from "@/components/FullScreenLoadingIndicator";
 
 export default function PokemonProfile() {
   const {id} = useLocalSearchParams();
@@ -31,11 +32,7 @@ export default function PokemonProfile() {
   }
 
   if (isLoading) {
-    return (
-      <View ac={"center"} jc={"center"}>
-        <ActivityIndicator size="large"/>
-      </View>
-    );
+    return <FullScreenLoadingIndicator />;
   }
 
   if (isError) {

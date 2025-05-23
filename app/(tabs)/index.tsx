@@ -3,6 +3,8 @@ import PokemonItem from "@/components/PokemonItem";
 import { useRouter } from "expo-router";
 import { useInfinitePokedex } from "@/hooks/useInfinitePokedex";
 import { Text, View } from "tamagui";
+import FullScreenLoadingIndicator from "@/components/FullScreenLoadingIndicator";
+import React from "react";
 
 export default function Index() {
   const router = useRouter();
@@ -16,11 +18,7 @@ export default function Index() {
   } = useInfinitePokedex();
 
   if (!isFetchingNextPage && isFetching) {
-    return (
-      <View f={1} ai={"center"} jc={"center"}>
-        <ActivityIndicator size="small"/>
-      </View>
-    );
+    return <FullScreenLoadingIndicator/>;
   }
 
   if (isError) {

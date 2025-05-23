@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ActivityIndicator, useWindowDimensions } from "react-native";
+import { useWindowDimensions } from "react-native";
 import EditHeaderSection from "@/components/EditHeaderSection";
 import EditBiographySection from "@/components/EditBiographySection";
 import { useRouter } from "expo-router";
@@ -8,6 +8,7 @@ import EditSaveButton from "@/components/EditSaveButton";
 import * as ImagePicker from "expo-image-picker";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { Text, View } from "tamagui";
+import FullScreenLoadingIndicator from "@/components/FullScreenLoadingIndicator";
 
 export default function Index() {
   const {width} = useWindowDimensions();
@@ -47,11 +48,7 @@ export default function Index() {
   };
 
   if (isLoading) {
-    return (
-      <View f={1} ai={"center"} jc={"center"}>
-        <ActivityIndicator size="large"/>
-      </View>
-    );
+    return <FullScreenLoadingIndicator />;
   }
 
   const handleSave = async () => {
