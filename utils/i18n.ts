@@ -2,20 +2,22 @@ import { getLocales } from "expo-localization";
 import { I18n } from "i18n-js";
 
 const ja = {
-  editBtn: "プロフィールを編集",
   stat: "種族値",
   birthDay: "誕生日",
   name: "なまえ",
   description: "せつめい",
+  editBtn: "プロフィールを編集",
+  editTitle: "プロフィールの編集",
   save: "保存",
 };
 
 const en = {
-  editBtn: "Edit Profile",
   stat: "Base Stats",
   birthDay: "Birthday",
   name: "Name",
   description: "Description",
+  editBtn: "Edit Profile",
+  editTitle: "Edit Profile",
   save: "Save",
 };
 
