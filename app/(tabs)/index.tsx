@@ -1,10 +1,12 @@
-import { ActivityIndicator, FlatList } from "react-native";
+import { FlatList } from "react-native";
 import PokemonItem from "@/components/PokemonItem";
 import { useRouter } from "expo-router";
 import { useInfinitePokedex } from "@/hooks/useInfinitePokedex";
-import { Text, View } from "tamagui";
+import { View } from "tamagui";
 import FullScreenLoadingIndicator from "@/components/FullScreenLoadingIndicator";
 import React from "react";
+import LoadingItem from "@/components/LoadingItem";
+import FullScreenErrorView from "@/components/FullScreenErrorView";
 
 export default function Index() {
   const router = useRouter();
@@ -22,21 +24,17 @@ export default function Index() {
   }
 
   if (isError) {
-    return (
-      <View f={1} ai={"center"} jc={"center"}>
-        <Text>Error</Text>
-      </View>
-    );
+    return <FullScreenErrorView/>;
   }
 
   return (
     <View f={1} ai={"center"} jc={"center"} bg={"$background"}>
       <FlatList
-        style={{paddingVertical: 12}}
+        style={{paddingTop: 12}}
         keyExtractor={(item) => item.index.toString()}
         numColumns={3}
         data={pokedex}
-        columnWrapperStyle={{gap: 8, marginVertical: 4}}
+        columnWrapperStyle={{gap: 8, marginTop: 8}}
         renderItem={({item}) => (
           <PokemonItem
             index={item.index}
@@ -50,7 +48,7 @@ export default function Index() {
           }
         }}
         onEndReachedThreshold={0.3}
-        ListFooterComponent={isFetchingNextPage ? <ActivityIndicator size="small"/> : null}
+        ListFooterComponent={hasNextPage ? <LoadingItem/> : null}
       />
     </View>
   );
