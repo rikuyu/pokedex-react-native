@@ -19,8 +19,4 @@ export default function PokemonProfileTitle({title}: { title: string | undefined
   );
 }
 
-function MonsterBall() {
-  return (
-    <Image w={24} h={24} source={require("../assets/images/monster_ball.png")}/>
-  );
-}
+const MonsterBall = () => <Image w={24} h={24} source={require("../assets/images/monster_ball.png")}/>;
