@@ -5,8 +5,9 @@ import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { Platform } from "react-native";
 import { headerStyle, tabBarStyle } from "@/constants/colors";
+import HapticTabButton from "@/components/HapticTabButton";
 
-export default function _Layout() {
+export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{tabBarStyle, headerStyle}}>
@@ -23,6 +24,7 @@ export default function _Layout() {
               testID={"home-tab-icon"}
             />
           ),
+          tabBarButton: (props) => <HapticTabButton {...props} />,
         }}
       />
       <Tabs.Screen
@@ -38,6 +40,7 @@ export default function _Layout() {
               testID={"bookmark-tab-icon"}
             />
           ),
+          tabBarButton: (props) => <HapticTabButton {...props} />,
         }}
       />
       <Tabs.Screen
@@ -54,6 +57,7 @@ export default function _Layout() {
               testID={"mypage-tab-icon"}
             />
           ),
+          tabBarButton: (props) => <HapticTabButton {...props} />,
         }}
       />
     </Tabs>
