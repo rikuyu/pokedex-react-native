@@ -9,6 +9,10 @@ const ja = {
   editBtn: "プロフィールを編集",
   editTitle: "プロフィールの編集",
   save: "保存",
+  quickActionSearchTitle: "キモリに会う",
+  quickActionSearchSubTitle: "キモリの詳細ページ",
+  quickActionProfileTitle: "プロフィール",
+  quickActionProfileSubTitle: "プロフィールを見る",
 };
 
 const en = {
@@ -19,6 +23,10 @@ const en = {
   editBtn: "Edit Profile",
   editTitle: "Edit Profile",
   save: "Save",
+  quickActionSearchTitle: "Meet Treecko",
+  quickActionSearchSubTitle: "Open Treecko's profile page",
+  quickActionProfileTitle: "Profile",
+  quickActionProfileSubTitle: "Open Profile",
 };
 
 type TranslationKeys = keyof typeof ja;

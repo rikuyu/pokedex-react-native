@@ -16,7 +16,7 @@ export default function FullScreenLoadingIndicator() {
 
   useEffect(() => {
     sharedValue.value = withDelay(100, withRepeat(withTiming(1, {duration, easing}), -1));
-  }, []);
+  }, [sharedValue, easing]);
 
   const animatedStyle = useAnimatedStyle(() => ({
     transform: [{rotate: `${sharedValue.value * 360}deg`}],

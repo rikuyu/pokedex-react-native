@@ -9,7 +9,7 @@ export default function LoadingItem() {
 
   useEffect(() => {
     angle.value = withRepeat(withTiming(1, {duration, easing}), -1);
-  }, []);
+  }, [angle, easing]);
 
   const animatedStyle = useAnimatedStyle(() => ({
     transform: [{rotate: `${angle.value * 360}deg`}],
