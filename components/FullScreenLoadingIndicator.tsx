@@ -15,7 +15,7 @@ export default function FullScreenLoadingIndicator() {
   const sharedValue = useSharedValue<number>(0);
 
   useEffect(() => {
-    sharedValue.value = withDelay(300, withRepeat(withTiming(1, {duration, easing}), -1));
+    sharedValue.value = withDelay(100, withRepeat(withTiming(1, {duration, easing}), -1));
   }, []);
 
   const animatedStyle = useAnimatedStyle(() => ({

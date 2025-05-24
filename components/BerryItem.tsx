@@ -7,7 +7,7 @@ export default function BerryItem({berry}: { berry: BerryData }) {
   const {theme} = useAppTheme();
 
   return (
-    <XStack jc={"flex-start"} ai={"center"} px={20} py={16}>
+    <XStack jc={"flex-start"} ai={"center"} pl={20} pr={8} py={16}>
       {theme === "light" ?
         <Image w={32} h={32} source={{uri: berry.image}}/>
         :
@@ -16,7 +16,7 @@ export default function BerryItem({berry}: { berry: BerryData }) {
         </View>
       }
       <View w={12}/>
-      <YStack>
+      <YStack f={1}>
         <Text fos={14} fow={"500"}>{berry.name}</Text>
         <View h={8}/>
         <Text fos={12} fow={"normal"}>
