@@ -55,7 +55,22 @@
         }
       ],
       "expo-sqlite",
-      "expo-localization"
+      "expo-localization",
+      [
+        "expo-quick-actions",
+        {
+          "androidIcons": {
+            "search_icon": {
+              "foregroundImage": "./assets/images/ic_search.png",
+              "backgroundColor": "#ff4545"
+            },
+            "mypage_icon": {
+              "foregroundImage": "./assets/images/ic_mypage.png",
+              "backgroundColor": "#ff4545"
+            }
+          }
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true

@@ -12,14 +12,16 @@ import { useDrizzleStudio } from "expo-drizzle-studio-plugin";
 import { Alert } from "react-native";
 import { tamaguiConfig } from "@/tamagui.config";
 import { TamaguiProvider } from "tamagui";
+import { useQuickActionSetup } from "@/hooks/useQuickActionSetup";
 
 const client = new QueryClient();
 const expoDb = openDatabaseSync(DATABASE_NAME);
 
 export default function RootLayout() {
+  useQuickActionSetup();
+
   const db = drizzle(expoDb);
   const {error} = useMigrations(db, migrations);
-
   if (error) {
     alertDBError(error);
   }
