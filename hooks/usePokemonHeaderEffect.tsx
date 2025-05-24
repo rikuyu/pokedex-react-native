@@ -4,9 +4,9 @@ import { PokemonDetail } from "@/types/pokemon";
 import { getColorIsLight } from "@/utils/getColorIsLight";
 import Bookmark from "@/components/Bookmark";
 import IosBackButton from "@/components/IosBackButton";
-import { Platform } from "react-native";
 import { headerStyle, pokedexRed } from "@/constants/colors";
 import { isJa } from "@/utils/i18n";
+import { isIos } from "@/utils/platform";
 
 export const usePokemonProfileHeader = (
   data: PokemonDetail | undefined,
@@ -37,7 +37,7 @@ export const usePokemonProfileHeader = (
           backgroundColor: firstColor,
         },
         headerTintColor: contentColor,
-        headerLeft: () => Platform.OS === "ios" ? <IosBackButton iconColor={contentColor}/> : null,
+        headerLeft: () => isIos ? <IosBackButton iconColor={contentColor}/> : null,
         headerRight: () => <Bookmark color={contentColor} isBookmarked={isBookmarked} onPress={toggleBookmark}/>,
       });
     }

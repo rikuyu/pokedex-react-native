@@ -3,9 +3,9 @@ import { Tabs } from "expo-router";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-import { Platform } from "react-native";
 import { headerStyle, tabBarStyle } from "@/constants/colors";
 import HapticTabButton from "@/components/HapticTabButton";
+import { isIos } from "@/utils/platform";
 
 export default function TabLayout() {
   return (
@@ -48,7 +48,7 @@ export default function TabLayout() {
         options={{
           title: "",
           tabBarLabel: "",
-          headerShown: Platform.OS === "ios",
+          headerShown: isIos,
           tabBarIcon: ({focused}: { focused: boolean }) => (
             <MaterialCommunityIcons
               name={focused ? "account" : "account-outline"}

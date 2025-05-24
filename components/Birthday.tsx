@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Platform } from "react-native";
 import DateTimePicker, { DateTimePickerEvent } from "@react-native-community/datetimepicker";
 import { i18nText } from "@/utils/i18n";
 import { CalendarDays } from "@tamagui/lucide-icons";
 import { Text, View, XStack } from "tamagui";
+import { isAndroid, isIos } from "@/utils/platform";
 
 export default function Birthday() {
   const [birthdayIos, setBirthdayIos] = useState<Date>(new Date());
@@ -11,16 +11,16 @@ export default function Birthday() {
   const [showAndroid, setShowAndroid] = useState(false);
 
   const onChange = (_: DateTimePickerEvent, selectedDate?: Date) => {
-    if (Platform.OS === "android") {
+    if (isAndroid) {
       selectedDate && setBirthdayAndroid(selectedDate.toLocaleDateString());
       setShowAndroid(false);
     }
-    if (Platform.OS === "ios") {
+    if (isIos) {
       selectedDate && setBirthdayIos(selectedDate);
     }
   };
 
-  if (Platform.OS === "ios") {
+  if (isIos) {
     return (
       <XStack px={18} ai={"center"}>
         <CalendarDays size={18} strokeWidth={2}/>
