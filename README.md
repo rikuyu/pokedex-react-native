@@ -12,13 +12,15 @@
 - `expo-location`
 - `expo-status-bar`
 - `expo-localization`
+- `expo-notifications`
+- `expo-quick-actions`
 - `async-storage`
 - `datetimepicker`
 - `tanstack/react-query`
 - `react-native-reanimated`
 - `react-native-edge-to-edge`
-- `react-native-keyboard-aware-scroll-view`
 - `eslint`
+- `drizzle`
 - `maestro`
 
 ## 📱 Screens
