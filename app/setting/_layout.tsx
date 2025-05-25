@@ -3,18 +3,20 @@ import IosBackButton from "@/components/IosBackButton";
 import React from "react";
 import { headerStyle } from "@/constants/colors";
 import { i18nText } from "@/utils/i18n";
+import * as Device from "expo-device";
 import { isIos } from "@/utils/platform";
-import { SettingIcon } from "@/components/SettingIcon";
 
-export default function EditLayout() {
+export default function SettingLayout() {
+  console.log(`EXPO_PUBLIC_TEST=${process.env.EXPO_PUBLIC_TEST}`);
+  console.log(`modelName:${Device.modelName} osName:${Device.osName} osVersion:${Device.osVersion}`);
+
   return (
     <Stack
       screenOptions={{
-        title: i18nText("editTitle"),
+        title: i18nText("setting"),
         headerStyle,
         headerTintColor: "#ffffff",
         headerLeft: () => isIos ? <IosBackButton iconColor={"white"}/> : null,
-        headerRight: () => <SettingIcon />,
       }}>
       <Stack.Screen name="index"/>
     </Stack>
