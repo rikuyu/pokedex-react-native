@@ -1,6 +1,6 @@
 import React from "react";
 import { BerryData } from "@/types/berry";
-import { useAppTheme } from "@/utils/ThemeContext";
+import { useAppTheme } from "@/context/ThemeContext";
 import { Image, Text, View, XStack, YStack } from "tamagui";
 
 export default function BerryItem({berry}: { berry: BerryData }) {

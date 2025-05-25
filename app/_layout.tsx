@@ -1,7 +1,7 @@
 import { Stack } from "expo-router";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
-import { ThemeProvider } from "@/utils/ThemeContext";
+import { ThemeProvider } from "@/context/ThemeContext";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { DATABASE_NAME } from "@/services/db";
 import { openDatabaseSync, SQLiteProvider } from "expo-sqlite";

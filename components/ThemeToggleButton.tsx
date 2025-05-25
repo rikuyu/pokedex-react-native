@@ -1,5 +1,5 @@
 import React from "react";
-import { useAppTheme } from "@/utils/ThemeContext";
+import { useAppTheme } from "@/context/ThemeContext";
 import { Moon, Sun } from "@tamagui/lucide-icons";
 import { View } from "tamagui";
 
