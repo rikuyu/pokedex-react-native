@@ -19,7 +19,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/pokedex_android_icon.png"
       },
-      "package": "com.rikuyu.pokedex"
+      "package": "com.rikuyu.pokedex",
+      "googleServicesFile": "./google-services.json"
     },
     "web": {
       "bundler": "metro",

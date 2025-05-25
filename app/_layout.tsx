@@ -13,6 +13,7 @@ import { Alert } from "react-native";
 import { tamaguiConfig } from "@/tamagui.config";
 import { TamaguiProvider } from "tamagui";
 import { useQuickActionSetup } from "@/hooks/useQuickActionSetup";
+import { NotificationProvider } from "@/context/NotificationContext";
 
 const client = new QueryClient();
 const expoDb = openDatabaseSync(DATABASE_NAME);
@@ -31,19 +32,22 @@ export default function RootLayout() {
   return (
     <QueryClientProvider client={client}>
       <SQLiteProvider databaseName={DATABASE_NAME}>
-        <TamaguiProvider config={tamaguiConfig} defaultTheme={"light"}>
-          <ThemeProvider>
-            <SafeAreaProvider>
-              <Stack>
-                <Stack.Screen name="(tabs)" options={{headerShown: false}}/>
-                <Stack.Screen name="pokemon/[id]"/>
-                <Stack.Screen name="edit" options={{headerShown: false}}/>
-                <Stack.Screen name="+not-found"/>
-              </Stack>
-            </SafeAreaProvider>
-            <StatusBar style="light"/>
-          </ThemeProvider>
-        </TamaguiProvider>
+        <NotificationProvider>
+          <TamaguiProvider config={tamaguiConfig} defaultTheme={"light"}>
+            <ThemeProvider>
+              <SafeAreaProvider>
+                <Stack>
+                  <Stack.Screen name="(tabs)" options={{headerShown: false}}/>
+                  <Stack.Screen name="pokemon/[id]"/>
+                  <Stack.Screen name="edit" options={{headerShown: false}}/>
+                  <Stack.Screen name="setting" options={{headerShown: false}}/>
+                  <Stack.Screen name="+not-found"/>
+                </Stack>
+              </SafeAreaProvider>
+              <StatusBar style="light"/>
+            </ThemeProvider>
+          </TamaguiProvider>
+        </NotificationProvider>
       </SQLiteProvider>
     </QueryClientProvider>
   );
