@@ -3,6 +3,7 @@ import { DebugTitle } from "@/components/DebugTitle";
 import { DebugItem } from "@/components/DebugItem";
 import { sendLocalNotification, sendPushNotification } from "@/utils/notifications";
 import { useNotification } from "@/context/NotificationContext";
+import * as Clipboard from "expo-clipboard";
 
 export default function DebugNotificationSection() {
   const {expoPushToken, notification, error} = useNotification();
@@ -19,6 +20,7 @@ export default function DebugNotificationSection() {
       console.log("Expo Push Token is not available.");
       return;
     }
+    await Clipboard.setStringAsync(expoPushToken);
     await sendPushNotification(expoPushToken);
   };
 
@@ -27,11 +29,11 @@ export default function DebugNotificationSection() {
       <DebugTitle>
         <DebugTitle.Text>Notification</DebugTitle.Text>
       </DebugTitle>
-      <DebugItem onPress={debugLocalNotification}>
-        <DebugItem.Text>Push通知：{expoPushToken || "null"}</DebugItem.Text>
-      </DebugItem>
       <DebugItem onPress={debugRemoteNotification}>
-        <DebugItem.Text>Local通知</DebugItem.Text>
+        <DebugItem.Text>Push：{expoPushToken || "null"}</DebugItem.Text>
+      </DebugItem>
+      <DebugItem onPress={debugLocalNotification}>
+        <DebugItem.Text>Local</DebugItem.Text>
       </DebugItem>
     </>
   );
