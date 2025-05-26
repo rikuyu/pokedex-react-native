@@ -4,7 +4,7 @@ const DebugItemFrame = styled(XStack, {
   name: "DebugItem",
   ai: "center",
   jc: "flex-start",
-  bbw: 0.5,
+  bbw: 1,
   boc: "$color",
   bg: "$background",
   py: 12,

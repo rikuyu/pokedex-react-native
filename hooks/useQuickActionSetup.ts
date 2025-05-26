@@ -7,7 +7,7 @@ import { isIos } from "@/utils/platform";
 
 export const useQuickActionSetup = () => {
   useQuickActionCallback((action) => {
-    console.log("Action:", `id[${action.title}] tapped`);
+    console.log("👆 Action:", `id[${action.title}] tapped`);
   });
 
   useQuickActionRouting();

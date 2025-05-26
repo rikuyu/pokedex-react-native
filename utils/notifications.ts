@@ -17,8 +17,8 @@ export async function sendPushNotification(expoPushToken: string) {
   const message = {
     to: expoPushToken,
     sound: "default",
-    title: "プッシュ通知テスト",
-    body: "これはプッシュ通知のテストメッセージです。",
+    title: "📬 新しいお知らせがあります",
+    body: "[Remote] 開いて詳細をチェックしましょう！",
     data: {someData: "hello"},
   };
 
@@ -36,8 +36,8 @@ export async function sendPushNotification(expoPushToken: string) {
 export async function sendLocalNotification() {
   await Notifications.scheduleNotificationAsync({
     content: {
-      title: "ローカル通知テスト",
-      body: "これはローカル通知のテストメッセージです。",
+      title: "⏰ リマインダー",
+      body: "[Local] 忘れずにチェックしてくださいね！"
     },
     trigger: null,
   });

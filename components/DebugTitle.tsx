@@ -6,14 +6,13 @@ const DebugTitleFrame = styled(XStack, {
   ai: "center",
   jc: "flex-start",
   bg: "$background",
-  py: 8,
   px: 20,
   w: "100%",
 });
 
 const DebugTitleText = styled(Text, {
   name: "DebugTitleText",
-  fos: 12,
+  fos: 14,
   fow: "bold",
   col: pokedexRed,
 });
