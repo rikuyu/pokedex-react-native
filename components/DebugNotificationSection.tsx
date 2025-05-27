@@ -1,7 +1,7 @@
 import React from "react";
 import { DebugTitle } from "@/components/DebugTitle";
 import { DebugItem } from "@/components/DebugItem";
-import { sendLocalNotification, sendPushNotification } from "@/utils/notifications";
+import { sendLocalNotification, sendPushNotification } from "@/services/notifications";
 import { useNotification } from "@/context/NotificationContext";
 import * as Clipboard from "expo-clipboard";
 
@@ -33,7 +33,7 @@ export default function DebugNotificationSection() {
         <DebugItem.Text>Push：{expoPushToken || "null"}</DebugItem.Text>
       </DebugItem>
       <DebugItem onPress={debugLocalNotification}>
-        <DebugItem.Text>Local</DebugItem.Text>
+        <DebugItem.Text>Local リダイレクト機能</DebugItem.Text>
       </DebugItem>
     </>
   );

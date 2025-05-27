@@ -8,7 +8,7 @@ const DebugItemFrame = styled(XStack, {
   boc: "$color",
   bg: "$background",
   py: 12,
-  px: 20,
+  px: 16,
   w: "100%",
 });
 

@@ -6,7 +6,7 @@ const DebugTitleFrame = styled(XStack, {
   ai: "center",
   jc: "flex-start",
   bg: "$background",
-  px: 20,
+  px: 16,
   w: "100%",
 });
 
