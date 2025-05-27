@@ -71,6 +71,15 @@
             }
           }
         }
+      ],
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/images/ic_poke_notification.png",
+          "color": "#fc4545",
+          "defaultChannel": "default",
+          "enableBackgroundRemoteNotifications": false
+        }
       ]
     ],
     "experiments": {
