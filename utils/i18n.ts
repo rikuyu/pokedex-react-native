@@ -14,6 +14,7 @@ const ja = {
   quickActionSearchSubTitle: "キモリの詳細ページ",
   quickActionProfileTitle: "プロフィール",
   quickActionProfileSubTitle: "プロフィールを見る",
+  notFound: "ページが見つかりません",
 };
 
 const en = {
@@ -29,6 +30,7 @@ const en = {
   quickActionSearchSubTitle: "Open Treecko's profile page",
   quickActionProfileTitle: "Profile",
   quickActionProfileSubTitle: "Open Profile",
+  notFound: "Not Found Page",
 };
 
 type TranslationKeys = keyof typeof ja;
