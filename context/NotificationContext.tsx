@@ -1,6 +1,8 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { registerForPushNotificationsAsync } from "@/utils/notifications";
+import { registerForPushNotificationsAsync } from "@/services/notifications";
 import * as Notifications from "expo-notifications";
+import { router } from "expo-router";
+import { Href } from "expo-router/build/types";
 
 interface NotificationContextType {
   expoPushToken: string | undefined;
@@ -16,6 +18,13 @@ export const useNotification = () => {
   return context;
 };
 
+function redirect(notification: Notifications.Notification) {
+  const route = notification.request.content.data.route as Href;
+  if (route) {
+    router.push(route);
+  }
+}
+
 export const NotificationProvider = ({children}: { children: React.ReactElement | React.ReactElement[] }) => {
   const [expoPushToken, setExpoPushToken] = useState<string | undefined>(undefined);
   const [notification, setNotification] = useState<Notifications.Notification | undefined>(undefined);
@@ -27,13 +36,13 @@ export const NotificationProvider = ({children}: { children: React.ReactElement 
       .catch((error) => setError(error));
 
     const notificationListener = Notifications.addNotificationReceivedListener(notification => {
-      console.log("🔔 Notification Received:", notification);
+      console.log("🔔 Notification Received:", notification.request.content.title);
       setNotification(notification);
     });
 
     const responseListener = Notifications.addNotificationResponseReceivedListener(response => {
-      console.log("🔔 Notification Response received:", response);
-      console.log(response);
+      console.log("🔔 Notification Response received:", response.notification.request.content.title);
+      redirect(response.notification);
     });
 
     return () => {

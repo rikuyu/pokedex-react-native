@@ -36,8 +36,9 @@ export async function sendPushNotification(expoPushToken: string) {
 export async function sendLocalNotification() {
   await Notifications.scheduleNotificationAsync({
     content: {
-      title: "⏰ リマインダー",
-      body: "[Local] 忘れずにチェックしてくださいね！"
+      title: "🔥アチャモに会う",
+      body: "[Local] リダイレクト機能のテスト",
+      data: {route: "/pokemon/255"},
     },
     trigger: null,
   });
