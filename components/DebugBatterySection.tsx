@@ -2,6 +2,7 @@ import React from "react";
 import { DebugTitle } from "@/components/DebugTitle";
 import { DebugItem } from "@/components/DebugItem";
 import { useBatteryLevel } from "expo-battery";
+import { i18nText } from "@/utils/i18n";
 
 export default function DebugBatterySection() {
   const batteryLevel = useBatteryLevel();
@@ -12,7 +13,7 @@ export default function DebugBatterySection() {
         <DebugTitle.Text>Battery</DebugTitle.Text>
       </DebugTitle>
       <DebugItem>
-        <DebugItem.Text>Current Battery Level: {batteryLevel}</DebugItem.Text>
+        <DebugItem.Text>{i18nText("batteryLevel")}: {Math.round(batteryLevel * 100)}%</DebugItem.Text>
       </DebugItem>
     </>
   );

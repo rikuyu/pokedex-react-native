@@ -14,6 +14,7 @@ const ja = {
   quickActionSearchSubTitle: "キモリの詳細ページ",
   quickActionProfileTitle: "プロフィール",
   quickActionProfileSubTitle: "プロフィールを見る",
+  batteryLevel: "バッテリー残量",
   notFound: "ページが見つかりません",
 };
 
@@ -30,6 +31,7 @@ const en = {
   quickActionSearchSubTitle: "Open Treecko's profile page",
   quickActionProfileTitle: "Profile",
   quickActionProfileSubTitle: "Open Profile",
+  batteryLevel: "Current Battery Level",
   notFound: "Not Found Page",
 };
 
