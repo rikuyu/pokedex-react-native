@@ -19,8 +19,11 @@ const AnimatedFlatList = Animated.createAnimatedComponent(FlatList<BerryData>);
 
 export default function MyPage() {
   const scrollY = useSharedValue(0);
-  const scrollHandler = useAnimatedScrollHandler((event) => {
-    scrollY.value = event.contentOffset.y;
+  const scrollHandler = useAnimatedScrollHandler({
+    onScroll: (event) => {
+      "worklet";
+      scrollY.value = event.contentOffset.y;
+    },
   });
 
   const {width} = useWindowDimensions();
@@ -29,7 +32,7 @@ export default function MyPage() {
   const {profile, berryList, isLoading, isError} = useMyPageData();
 
   if (isLoading) {
-    return <FullScreenLoadingIndicator />;
+    return <FullScreenLoadingIndicator/>;
   }
 
   if (isError) {
