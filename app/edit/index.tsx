@@ -1,74 +1,62 @@
-import React, { useEffect, useState } from "react";
-import { useWindowDimensions } from "react-native";
+import React, { useCallback } from "react";
+import { Alert, useWindowDimensions } from "react-native";
 import EditHeaderSection from "@/components/EditHeaderSection";
 import EditBiographySection from "@/components/EditBiographySection";
 import { useRouter } from "expo-router";
-import { useMyProfile } from "@/hooks/useMyProfile";
 import EditSaveButton from "@/components/EditSaveButton";
-import * as ImagePicker from "expo-image-picker";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { View } from "tamagui";
 import FullScreenLoadingIndicator from "@/components/FullScreenLoadingIndicator";
 import FullScreenErrorView from "@/components/FullScreenErrorView";
+import { i18nText } from "@/utils/i18n";
+import { pickImage, useProfileForm } from "@/hooks/useProfileForm";
 
 export default function Index() {
   const {width} = useWindowDimensions();
   const imageSize = width / 5;
+  const router = useRouter();
+
   const {
-    profile,
+    name,
+    setName,
+    description,
+    setDescription,
+    iconImg,
+    setIconImg,
+    headerImg,
+    setHeaderImg,
     isLoading,
     isError,
     updateProfile,
-  } = useMyProfile();
-  const [name, setName] = useState<string>("");
-  const [description, setDescription] = useState<string>("");
-  const [iconImg, setIconImg] = useState<string | undefined>(undefined);
-  const [headerImg, setHeaderImg] = useState<string | undefined>(undefined);
+  } = useProfileForm();
 
-  const router = useRouter();
-
-  useEffect(() => {
-    if (!isLoading && profile) {
-      setName(profile.name);
-      setDescription(profile.description);
+  const handleSave = useCallback(async () => {
+    if (!name || !description) {
+      Alert.alert(
+        i18nText("editErrorTitle"),
+        i18nText("editErrorMsg"),
+        [{text: "OK"}],
+        {cancelable: true},
+      );
+      return;
     }
-  }, [isLoading, profile]);
 
-  const pickImageAsync = async (type: "icon" | "header") => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ["images"],
-      allowsEditing: true,
-      quality: 1,
-    });
-
-    if (!result.canceled) {
-      const uri = result.assets[0].uri;
-      if (type === "icon") setIconImg(uri);
-      if (type === "header") setHeaderImg(uri);
-    }
-  };
-
-  if (isLoading) {
-    return <FullScreenLoadingIndicator />;
-  }
-
-  if (isError) {
-    return <FullScreenErrorView/>;
-  }
-
-  const handleSave = async () => {
     await updateProfile({name, description});
     router.dismiss();
-  };
+  }, [name, description, updateProfile, router]);
+
+  if (isLoading) return <FullScreenLoadingIndicator/>;
+
+  if (isError) return <FullScreenErrorView/>;
 
   return (
     <View f={1} bg={"$background"}>
       <EditHeaderSection
         imageSize={imageSize}
         iconImg={iconImg}
-        setIcon={async (): Promise<void> => pickImageAsync("icon")}
+        setIcon={() => pickImage(setIconImg)}
         headerImg={headerImg}
-        setHeader={async (): Promise<void> => pickImageAsync("header")}
+        setHeader={() => pickImage(setHeaderImg)}
       />
       <View h={imageSize / 2 + 20} zi={1}/>
       <KeyboardAwareScrollView>

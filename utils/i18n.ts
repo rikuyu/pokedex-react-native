@@ -2,12 +2,16 @@ import { getLocales } from "expo-localization";
 import { I18n } from "i18n-js";
 
 const ja = {
+  bookmarkEmptyBtnLabel: "ポケモン図鑑を見る",
+  bookmarkEmptyTitle: "ブックマークはありません",
   stat: "種族値",
   birthDay: "誕生日",
   name: "なまえ",
   description: "せつめい",
   editBtn: "プロフィールを編集",
   editTitle: "プロフィールの編集",
+  editErrorTitle: "エラー",
+  editErrorMsg: "名前と説明は必須です",
   save: "保存",
   setting: "設定",
   quickActionSearchTitle: "キモリに会う",
@@ -19,12 +23,16 @@ const ja = {
 };
 
 const en = {
+  bookmarkEmptyBtnLabel: "View Pokedex",
+  bookmarkEmptyTitle: "No bookmarks found",
   stat: "Base Stats",
   birthDay: "Birthday",
   name: "Name",
   description: "Description",
   editBtn: "Edit Profile",
   editTitle: "Edit Profile",
+  editErrorTitle: "Error",
+  editErrorMsg: "Name and description are required",
   save: "Save",
   setting: "Settings",
   quickActionSearchTitle: "Meet Treecko",
