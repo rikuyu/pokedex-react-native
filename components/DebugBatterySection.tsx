@@ -13,7 +13,9 @@ export default function DebugBatterySection() {
         <DebugTitle.Text>Battery</DebugTitle.Text>
       </DebugTitle>
       <DebugItem>
-        <DebugItem.Text>{i18nText("batteryLevel")}: {Math.round(batteryLevel * 100)}%</DebugItem.Text>
+        <DebugItem.Text>
+          {i18nText("batteryLevel")}: {batteryLevel === -1 ? batteryLevel : `${Math.round(batteryLevel * 100)}%`}
+        </DebugItem.Text>
       </DebugItem>
     </>
   );
