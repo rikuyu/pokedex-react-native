@@ -4,6 +4,8 @@ import DebugNotificationSection from "@/components/DebugNotificationSection";
 import DebugBatterySection from "@/components/DebugBatterySection";
 import DebugDeviceSection from "@/components/DebugDeviceSection";
 import DebugNotFoundSection from "@/components/DebugNotFoundSection";
+import DebugLottieSection from "@/components/DebugLottieSection";
+import DebugThemeSection from "@/components/DebugThemeSection";
 
 export default function Index() {
   return (
@@ -14,7 +16,11 @@ export default function Index() {
       <View h={20}/>
       <DebugDeviceSection/>
       <View h={20}/>
-      <DebugNotFoundSection />
+      <DebugNotFoundSection/>
+      <View h={20}/>
+      <DebugLottieSection/>
+      <View h={20}/>
+      <DebugThemeSection/>
     </ScrollView>
   );
 };
