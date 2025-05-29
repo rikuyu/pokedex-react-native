@@ -80,6 +80,12 @@
           "defaultChannel": "default",
           "enableBackgroundRemoteNotifications": false
         }
+      ],
+      [
+        "expo-web-browser",
+        {
+          "experimentalLauncherActivity": true
+        }
       ]
     ],
     "experiments": {
