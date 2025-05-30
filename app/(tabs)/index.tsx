@@ -19,13 +19,9 @@ export default function Index() {
     isError,
   } = useInfinitePokedex();
 
-  if (!isFetchingNextPage && isFetching) {
-    return <FullScreenLoadingIndicator/>;
-  }
+  if (!isFetchingNextPage && isFetching) return <FullScreenLoadingIndicator/>;
 
-  if (isError) {
-    return <FullScreenErrorView/>;
-  }
+  if (isError) return <FullScreenErrorView/>;
 
   return (
     <View f={1} ai={"center"} jc={"center"} bg={"$background"}>

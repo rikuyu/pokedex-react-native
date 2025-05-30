@@ -29,9 +29,7 @@ export default function PokemonProfile() {
     return <FullScreenErrorView message={`Error: ${msg}`}/>;
   }
 
-  if (isLoading) {
-    return <FullScreenLoadingIndicator/>;
-  }
+  if (isLoading) return <FullScreenLoadingIndicator/>;
 
   return (
     <YStack f={1} ac={"center"} jc={"center"} bg={"$pokedexRed"}>

@@ -31,13 +31,9 @@ export default function MyPage() {
 
   const {profile, berryList, isLoading, isError} = useMyPageData();
 
-  if (isLoading) {
-    return <FullScreenLoadingIndicator/>;
-  }
+  if (isLoading) return <FullScreenLoadingIndicator/>;
 
-  if (isError) {
-    return <FullScreenErrorView/>;
-  }
+  if (isError) return <FullScreenErrorView/>;
 
   return (
     <YStack f={1} ac={"center"} jc={"center"} bg={"$background"}>
