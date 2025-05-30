@@ -7,6 +7,7 @@ import DebugNotFoundSection from "@/components/DebugNotFoundSection";
 import DebugLottieSection from "@/components/DebugLottieSection";
 import DebugThemeSection from "@/components/DebugThemeSection";
 import DebugBrowserSection from "@/components/DebugBrowserSection";
+import DebugLinkingSection from "@/components/DebugLinkingSection";
 
 export default function Index() {
   return (
@@ -24,6 +25,9 @@ export default function Index() {
       <DebugThemeSection/>
       <View h={20}/>
       <DebugBrowserSection/>
+      <View h={20}/>
+      <DebugLinkingSection/>
+      <View h={100}/>
     </ScrollView>
   );
 };
