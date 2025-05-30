@@ -9,7 +9,7 @@ export default function DebugDeviceSection() {
       <DebugTitle>
         <DebugTitle.Text>Device</DebugTitle.Text>
       </DebugTitle>
-      <DebugItem>
+      <DebugItem bordered>
         <DebugItem.Text>model: {Device.modelName}, os:{Device.osName} {Device.osVersion}, brand: {Device.brand}</DebugItem.Text>
       </DebugItem>
     </>

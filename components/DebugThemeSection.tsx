@@ -13,7 +13,7 @@ export default function DebugThemeSection() {
       <DebugTitle>
         <DebugTitle.Text>Light / Dark Theme</DebugTitle.Text>
       </DebugTitle>
-      <DebugItem>
+      <DebugItem bordered>
         <DebugItem.Text>
           {theme === "light" ? "Light" : "Dark"}
         </DebugItem.Text>

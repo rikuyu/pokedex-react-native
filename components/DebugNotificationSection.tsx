@@ -36,8 +36,8 @@ export default function DebugNotificationSection() {
           {error ? <DebugItem.Text col="$pokedexRed">error</DebugItem.Text> : expoPushToken || "null"}
         </DebugItem.Text>
       </DebugItem>
-      <DebugItem onPress={debugLocalNotification}>
-        <DebugItem.Text>Local リダイレクト機能</DebugItem.Text>
+      <DebugItem bordered onPress={debugLocalNotification}>
+        <DebugItem.Text>Local Redirect</DebugItem.Text>
         <View w={8}/>
         {error && <DebugItem.Text col="$pokedexRed">error</DebugItem.Text>}
       </DebugItem>

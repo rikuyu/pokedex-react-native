@@ -17,7 +17,7 @@ export default function DebugBrowserSection() {
       <DebugTitle>
         <DebugTitle.Text>Web Browser</DebugTitle.Text>
       </DebugTitle>
-      <DebugItem>
+      <DebugItem bordered>
         <DebugItem.Text>Open</DebugItem.Text>
         <View f={1}/>
         {result && <DebugItem.Text>{JSON.stringify(result)}</DebugItem.Text>}

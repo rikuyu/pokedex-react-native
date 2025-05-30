@@ -16,7 +16,7 @@ export default function DebugLottieSection() {
       <DebugTitle>
         <DebugTitle.Text>Lottie</DebugTitle.Text>
       </DebugTitle>
-      <DebugItem>
+      <DebugItem bordered>
         <DebugItem.Text>Play Animation</DebugItem.Text>
         <View f={1}/>
         <LottieView

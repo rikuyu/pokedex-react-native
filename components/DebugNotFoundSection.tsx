@@ -11,7 +11,7 @@ export default function DebugNotFoundSection() {
       <DebugTitle>
         <DebugTitle.Text>Not Found</DebugTitle.Text>
       </DebugTitle>
-      <DebugItem>
+      <DebugItem bordered>
         <DebugItem.Text>navigate wrong route</DebugItem.Text>
       </DebugItem>
     </YStack>
