@@ -68,7 +68,8 @@
     "expo-clipboard": "~7.1.4",
     "expo-battery": "~9.1.4",
     "lottie-react-native": "7.2.2",
-    "expo-application": "~6.1.4"
+    "expo-application": "~6.1.4",
+    "expo-brightness": "~13.1.4"
   },
   "devDependencies": {
     "@babel/core": "7.27.1",
