@@ -15,9 +15,8 @@ export default function ThemeToggleButton() {
       br={18}
       ar={1}
       w={"$3.5"} h={"$3.5"}
-      pos={"absolute"} t={8} r={8}
-    >
-      {theme === "light" ? <Moon size="$1" col="white"/> : <Sun size="$1" col="white"/>}
+      pos={"absolute"} t={8} r={8}>
+      {theme === "light" ? <Sun size="$1" col="white"/> : <Moon size="$1" col="white"/>}
     </View>
   );
 }
