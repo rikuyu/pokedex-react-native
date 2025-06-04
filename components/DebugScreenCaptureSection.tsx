@@ -22,8 +22,7 @@ export default function DebugScreenCaptureSection() {
 
     const addListenerAsync = async () => {
       subscription = ScreenCapture.addScreenshotListener(() => {
-        const message = status === "enable" ? "Thanks for screenshotting 😊" : "🚨 Screen capture is disabled 🚫";
-        alert(message);
+        alert("Screenshot detected! 📸");
       });
     };
 
