@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, use, useEffect, useState } from "react";
 import { registerForPushNotificationsAsync } from "@/services/notifications";
 import * as Notifications from "expo-notifications";
 import { router } from "expo-router";
@@ -13,7 +13,7 @@ interface NotificationContextType {
 const NotificationContext = createContext<NotificationContextType | undefined>(undefined);
 
 export const useNotification = () => {
-  const context = useContext(NotificationContext);
+  const context = use(NotificationContext);
   if (!context) throw new Error("useNotification must be used within NotificationProvider");
   return context;
 };

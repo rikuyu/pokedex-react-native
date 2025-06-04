@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, use, useEffect, useState } from "react";
 import { getTheme, saveTheme, Theme } from "@/services/themeStorage";
 import { Theme as TamaguiTheme } from "tamagui";
 
@@ -34,7 +34,7 @@ export const ThemeProvider = ({children}: { children: React.ReactElement | React
 };
 
 export const useAppTheme = () => {
-  const context = useContext(ThemeContext);
+  const context = use(ThemeContext);
   if (!context) throw new Error("useAppTheme must be used within ThemeProvider");
   return context;
 };

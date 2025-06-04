@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, use, useEffect, useState } from "react";
 import * as Linking from "expo-linking";
 
 type DeepLinkLoggerContextType = {
@@ -35,7 +35,7 @@ export const DeepLinkLoggerProvider = ({children}: { children: React.ReactElemen
 };
 
 export const useDeepLinkLogger = () => {
-  const context = useContext(DeepLinkLoggerContext);
+  const context = use(DeepLinkLoggerContext);
   if (!context) {
     throw new Error("useDeepLinkLogger must be used within DeepLinkLoggerContextProvider");
   }
