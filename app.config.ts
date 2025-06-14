@@ -1,5 +1,3 @@
-import "ts-node/register";
-
 import { ExpoConfig } from "expo/config";
 
 module.exports = ({ config }: {config: ExpoConfig}): ExpoConfig => {
@@ -28,6 +26,9 @@ module.exports = ({ config }: {config: ExpoConfig}): ExpoConfig => {
         googleServicesFile: "./google-services.json"
     },
     plugins: [
+      [
+        "./plugins/withPlugin",
+      ],
       "expo-router",
       "expo-sqlite",
       "expo-localization",
