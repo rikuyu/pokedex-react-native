@@ -26,9 +26,6 @@ module.exports = ({ config }: {config: ExpoConfig}): ExpoConfig => {
         googleServicesFile: "./google-services.json"
     },
     plugins: [
-      [
-        "./plugins/withPlugin",
-      ],
       "expo-router",
       "expo-sqlite",
       "expo-localization",
@@ -86,6 +83,12 @@ module.exports = ({ config }: {config: ExpoConfig}): ExpoConfig => {
               backgroundColor: "#ff4545"
             }
           }
+        }
+      ],
+      [
+        "./plugins/withPlugin",
+        {
+          message: "custom message from app.config.ts",
         }
       ],
     ],
